@@ -17,7 +17,7 @@ Personal Emacs configuration
 
 ## Installation
 
-Installed on macOS Catalina using Emacs28 [https://github.com/daviderestivo/homebrew-emacs-head](davidrestivo/homebrew-emacs-head)
+Installed on macOS Catalina using Emacs28 [davidrestivo/emacs-head](https://github.com/daviderestivo/homebrew-emacs-head)
 
 
 ``` bash
