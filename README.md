@@ -8,7 +8,7 @@
 `------'  `----' `--''--'`--''--'`------'`--`--`--' `--`--' `---'`----'                                                                           
 ```
 
-Personal Emacs configuration
+A Emacs configuration
 
 
 ## Focus
@@ -21,7 +21,11 @@ Personal Emacs configuration
   - use-package
 
 ## Essential Packages
-
+  - use-package
+  - company
+  - AucTeX
+  - yasnippet
+  - org-mode
 
 ## Installation
 
