@@ -26,8 +26,19 @@
 
 ;; Make startup faster by reducing the frequency of garbage
 ;; collection.
-(setq gc-cons-threshold (* 50 1000 1000))
+(setq gc-cons-threshold 50000000)
 
+;; get current user info
+(defvar current-user
+  (getenv
+    (if (equal system-type 'darwin) "USERNAME" "USER")))
+
+(message "BunnEmacs is gathering carrots... Wait here, %s!" current-user)
+
+;; load newest byte code
+(setq load-prefer-newer t)
+
+;; No Startup Message
 (setq inhibit-startup-message t)
 ;; Scratch Message
 (setq initial-scratch-message "")
@@ -61,7 +72,7 @@
 ;; macos cmd is meta key
 (setq mac-command-modifier 'meta)
 
-;; package setup
+;; package management
 (require 'package)
 (setq package-enable-at-startup nil)
 ;; we dont need file handlers at startup
@@ -70,7 +81,7 @@
 ;; disable site-run-file
 (setq site-run-file nil)
 
-
+;; package archives
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
@@ -102,25 +113,96 @@
 
 
 ;; Personal Config Directory
-(defun update-to-load-path (folder)
-  "Update FOLDER and subdirectories to `load-path`."
-  (let ((base folder))
-    (unless (member base load-path)
-      (add-to-list 'load-path base))
-    (dolist (f (directory-files base))
-      (let ((name (concat base "/" f)))
-        (when (and (file-directory-p name)
-                   (not (equal f ".."))
-                   (not (equal f ".")))
-          (unless (member base load-path)
-            (add-to-list 'load-path name)))))))
-(update-to-load-path (expand-file-name "personal" user-emacs-directory))
+;;(defun update-to-load-path (folder)
+;;  "Update FOLDER and subdirectories to `load-path`."
+;;  (let ((base folder))
+;;    (unless (member base load-path)
+;;      (add-to-list 'load-path base))
+;;    (dolist (f (directory-files base))
+;;      (let ((name (concat base "/" f)))
+;;        (when (and (file-directory-p name)
+;;                   (not (equal f ".."))
+;;                   (not (equal f ".")))
+;;          (unless (member base load-path)
+;;            (add-to-list 'load-path name)))))))
+;;(update-to-load-path (expand-file-name "personal" user-emacs-directory))
 
 ;; set custom.el file location
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+;;(setq custom-file (concat user-emacs-directory "custom.el"))
+;;(load custom-file 'noerror)
 
-;; Make gc pauses faster by decreasing threshold
-(setq gc-cons-threshold (* 2 1000 1000))
+
+;; Add load-path variables
+(defvar bunny-dir (file-name-directory load-file-name)
+  "The root directory of BunnEmacs distribution.")
+(defvar bunny-core-dir (expand-file-name "core" bunny-dir)
+  "BunnEmacs core functionality")
+(defvar bunny-modules-dir (expand-file-name "modules" bunny-dir)
+  "Home for BunnEmacs modules.")
+(defvar bunny-personal-dir (expand-file-name "personal" bunny-dir)
+  "Directory for personal configuration.")
+(defvar bunny-vendor-dir (expand-file-name "vendor" bunny-dir)
+  "Directory for packages not available on Elpa or Melpa.")
+(defvar bunny-savefile-dir (expand-file-name "savefile" bunny-dir)
+  "Directory to store history-files.")
+(defvar bunny-modules-file (expand-file-name "bunny-modules.el" bunny-personal-dir)
+  "List of modules to be loaded by BunnEmacs.")
+
+(unless (file-exists-p bunny-savefile-dir)
+  (make-directory bunny-savefile-dir))
+
+(defun bunny-add-subfolders-to-load-path (parent-dir)
+  "Add all level PARENT-DIR subdirs to the `load-path`."
+  (dolist (f (directory-files parent-dir))
+    (let ((name (expand-file-name f parent-dir)))
+      (when (and (file-directory-p name)
+                 (not (string-prefix-p "." f)))
+        (add-to-list 'load-path name)
+        (bunny-add-subfolders-to-load-path name)))))
+
+;; add BunnEmacs directories to `load-path`
+(add-to-list 'load-path bunny-core-dir)
+(add-to-list 'load-path bunny-modules-dir)
+(add-to-list 'load-path bunny-vendor-dir)
+(bunny-add-subfolders-to-load-path bunny-vendor-dir)
+
+
+;; core
+;; Reduce garbage collection to every 50MB of allocated data
+(setq gc-cons-threshold 50000000)
+
+;; warn when opening files larger than 100MB
+(setq large-file-warning-threshold 100000000)
+
+(message "Loading BunnEmacs...")
+
+;; core stuff
+(require 'bunny-packages)
+(require 'bunny-custom) ;; load before core, editor, and ui
+(require 'bunny-ui)
+(require 'bunny-core)
+(require 'bunny-mode)
+(require 'bunny-editor)
+(require 'bunny-global-keybindings)
+
+;; Modules
+(if (file-exists-p bunny-modules-file)
+  (load bunny-modules-file)
+  (message "Missing modules file %s" bunny-modules-file))
+
+;; Changes made using customize in UI are stored here
+(setq custom-file (expand-file-name "custom.el" bunny-personal-dir))
+
+;; load personal settings
+(when (file-exists-p bunny-personal-dir)
+  (message "Loading personal config files in %s..." bunny-personal-dir)
+  (mapc 'load (delete
+                bunny-modules-file
+                (directory-files bunny-personal-dir 't "^[^#\.].\\.el$"))))
+
+;; server
+(unless (server-running-p) (server-start))
+
+(message "BunnEmacs is ready to go %s!" current-user)
 
 ;;; init.el ends here
