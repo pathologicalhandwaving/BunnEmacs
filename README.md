@@ -39,4 +39,6 @@ brew install emacs-head@28 --with-cocoa
 git clone https://github.com/pathologicalhandwaving/BunnEmacs.git ~/.emacs.d
 ```
 
+## Features
+
 
