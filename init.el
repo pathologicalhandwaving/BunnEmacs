@@ -30,33 +30,63 @@
 
 (setq inhibit-startup-message t)
 
+;; No toolbar
+;; Yes menubar
 (tool-bar-mode -1)
-(menu-bar-mode -1)
+(menu-bar-mode +1)
+
+;; no scroll bar
 (scroll-bar-mode -1)
+;; Dont scroll to zero and preserve screen position
+(setq scroll-margin 0
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
+;; no blinking cursor
+(blink-cursor-mode -1)
 
 ;; highlight current line
-(global-hl-line-mode t)
+(global-hl-line-mode +1)
+;; line numbers
+(line-number-mode +1)
+(global-display-line-numbers-mode 1)
+;; column numbers
+(column-number-mode t)
 
-;; line and column numbers
-(line-number-mode t)
+;; display size of buffer
+(size-indication-mode t)
 
 ;; macos cmd is meta key
 (setq mac-command-modifier 'meta)
 
 ;; package setup
 (require 'package)
+(setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("elpa" . "https://orgmode.org/elpa/") t)
-
-;;(unless package-archive-contents
-;; (package-refresh-contents))
-;;(setq package-load-list '(all))
-;;(unless (package-installed-p 'org)
-;;  (package-install 'org))
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+(setq package-load-list '(all))
+(unless (package-installed-p 'org)
+  (package-install 'org))
+
+
+;; encoding
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
 
 ;; custom config file
 (setq custom-file "~/.emacs.d/custom.el")
