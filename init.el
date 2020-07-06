@@ -45,18 +45,17 @@
 
 ;; package setup
 (require 'package)
-(unless package-archive-contents
-  (package-refresh-contents))
-(setq package-load-list '(all))
-(unless (package-installed-p 'org)
-  (package-install 'org))
-(package-initialize)
-
-;; package repositories
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("elpa" . "https://orgmode.org/elpa/") t)
+
+;;(unless package-archive-contents
+;; (package-refresh-contents))
+;;(setq package-load-list '(all))
+;;(unless (package-installed-p 'org)
+;;  (package-install 'org))
+(package-initialize)
 
 
 ;; custom config file
