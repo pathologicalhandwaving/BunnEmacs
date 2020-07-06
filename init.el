@@ -64,6 +64,13 @@
 ;; package setup
 (require 'package)
 (setq package-enable-at-startup nil)
+;; we dont need file handlers at startup
+(defvar file-name-handler-alist-original file-name-handler-alist)
+(setq file-name-handler-alist nil)
+;; disable site-run-file
+(setq site-run-file nil)
+
+
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
