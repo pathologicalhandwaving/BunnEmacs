@@ -1,6 +1,14 @@
 # BunnEmacs
 
-Personal Emacs configuration
+``` text                                                                        
+,-----.                          ,------.                                
+|  |) /_ ,--.,--.,--,--, ,--,--, |  .---',--,--,--. ,--,--. ,---. ,---.  
+|  .-.  \|  ||  ||      \|      \|  `--, |        |' ,-.  || .--'(  .-'  
+|  '--' /'  ''  '|  ||  ||  ||  ||  `---.|  |  |  |\ '-'  |\ `--..-'  `) 
+`------'  `----' `--''--'`--''--'`------'`--`--`--' `--`--' `---'`----'                                                                           
+```
+
+A Emacs configuration
 
 
 ## Focus
@@ -10,10 +18,14 @@ Personal Emacs configuration
   - Git
   - Python
   - JSON
-  - Notes
+  - use-package
 
 ## Essential Packages
-
+  - use-package
+  - company
+  - AucTeX
+  - yasnippet
+  - org-mode
 
 ## Installation
 
@@ -26,5 +38,7 @@ brew install emacs-head@28 --with-cocoa
 
 git clone https://github.com/pathologicalhandwaving/BunnEmacs.git ~/.emacs.d
 ```
+
+## Features
 
 
