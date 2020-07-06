@@ -203,6 +203,6 @@
 ;; server
 (unless (server-running-p) (server-start))
 
-(message "BunnEmacs is ready to go %s!" current-user)
+(message "BunnEmacs is ready to go %s! Stupid rabbit" current-user)
 
 ;;; init.el ends here
