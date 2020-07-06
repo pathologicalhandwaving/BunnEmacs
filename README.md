@@ -10,7 +10,7 @@ Personal Emacs configuration
   - Git
   - Python
   - JSON
-  - Notes
+  - use-package
 
 ## Essential Packages
 
