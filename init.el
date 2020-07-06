@@ -29,6 +29,8 @@
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (setq inhibit-startup-message t)
+;; Scratch Message
+(setq initial-scratch-message "")
 
 ;; No toolbar
 ;; Yes menubar
@@ -88,16 +90,27 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-;; custom config file
-(setq custom-file "~/.emacs.d/custom.el")
 
-(load-file custom-file)
+;; Personal Config Directory
+(defun update-to-load-path (folder)
+  "Update FOLDER and subdirectories to `load-path`."
+  (let ((base folder))
+    (unless (member base load-path)
+      (add-to-list 'load-path base))
+    (dolist (f (directory-files base))
+      (let ((name (concat base "/" f)))
+        (when (and (file-directory-p name)
+                   (not (equal f ".."))
+                   (not (equal f ".")))
+          (unless (member base load-path)
+            (add-to-list 'load-path name)))))))
+(update-to-load-path (expand-file-name "personal" user-emacs-directory))
 
-;; default theme
-;;(load-theme doom-challenger-deep)
+;; set custom.el file location
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
 
-
-;; Make gc pauses faster by decreasing the threshold.
+;; Make gc pauses faster by decreasing threshold
 (setq gc-cons-threshold (* 2 1000 1000))
 
 ;;; init.el ends here
