@@ -1,0 +1,349 @@
+#+TITLE: BunnEmacs
+#+AUTHOR: Kris Short
+
+* TOC
+
+
+* UI
+
+#+BEGIN_SRC emacs-lisp
+(when window-system
+  (blink-cursor-mode 0)
+  (scroll-bar-mode 0)
+  (menu-bar-mode 0)
+  (tool-bar-mode +1)
+  (tooltip-mode 0))
+#+END_SRC
+
+** Full Screen
+#+BEGIN_SRC emacs-lisp
+(if (eq window-system 'ns)
+    (toggle-frame-maximized)
+  (toggle-frame-fullscreen))
+#+END_SRC
+
+** MacOS
+#+BEGIN_SRC emacs-lisp
+(when (eq system-type 'darwin)
+  (setq-default
+   exec-path (append exec-path '("/usr/local/bin"))   ; homebrew path
+   ns-command-modifier 'meta                          ; meta to CMD
+   ns-option-modifier 'super                          ; super to ALT
+   ns-right-option-modifier nil))                     ; disable right ALT
+#+END_SRC
+
+** Exec-path-from-shell
+#+BEGIN_SRC emacs-lisp
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :hook (after-init . exec-path-from-shell-initialize))
+#+END_SRC
+
+* Garbage Collection
+
+** If not in focus, garbage collect
+#+BEGIN_SRC emacs-lisp
+(add-hook 'focus-out-hook #'garbage-collect)
+#+END_SRC
+
+* Load =custom.el=
+Enable use of customization interface in GUI Emacs.
+Customization is automatically appened to the end of =init.el= by default, we don't want to do this it fucks shit up.
+Tell Emacs to add extra shit to another file that will be loaded if it exists.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default custom-file (expand-file-name ".custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+#+END_SRC
+
+* Load =.secret.el=
+
+Keep secret shit out of version control.
+API tokens live here.
+You should customize =user-full-name= and =user-mail-address=.
+
+#+BEGIN_SRC emacs-lisp
+(let ((secret.el (expand-file-name ".secret.el" user-emacs-directory)))
+  (when (file-exists-p secret.el)
+    (load secret.el)))
+#+END_SRC
+
+* Languages
+
+** CSS
+
+#+BEGIN_SRC
+#+END_SRC
+
+** CSV
+
+#+BEGIN_SRC
+#+END_SRC
+
+** Docker
+
+#+BEGIN_SRC
+#+END_SRC
+
+** HTML
+
+#+BEGIN_SRC
+#+END_SRC
+
+** JSON
+
+#+BEGIN_SRC
+#+END_SRC
+
+** JavaScript
+
+#+BEGIN_SRC
+#+END_SRC
+
+** LaTeX
+
+#+BEGIN_SRC
+#+END_SRC
+
+** Lisp
+
+#+BEGIN_SRC
+#+END_SRC
+
+** Markdown
+
+#+BEGIN_SRC
+#+END_SRC
+
+** Org
+
+#+BEGIN_SRC
+#+END_SRC
+
+** Python
+
+#+BEGIN_SRC
+#+END_SRC
+
+** SML
+
+#+BEGIN_SRC
+#+END_SRC
+
+** YAML
+
+#+BEGIN_SRC
+#+END_SRC
+
+
+* Theme
+
+#+BEGIN_SRC
+#+END_SRC
+
+*** Mode-Line
+#+BEGIN_SRC emacs-lisp
+(use-package doom-modeline
+  :demand t
+  :custom
+  (doom-modeline-buffer-file-name-style 'relative-to-project)
+  (doom-modeline-enable-word-count t)
+  (doom-modeline-icon t)
+  (doom-modeline-percent-position nil)
+  (doom-modeline-vcs-max-length 28)
+  :config
+  (doom-modeline-def-segment buffer-default-directory
+    "The buffer directory"
+    (let* ((active (doom-modelne--active))
+           (face (if active 'doom-modeline-buffer-path 'mode-line-inactive)))
+      (concat (doom-modeline-spc))))
+              (propertize (abberviate-file-name default-directory) 'face face)
+              (doom-modeline-spc))))
+    (doom-modeline-def-segment bunny/buffer-name
+      "The buffer name"
+      (concat (doom-modeline-spc) (doom-modeline--buffer-name) (doom-modeline-spc)))
+    (doom-modeline-def-segment bunny/buffer-name-simple
+      "simple buffer name"
+      (let* ((active (doom-modeline--active))
+             (face (cond ((and buffer-file-name (buffer-modified-p)) 'doom-modeline-buffer-modified)
+                         (active 'doom-modeline-buffer-file)
+                         (t 'mode-line-inactive))))
+      (concat (doom-modeline-spc) (propertize "%b" 'face face) (doom-modeline-spc))))
+    (doom-modeline-def-segment bunny/buffer-position
+      "buffer position"
+      (let* ((active (doom-modeline--active))
+             (face (if active 'mode-line 'mode-line-inactive)))
+        (propertize (concat (doom-modeline-spc) (format-mode-line "%l:%c") (doom-modeline-spc))
+                    'face face)))
+    (doom-modeline-def-segment bunny/major-mode
+    "current major mode"
+        (let* ((active (doom-modeline--active))
+           (face (if active 'doom-modeline-buffer-major-mode 'mode-line-inactive)))
+      (propertize (concat (doom-modeline-spc) mode-name (doom-modeline-spc))
+                  'face face)))
+  (doom-modeline-def-segment me/vcs
+    "The version control system information."
+    (when-let ((branch doom-modeline--vcs-text))
+      (let ((active (doom-modeline--active))
+            (text (concat ":" branch)))
+        (concat (doom-modeline-spc)
+                (if active text (propertize text 'face 'mode-line-inactive))
+                (doom-modeline-spc)))))
+  (doom-modeline-mode 1)
+  (doom-modeline-def-modeline 'info
+    '(bar me/buffer-name info-nodes bunny/buffer-position selection-info))
+  (doom-modeline-def-modeline 'main
+    '(bar me/buffer-name remote-host bunny/buffer-position checker selection-info))
+  (doom-modeline-def-modeline 'message
+    '(bar me/buffer-name-simple bunny/buffer-position selection-info))
+  (doom-modeline-def-modeline 'project
+    '(bar buffer-default-directory))
+  (doom-modeline-def-modeline 'special
+    '(bar me/buffer-name bunny/buffer-position selection-info))
+  (doom-modeline-def-modeline 'vcs
+    '(bar me/buffer-name remote-host bunny/buffer-position selection-info)))
+#+END_SRC
+
+**** Nyan-Mode
+#+BEGIN_SRC emacs-lisp
+(use-package nyan-mode
+  :custom
+  (nyan-cat-face-number 4)
+  (nyan-animate-nyancat t)
+  :hook
+  (doom-modeline-mode . nyan-mode))
+#+END_SRC
+
+* Features
+
+** Alert
+#+BEGIN_SRC
+#+END_SRC
+
+** Auto-Complete
+#+BEGIN_SRC
+#+END_SRC
+
+** Comments
+#+BEGIN_SRC
+#+END_SRC
+
+** Customization Menus
+#+BEGIN_SRC
+#+END_SRC
+
+** Daemon
+#+BEGIN_SRC
+#+END_SRC
+
+** Dictionary
+#+BEGIN_SRC
+#+END_SRC
+
+** Diff
+#+BEGIN_SRC
+#+END_SRC
+
+** Dired
+#+BEGIN_SRC
+#+END_SRC
+
+** Expand
+#+BEGIN_SRC
+#+END_SRC
+
+** Help
+#+BEGIN_SRC
+#+END_SRC
+
+** Keybindings
+#+BEGIN_SRC
+#+END_SRC
+
+** Linters
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :hook
+  ((css-mode . flycheck-mode)
+   (emacs-lisp-mode . flycheck-mode)
+   (js-mode . flycheck-mode)
+   (python-mode . flycheck-mode)
+   (latex-mode . flycheck-mode)
+   (json-mode . flycheck-mode)
+   (tex-mode . flycheck-mode))
+   :custom
+   (flycheck-check-syntax-automatically '(save mode-enabled))
+   (flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+   (flycheck-display-error-delay .3))
+#+END_SRC
+
+
+** Navigation
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+
+** Parentheses
+
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+END_SRC
+
+** Paste
+#+BEGIN_SRC emacs-lisp
+(use-package webpaste)
+#+END_SRC
+
+** Version Control
+#+BEGIN_SRC emacs-lisp
+(use-package git-commit
+  :preface
+  (defun bunny/git-commit-auto-fill-everywhere ()
+    (setq fill-column 72)
+    (setq-local comment-auto-fill-only-comments nill))
+  :hook
+  (git-commit-mode . bunny/git-commit-auto-fill-everywhere)
+  :custom
+  (git-commit-summary-max-length 50))
+#+END_SRC
+
+*** Magit
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :bind
+  (:map magit-hunk-section-map
+    ("RET" . magit-diff-visit-file-other-window)
+    ([return] . magit-diff-visit-file-other-window))
+  :custom
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+  (magit-diff-highlight-hunk-body nil)
+  (magit-diff-highlight-hunk-region-dim-outside magit-diff-highlight-hunk-region-using-face))
+  (magit-popup-display-buffer-action '((display-buffer-same-window)))
+  (magit-refs-show-commit-count 'all)
+  (magit-section-show-child-count t)
+  :config
+  (remove-hook 'magit-section-highlight-hook #'magit-section-highlight))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package gitattributes-mode)
+(use-package gitconfig-mode)
+(use-package gitignore-mode)
+#+END_SRC
+
+** Whitespace
+#+BEGIN_SRC emacs-lisp
+(use-package whitespace
+  :ensure nil
+  :hook
+  ((prog-mode . whitespace-turn-on)
+   (text-mode . whitespace-turn-on))
+  :custom
+  (whitespace-style '(face empty indentation::space tab trailing)))
+#+END_SRC
+
+
