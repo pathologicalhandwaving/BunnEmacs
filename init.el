@@ -13,3 +13,17 @@
 
 ;; macos cmd is meta key
 (setq mac-command-modifier `meta)
+
+;; package repos
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; custom config file
+(setq custom-file "~/.emacs.d/custom.el")
+
+(load-file custom-file)
+
+;; default theme
+;;(load-theme doom-challenger-deep)
