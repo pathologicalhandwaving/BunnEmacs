@@ -41,15 +41,24 @@
 (line-number-mode t)
 
 ;; macos cmd is meta key
-(setq mac-command-modifier `meta)
+(setq mac-command-modifier 'meta)
 
-;; package repos
+;; package setup
 (require 'package)
+(unless package-archive-contents
+  (package-refresh-contents))
+(setq package-load-list '(all))
+(unless (package-installed-p 'org)
+  (package-install 'org))
 (package-initialize)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
- 
+;; package repositories
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("elpa" . "https://orgmode.org/elpa/") t)
+
+
 ;; custom config file
 (setq custom-file "~/.emacs.d/custom.el")
 
