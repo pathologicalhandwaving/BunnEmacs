@@ -23,7 +23,7 @@ Installed on macOS Catalina using Emacs28 HEAD
 brew tap daviderestivo/emacs-head
 brew install emacs-head@28 --with-cocoa
 
-git clone https://github.com/pathologicalhandwaving/adhd-emacs.git ~/.emacs.d
+git clone https://github.com/pathologicalhandwaving/BunnEmacs.git ~/.emacs.d
 ```
 
 
