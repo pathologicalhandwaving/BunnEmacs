@@ -10,62 +10,18 @@
 ** Startup message
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
-(setq inital-scratch-message "")
+(setq inital-scratch-message nil)
 #+END_SRC
 
-** Startup Garbage Collection Reduced
-#+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold 50000000)
-#+END_SRC
-
-** Package Management
-
-** Disable site-run-file
-#+BEGIN_SRC emacs-lisp
-(setq site-run-file nil)
-#+END_SRC
-
-** Package Archives
-#+BEGIN_SRC emacs-lisp
-(require 'package)
-(setq-default
-  load-prefer-newer t
-  package-enabled-at-startup nil)
-  (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-  (add-to-list 'package-archives
-             '("gnu" . "http://elpa.gnu.org/packages/") t)
-  (add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/") t)
-  (package-initialize)
-#+END_SRC
-
-** =use-package=
-#+BEGIN_SRC emacs-lisp
-(unless (package-installed-p 'use-package)
-        (package-refresh-contents)
-        (package-install 'use-package t))
-(setq-default
-        use-package-always-defer t
-        use-package-always-ensure t)
-#+END_SRC
-
-** Ensure Latest Org-Mode
-#+BEGIN_SRC emacs-lisp
-(use-package org
-  :ensure org-plus-contrib)
-#+END_SRC
 
 
 * Encoding
 #+BEGIN_SRC emacs-lisp
 (prefer-coding-system 'utf-8)
-(set-default-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
-(set-language-environment "UTF-8")
 #+END_SRC
 
 
@@ -99,28 +55,13 @@
 #+END_SRC
 
 ** Full Screen
-#+BEGIN_SRC emacs-lisp
-(if (eq window-system 'ns)
-    (toggle-frame-maximized)
-  (toggle-frame-fullscreen))
-#+END_SRC
 
 ** Transparency
 #+BEGIN_SRC emacs-lisp
-(set-frame-parameter (selected-frame) 'alpha '(85 85))
+(modify-frame-parameters (selected-frame) '((alpha . 75)))
 (add-to-list 'default-frame-alist '(alpha 85 85))
-(setq ns-use-proxy-icon nil)
-(setq frame-title-format nil)
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
-#+END_SRC
-
-** Font
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'initial-frame-alist '(font . "Fira-Code-13"))
-(add-to-list 'default-frame-alist '(font . "Fira-Code-13"))
-(set-fontset-font t 'symbol (font-spec :family "Apple Symbols") nil 'prepend)
-(set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji" nil 'prepend)
 #+END_SRC
 
 ** Fringe
@@ -157,49 +98,15 @@
 (setq large-file-warning-threshold 100000000)
 #+END_SRC
 
-* Directories
-#+BEGIN_SRC emacs-lisp
-(defvar bunny-dir (file-name-directory load-file-name)
-  "Root Directory of BunnEmacs Distribution")
-(defvar bunny-vendor-dir (expand-file-name "vendor" bunny-dir)
-  "Directory for packages not available in archives")
-(defvar bunny-savefile-dir (expand-file-name "savefile" bunny-dir)
-  "Directory to store history files")
-(defvar bunny-personal-dir (expand-file-name "personal" bunny-dir)
-  "Directory for personal configuration")
-(unless (file-exists-p bunny-savefile dir)
-        (make-directory bunny-savefile-dir))
-#+END_SRC
-
-
-* Load Files
-
-** Add Subfolders to load-path
-#+BEGIN_SRC emacs-lisp
-(defun bunny-add-subfolders-to-load-path (parent-dir)
-  "Add all level PARENT-DIR subdirectories to the `load-path`"
-  (dolist (f (directory-files parent-dir)))
-    (let ((name (expand-file-name f parent-dir)))
-      (when (and (file-directory-p name)
-                 (not (string-prefix-p "." f)))
-            (add-to-list 'load-path name)
-            (bunny-add-subfolders-to-load-path name))))
-(add-to-list 'load-path bunny-vendor-dir)
-(add-to-list 'load-path bunny-personal-dir)
-(bunny-add-subfolders-to-load-path bunny-vendor-dir)
-#+END_SRC
-
-
 ** Load =custom.el=
 Enable use of customization interface in GUI Emacs.
 Customization is automatically appened to the end of =init.el= by default, we don't want to do this it fucks shit up.
 Tell Emacs to add extra shit to another file that will be loaded if it exists.
 
 #+BEGIN_SRC emacs-lisp
-(setq custom-file (expand-file-name "custom.el" bunny-personal-dir)
-(when (file-exists-p bunny-personal-dir)
-  (message "Loading personal carrots in %s..." bunny-personal-dir)
-  (mapc 'load (directory-files bunny-personal-dir 't "^[^#\.].\\.el$")))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 #+END_SRC
 
 
@@ -216,15 +123,6 @@ You should customize =user-full-name= and =user-mail-address=.
 
 * History and Backup File Management
 
-** Store backup and autosave files in tmp
-#+BEGIN_SRC emacs-lisp
-(require 'undo-tree)
-(setq backup-directory-alist
-  '((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-  '((".*" . ,temporary-file-directory)))
-(setq undo-tree-auto-save-history t)
-#+END_SRC
 
 ** Revert buffers automatically when underlying files are externally changed
 #+BEGIN_SRC emacs-lisp
@@ -233,10 +131,7 @@ You should customize =user-full-name= and =user-mail-address=.
 
 
 ** Remember last location in file
-#+BEGIN_SRC emacs-lisp
-(setq save-place-file (expand-file-name "saveplace" bunny-savefile-dir))
-(save-place-mode 1)
-#+END_SRC
+
 * Editor
 
 ** Newline at end of file
@@ -244,10 +139,6 @@ You should customize =user-full-name= and =user-mail-address=.
 (setq require-final-newline t)
 #+END_SRC
 
-* Server
-#+BEGIN_SRC emacs-lisp
-(unless (server-running-p) (server-start))
-#+END_SRC
 
 
 * Languages
@@ -265,14 +156,13 @@ You should customize =user-full-name= and =user-mail-address=.
   (defun bunny/scss-set-comment-style ()
     (setq-local comment-end "")
     (setq-local comment-start "//"))
-  :mode ("\\.sass\\'"" "\\.scss\\'")
+  :mode ("\\.sass\\'" "\\.scss\\'")
   :hook (scss-mode . bunny/scss-set-comment-style))
 #+END_SRC
 
 ** CSV
 #+BEGIN_SRC emacs-lisp
-(use-package csv-mode
-  :config (setq-default csv-default csv-align-padding 2))
+(use-package csv-mode)
 #+END_SRC
 
 ** Docker
@@ -312,22 +202,58 @@ HTML mode is defined in =sgml-mode.el=
 
 ** JavaScript
 
-#+BEGIN_SRC
-#+END_SRC
 
 ** LaTeX
 
-#+BEGIN_SRC
+*** AUCTeX
+#+BEGIN_SRC emacs-lisp
+(use-package auctex
+  :defer t
+  :ensure t
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq TeX-save-query nil)
+#+END_SRC
+
+*** RefTeX
+#+BEGIN_SRC emacs-lisp
+(use-package reftex
+  :ensure t)
+#+END_SRC
+
+*** pdf-tools
+#+BEGIN_SRC emacs-lisp
+(use-package pdf-tools
+  :pin manual
+  :config
+  (pdf-tools-install))
 #+END_SRC
 
 ** Lisp
-
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package ielm
+  :ensure nil
+  :hook (ielm-mode . (lambda () (setq-local scroll-margin 0))))
 #+END_SRC
 
 ** Markdown
-
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :preface
+  :mode
+  ("INSTALL\'"
+   "CONTRIBUTORS\\'"
+   "LICENSE\\'"
+   "README\\'"
+   "\\.markdown\\'"
+   "\\.md\\'")
+  :custom
+  (markdown-asymmetric-header t)
+  (markdown-split-window-direction 'right)
+  :config
+  (unbind-key "M-<down>" markdown-mode-map)
+  (unbind-key "M-<up>" markdown-mode-map))
 #+END_SRC
 
 ** Org
@@ -337,7 +263,10 @@ HTML mode is defined in =sgml-mode.el=
 
 ** Python
 
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package python
+  :ensure nil
+  :hook (python-mode . turn-on-prettify-symbols-mode))
 #+END_SRC
 
 ** SML
@@ -346,77 +275,34 @@ HTML mode is defined in =sgml-mode.el=
 #+END_SRC
 
 ** YAML
-
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :mode "\\.yml\\'"))
 #+END_SRC
 
 
 * Theme
-
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons
+  :config
+  (all-the-icons-install-fonts))
 #+END_SRC
 
-*** Mode-Line
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-them 'doom-outrun-electric t)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
+#+END_SRC
+
+** Mode-Line
 #+BEGIN_SRC emacs-lisp
 (use-package doom-modeline
-  :demand t
-  :custom
-  (doom-modeline-buffer-file-name-style 'relative-to-project)
-  (doom-modeline-enable-word-count t)
-  (doom-modeline-icon t)
-  (doom-modeline-percent-position nil)
-  (doom-modeline-vcs-max-length 28)
-  :config
-  (doom-modeline-def-segment buffer-default-directory
-    "The buffer directory"
-    (let* ((active (doom-modelne--active))
-           (face (if active 'doom-modeline-buffer-path 'mode-line-inactive)))
-      (concat (doom-modeline-spc))))
-              (propertize (abberviate-file-name default-directory) 'face face)
-              (doom-modeline-spc))))
-    (doom-modeline-def-segment bunny/buffer-name
-      "The buffer name"
-      (concat (doom-modeline-spc) (doom-modeline--buffer-name) (doom-modeline-spc)))
-    (doom-modeline-def-segment bunny/buffer-name-simple
-      "simple buffer name"
-      (let* ((active (doom-modeline--active))
-             (face (cond ((and buffer-file-name (buffer-modified-p)) 'doom-modeline-buffer-modified)
-                         (active 'doom-modeline-buffer-file)
-                         (t 'mode-line-inactive))))
-      (concat (doom-modeline-spc) (propertize "%b" 'face face) (doom-modeline-spc))))
-    (doom-modeline-def-segment bunny/buffer-position
-      "buffer position"
-      (let* ((active (doom-modeline--active))
-             (face (if active 'mode-line 'mode-line-inactive)))
-        (propertize (concat (doom-modeline-spc) (format-mode-line "%l:%c") (doom-modeline-spc))
-                    'face face)))
-    (doom-modeline-def-segment bunny/major-mode
-    "current major mode"
-        (let* ((active (doom-modeline--active))
-           (face (if active 'doom-modeline-buffer-major-mode 'mode-line-inactive)))
-      (propertize (concat (doom-modeline-spc) mode-name (doom-modeline-spc))
-                  'face face)))
-  (doom-modeline-def-segment me/vcs
-    "The version control system information."
-    (when-let ((branch doom-modeline--vcs-text))
-      (let ((active (doom-modeline--active))
-            (text (concat ":" branch)))
-        (concat (doom-modeline-spc)
-                (if active text (propertize text 'face 'mode-line-inactive))
-                (doom-modeline-spc)))))
-  (doom-modeline-mode 1)
-  (doom-modeline-def-modeline 'info
-    '(bar me/buffer-name info-nodes bunny/buffer-position selection-info))
-  (doom-modeline-def-modeline 'main
-    '(bar me/buffer-name remote-host bunny/buffer-position checker selection-info))
-  (doom-modeline-def-modeline 'message
-    '(bar me/buffer-name-simple bunny/buffer-position selection-info))
-  (doom-modeline-def-modeline 'project
-    '(bar buffer-default-directory))
-  (doom-modeline-def-modeline 'special
-    '(bar me/buffer-name bunny/buffer-position selection-info))
-  (doom-modeline-def-modeline 'vcs
-    '(bar me/buffer-name remote-host bunny/buffer-position selection-info)))
+  :demand t)
 #+END_SRC
 
 **** Nyan-Mode
@@ -432,48 +318,132 @@ HTML mode is defined in =sgml-mode.el=
 * Features
 
 ** Alert
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package alert
+  :config
+  (when (eq system-type 'darwin)
+    (setq-default alert-default-style 'osx-notifier)))
 #+END_SRC
 
 ** Auto-Complete
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :bind
+  (:map company-active-map
+        ("RET" . nil)
+        ([return] . nil)
+        ("TAB" . company-complete-selection)
+        ([tab] . company-complete-selection)
+        ("<right>" . company-complete-common))
+  :hook
+  (after-init . global-company-mode)
+  :custom
+  (company-dabbrev-downcase nil)
+  (company-idle-delay .2)
+  (company-minimum-prefix-length 1)
+  (company-require-match nil)
+  (company-tooltip-align-annotations t))
+#+END_SRC
+
+** Auto-Fill
+#+BEGIN_SRC emacs-lisp
+(use-package simple
+  :ensure nil
+  :hook
+  ((prog-mode . turn-on-auto-fill)
+   (text-mode . turn-on-auto-fill)))
 #+END_SRC
 
 ** Comments
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package newcomment
+  :ensure nil
+  :bind
+  ("<M-return>" . comment-indent-new-line)
+  :custom
+  (comment-auto-fill-only-comments t)
+  (comment-multi-line t))
 #+END_SRC
 
 ** Customization Menus
-#+BEGIN_SRC
+
+
+** Colors
+Colorize colors as text with their value
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-mode
+  :custom
+  (rainbow-x-colors-major-mode-list '()))
 #+END_SRC
 
 ** Daemon
-#+BEGIN_SRC
+Start serveer to edit editable elements in Chrome Browser from Emacs
+#+BEGIN_SRC emacs-lisp
+(use-package edit-server
+  :hook
+  (after-init . edit-server-start))
 #+END_SRC
 
 ** Dictionary
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package define-word)
+#+END_SRC
+
+*** Translate
+#+BEGIN_SRC emacs-lisp
+(use-package google-translate)
 #+END_SRC
 
 ** Diff
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package ediff-wind
+  :ensure nil
+  :custom
+  (ediff-split-window-function #'split-window-horizontally)
+  (ediff-window-setup-function #'ediff-setup-windows-plain))
 #+END_SRC
 
 ** Dired
-#+BEGIN_SRC
-#+END_SRC
+
 
 ** Expand
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :bind
+  (:map yas-minor-mode-map
+        ("TAB" . nil)
+        ([tab] . nil))
+  :hook
+  ((emacs-lisp-mode . yas-minor-mode)
+   (html-mode . yas-minor-mode)
+   (latex-mode . yas-minor-mode)
+   (org-mode . yas-minor-mode)
+   (python-mode . yas-minor-mode))
+   :custom
+   (yas-snippet-dirs '("/Users/emd/.emacs.d/snippets/"))
+   (yas-verbosity 2)
+   :config
+   (yas-reload-all))
 #+END_SRC
 
 ** Help
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package help-mode
+  :ensure nil
+  :bind
+  (:map help-mode-map
+        ("<" . help-go-back)
+        (">" . help-go-forward)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package eldoc
+  :ensure nil
+  :config
+  (global-eldoc-mode -1))
 #+END_SRC
 
 ** Keybindings
-#+BEGIN_SRC
-#+END_SRC
 
 ** Linters
 #+BEGIN_SRC emacs-lisp
@@ -481,7 +451,6 @@ HTML mode is defined in =sgml-mode.el=
   :hook
   ((css-mode . flycheck-mode)
    (emacs-lisp-mode . flycheck-mode)
-   (js-mode . flycheck-mode)
    (python-mode . flycheck-mode)
    (latex-mode . flycheck-mode)
    (json-mode . flycheck-mode)
@@ -494,16 +463,13 @@ HTML mode is defined in =sgml-mode.el=
 
 
 ** Navigation
-#+BEGIN_SRC emacs-lisp
 
-#+END_SRC
 
 
 ** Parentheses
 
 #+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package rainbow-delimiters)
 #+END_SRC
 
 ** Paste
@@ -531,16 +497,7 @@ HTML mode is defined in =sgml-mode.el=
   :bind
   (:map magit-hunk-section-map
     ("RET" . magit-diff-visit-file-other-window)
-    ([return] . magit-diff-visit-file-other-window))
-  :custom
-  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
-  (magit-diff-highlight-hunk-body nil)
-  (magit-diff-highlight-hunk-region-dim-outside magit-diff-highlight-hunk-region-using-face))
-  (magit-popup-display-buffer-action '((display-buffer-same-window)))
-  (magit-refs-show-commit-count 'all)
-  (magit-section-show-child-count t)
-  :config
-  (remove-hook 'magit-section-highlight-hook #'magit-section-highlight))
+    ([return] . magit-diff-visit-file-other-window)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -549,15 +506,27 @@ HTML mode is defined in =sgml-mode.el=
 (use-package gitignore-mode)
 #+END_SRC
 
+** Shell
+#+BEGIN_SRC emacs-lisp
+(use-package shell-pop
+  :bind (("C-t" . shell-pop))
+  :config
+  (setq shell-pop-default-director "/Users/emd/git")
+  (setq shell-pop-term-shell "/bin/bash")
+  (setq shell-pop-window-size 30)
+  (setq shell-pop-full-span t)
+  (setq shell-pop-window-position "top")
+  (setq shell-pop-autocd-to-working-dir t)
+  (setq shell-pop-cleanup-buffer-at-process-exit t))
+#+END_SRC
+
 ** Whitespace
 #+BEGIN_SRC emacs-lisp
 (use-package whitespace
   :ensure nil
   :hook
   ((prog-mode . whitespace-turn-on)
-   (text-mode . whitespace-turn-on))
-  :custom
-  (whitespace-style '(face empty indentation::space tab trailing)))
+   (text-mode . whitespace-turn-on)))
 #+END_SRC
 
 
