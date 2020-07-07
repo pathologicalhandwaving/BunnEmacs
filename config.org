@@ -1,18 +1,101 @@
 #+TITLE: BunnEmacs
 #+AUTHOR: Kris Short
+#+DATE_CREATED: [2020-07-06]
+#+DATE_MODIFIED: [2020-07-07]
 
-* TOC
+
+* Startup
+
+
+** Startup message
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+(setq inital-scratch-message "")
+#+END_SRC
+
+** Startup Garbage Collection Reduced
+#+BEGIN_SRC emacs-lisp
+(setq gc-cons-threshold 50000000)
+#+END_SRC
+
+** Package Management
+
+** Disable site-run-file
+#+BEGIN_SRC emacs-lisp
+(setq site-run-file nil)
+#+END_SRC
+
+** Package Archives
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq-default
+  load-prefer-newer t
+  package-enabled-at-startup nil)
+  (add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+  (add-to-list 'package-archives
+             '("gnu" . "http://elpa.gnu.org/packages/") t)
+  (add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
+  (package-initialize)
+#+END_SRC
+
+** =use-package=
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'use-package)
+        (package-refresh-contents)
+        (package-install 'use-package t))
+(setq-default
+        use-package-always-defer t
+        use-package-always-ensure t)
+#+END_SRC
+
+** Ensure Latest Org-Mode
+#+BEGIN_SRC emacs-lisp
+(use-package org
+  :ensure org-plus-contrib)
+#+END_SRC
+
+
+* Encoding
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+(set-default-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+#+END_SRC
 
 
 * UI
 
+** Bar Modes
 #+BEGIN_SRC emacs-lisp
-(when window-system
-  (blink-cursor-mode 0)
-  (scroll-bar-mode 0)
-  (menu-bar-mode 0)
-  (tool-bar-mode +1)
-  (tooltip-mode 0))
+(menu-bar-mode +1)
+(tool-bar-mode 0)
+(tooltip-mode 1)
+#+END_SRC
+
+*** Scroll-bar Mode
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+(setq scroll-margin 0
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+#+END_SRC
+
+** Highlight Current Line
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode +1)
+#+END_SRC
+
+** Line Numbers
+#+BEGIN_SRC emacs-lisp
+(line-number-mode +1)
+(global-display-line-numbers-mode 1)
+(column-number-mode t)
 #+END_SRC
 
 ** Full Screen
@@ -22,7 +105,30 @@
   (toggle-frame-fullscreen))
 #+END_SRC
 
+** Transparency
+#+BEGIN_SRC emacs-lisp
+(set-frame-parameter (selected-frame) 'alpha '(85 85))
+(add-to-list 'default-frame-alist '(alpha 85 85))
+(setq ns-use-proxy-icon nil)
+(setq frame-title-format nil)
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
+#+END_SRC
+
+** Font
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'initial-frame-alist '(font . "Fira-Code-13"))
+(add-to-list 'default-frame-alist '(font . "Fira-Code-13"))
+(set-fontset-font t 'symbol (font-spec :family "Apple Symbols") nil 'prepend)
+(set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji" nil 'prepend)
+#+END_SRC
+
+** Fringe
+
+** Scroll-bars
+
 ** MacOS
+*** TODO Move to Keybindings
 #+BEGIN_SRC emacs-lisp
 (when (eq system-type 'darwin)
   (setq-default
@@ -32,7 +138,7 @@
    ns-right-option-modifier nil))                     ; disable right ALT
 #+END_SRC
 
-** Exec-path-from-shell
+* Exec-path-from-shell
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
@@ -46,19 +152,58 @@
 (add-hook 'focus-out-hook #'garbage-collect)
 #+END_SRC
 
-* Load =custom.el=
+* Large File Warning
+#+BEGIN_SRC emacs-lisp
+(setq large-file-warning-threshold 100000000)
+#+END_SRC
+
+* Directories
+#+BEGIN_SRC emacs-lisp
+(defvar bunny-dir (file-name-directory load-file-name)
+  "Root Directory of BunnEmacs Distribution")
+(defvar bunny-vendor-dir (expand-file-name "vendor" bunny-dir)
+  "Directory for packages not available in archives")
+(defvar bunny-savefile-dir (expand-file-name "savefile" bunny-dir)
+  "Directory to store history files")
+(defvar bunny-personal-dir (expand-file-name "personal" bunny-dir)
+  "Directory for personal configuration")
+(unless (file-exists-p bunny-savefile dir)
+        (make-directory bunny-savefile-dir))
+#+END_SRC
+
+
+* Load Files
+
+** Add Subfolders to load-path
+#+BEGIN_SRC emacs-lisp
+(defun bunny-add-subfolders-to-load-path (parent-dir)
+  "Add all level PARENT-DIR subdirectories to the `load-path`"
+  (dolist (f (directory-files parent-dir)))
+    (let ((name (expand-file-name f parent-dir)))
+      (when (and (file-directory-p name)
+                 (not (string-prefix-p "." f)))
+            (add-to-list 'load-path name)
+            (bunny-add-subfolders-to-load-path name))))
+(add-to-list 'load-path bunny-vendor-dir)
+(add-to-list 'load-path bunny-personal-dir)
+(bunny-add-subfolders-to-load-path bunny-vendor-dir)
+#+END_SRC
+
+
+** Load =custom.el=
 Enable use of customization interface in GUI Emacs.
 Customization is automatically appened to the end of =init.el= by default, we don't want to do this it fucks shit up.
 Tell Emacs to add extra shit to another file that will be loaded if it exists.
 
 #+BEGIN_SRC emacs-lisp
-(setq-default custom-file (expand-file-name ".custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(setq custom-file (expand-file-name "custom.el" bunny-personal-dir)
+(when (file-exists-p bunny-personal-dir)
+  (message "Loading personal carrots in %s..." bunny-personal-dir)
+  (mapc 'load (directory-files bunny-personal-dir 't "^[^#\.].\\.el$")))
 #+END_SRC
 
-* Load =.secret.el=
 
+** Load =.secret.el=
 Keep secret shit out of version control.
 API tokens live here.
 You should customize =user-full-name= and =user-mail-address=.
@@ -69,31 +214,100 @@ You should customize =user-full-name= and =user-mail-address=.
     (load secret.el)))
 #+END_SRC
 
+* History and Backup File Management
+
+** Store backup and autosave files in tmp
+#+BEGIN_SRC emacs-lisp
+(require 'undo-tree)
+(setq backup-directory-alist
+  '((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+  '((".*" . ,temporary-file-directory)))
+(setq undo-tree-auto-save-history t)
+#+END_SRC
+
+** Revert buffers automatically when underlying files are externally changed
+#+BEGIN_SRC emacs-lisp
+(global-auto-revert-mode t)
+#+END_SRC
+
+
+** Remember last location in file
+#+BEGIN_SRC emacs-lisp
+(setq save-place-file (expand-file-name "saveplace" bunny-savefile-dir))
+(save-place-mode 1)
+#+END_SRC
+* Editor
+
+** Newline at end of file
+#+BEGIN_SRC emacs-lisp
+(setq require-final-newline t)
+#+END_SRC
+
+* Server
+#+BEGIN_SRC emacs-lisp
+(unless (server-running-p) (server-start))
+#+END_SRC
+
+
 * Languages
 
 ** CSS
 
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package css-mode
+  :ensure nil
+  :custom (css-indent-offset 2))
+
+(use-package scss-mode
+  :ensure nil
+  :preface
+  (defun bunny/scss-set-comment-style ()
+    (setq-local comment-end "")
+    (setq-local comment-start "//"))
+  :mode ("\\.sass\\'"" "\\.scss\\'")
+  :hook (scss-mode . bunny/scss-set-comment-style))
 #+END_SRC
 
 ** CSV
-
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package csv-mode
+  :config (setq-default csv-default csv-align-padding 2))
 #+END_SRC
 
 ** Docker
-
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode
+  :mode "Dockerfile\\'")
 #+END_SRC
 
 ** HTML
+HTML mode is defined in =sgml-mode.el=
 
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package sgml-mode
+  :ensure nil
+  :preface
+  (defun bunny/html-set-pretty-print-function ()
+    (setq bunny/pretty-print-function #'sgml-pretty-print))
+  :hook
+  ((html-mode . bunny/html-set-pretty-print-function)
+   (html-mode . sgml-electric-tag-pair-mode)
+   (html-mode . sgml-name-8bit-mode)
+   (html-mode . toggle-truncate-lines))
+  :custom
+  (sgml-basic-offset 2))
 #+END_SRC
 
 ** JSON
 
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package json-mode
+  :mode "\\.json\\'"
+  :preface
+  (defun bunny/json-set-indent-level ()
+    (setq-local js-indent-level 2))
+  :hook (json-mode . bunny/json-set-indent-level))
 #+END_SRC
 
 ** JavaScript
