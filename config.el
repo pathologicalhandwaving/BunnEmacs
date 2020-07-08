@@ -1,163 +1,69 @@
-#+TITLE: BunnEmacs
-#+AUTHOR: Kris Short
-#+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-07]
-
-
-* Startup
-
-
-** Startup message
-#+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
-#+END_SRC
 
-** Scratch Message
-#+BEGIN_SRC emacs-lisp
 (setq-default initial-scratch-message "")
-#+END_SRC
 
-** Bar Modes
-#+BEGIN_SRC emacs-lisp
 (menu-bar-mode +1)
 (tool-bar-mode -1)
 (tooltip-mode +1)
-#+END_SRC
 
-
-*** Scroll-bar Mode
-#+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (setq scroll-margin 0
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
-#+END_SRC
 
-** Highlight Current Line
-#+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-hl-line-mode)
-#+END_SRC
 
-
-** Line Numbers
-#+BEGIN_SRC emacs-lisp
 (line-number-mode +1)
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
-#+END_SRC
 
-** Wrap at edge of screen
-#+BEGIN_SRC emacs-lisp
 (global-visual-line-mode t)
-#+END_SRC
 
-** Transparency
-#+BEGIN_SRC emacs-lisp
 (modify-frame-parameters (selected-frame) '((alpha . 75)))
 (add-to-list 'default-frame-alist '(alpha 85 85))
-#+END_SRC
 
-** MacOS UI
-#+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-#+END_SRC
 
-** FIXME This isn't working
-=(add-to-list 'default-frame-alist '(ns-appearance . light))=
-
-
-* Encoding
-#+BEGIN_SRC emacs-lisp
 (prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
-#+END_SRC
 
-
-* Garbage Collection
-
-** If not in focus, garbage collect
-#+BEGIN_SRC emacs-lisp
 (add-hook 'focus-out-hook #'garbage-collect)
-#+END_SRC
 
-* Large File Warning
-#+BEGIN_SRC emacs-lisp
 (setq large-file-warning-threshold 100000000)
-#+END_SRC
 
-* MacOS Keys
-#+BEGIN_SRC emacs-lisp
 (when (eq system-type 'darwin)
   (setq-default
    exec-path (append exec-path '("/usr/local/bin"))   ; homebrew path
    ns-command-modifier 'meta
    mac-option-modifier 'super                          ; super to ALT
    mac-right-option-modifier nil))                     ; disable right ALT
-#+END_SRC
 
-* Exec-path-from-shell
-#+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :hook (after-init . exec-path-from-shell-initialize))
-#+END_SRC
 
-* Yes-or-No
-#+BEGIN_SRC emacs-lisp
 (fset 'yes-or-no-p 'y-or-n-p)
-#+END_SRC
 
-* Newline at end of file
-#+BEGIN_SRC emacs-lisp
 (setq require-final-newline t)
-#+END_SRC
 
-
-* Load Files
-
-** Load =custom.el=
-Enable use of customization interface in GUI Emacs.
-Customization is automatically appened to the end of =init.el= by default, we don't want to do this it fucks shit up.
-Tell Emacs to add extra shit to another file that will be loaded if it exists.
-
-#+BEGIN_SRC emacs-lisp
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
-#+END_SRC
 
-
-** Load =.secret.el=
-Keep secret shit out of version control.
-API tokens live here.
-You should customize =user-full-name= and =user-mail-address=.
-
-#+BEGIN_SRC emacs-lisp
 (let ((secret.el (expand-file-name ".secret.el" user-emacs-directory)))
   (when (file-exists-p secret.el)
     (load secret.el)))
-#+END_SRC
 
-
-
-
-* Theme
-
-#+BEGIN_SRC emacs-lisp
 (use-package neotree
   :bind ("C-x n" . neotree-toggle)
   :config
   (setq neo-smart-open t))
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (use-package all-the-icons)
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (use-package doom-themes
   :ensure t
   :config
@@ -168,60 +74,37 @@ You should customize =user-full-name= and =user-mail-address=.
   (setq doom-neotree-enable-chevron-icons t)
   (setq doom-neotree-enable-type-colors t)
   (doom-themes-org-config))
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (load-theme 'doom-outrun-electric t)
-#+END_SRC
 
-
-** Nyan-Mode
-#+BEGIN_SRC emacs-lisp
 (use-package nyan-mode
   :init
   :config
   (nyan-mode t)
   (nyan-toggle-wavy-trail)
   (nyan-start-animation))
-#+END_SRC
 
-** Parens
-#+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters)
-#+END_SRC
 
-* Help
-#+BEGIN_SRC emacs-lisp
 (use-package help-mode
   :ensure nil
   :bind
   (:map help-mode-map
         ("<" . help-go-back)
         (">" . help-go-forward)))
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (use-package eldoc
   :ensure nil
   :config
   (global-eldoc-mode -1))
-#+END_SRC
 
-* Expand
-
-** YaSnippets
-#+BEGIN_SRC emacs-lisp
 (use-package yasnippet
   :ensure t
   :init
   (yas-global-mode 1)
   :config
   (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
-#+END_SRC
 
-
-** Auto-Complete
-#+BEGIN_SRC emacs-lisp
 (use-package company
   :bind
   (:map company-active-map
@@ -238,43 +121,20 @@ You should customize =user-full-name= and =user-mail-address=.
   (company-minimum-prefix-length 1)
   (company-require-match nil)
   (company-tooltip-align-annotations t))
-#+END_SRC
 
-
-* Search
-
-** Dictionary
-#+BEGIN_SRC emacs-lisp
 (use-package define-word)
-#+END_SRC
 
-** Translate
-#+BEGIN_SRC emacs-lisp
 (use-package google-translate)
-#+END_SRC
 
-
-
-* pdf-tools
-#+BEGIN_SRC emacs-lisp
 (use-package pdf-tools
   :pin manual
   :config
   (pdf-tools-install))
-#+END_SRC
 
-* Languages
-
-
-** CSS
-
-#+BEGIN_SRC emacs-lisp
 (use-package css-mode
   :ensure nil
   :custom (css-indent-offset 2))
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (use-package scss-mode
   :ensure nil
   :preface
@@ -283,26 +143,13 @@ You should customize =user-full-name= and =user-mail-address=.
     (setq-local comment-start "//"))
   :mode ("\\.sass\\'" "\\.scss\\'")
   :hook (scss-mode . bunny/scss-set-comment-style))
-#+END_SRC
 
-
-** CSV
-#+BEGIN_SRC emacs-lisp
 (use-package csv-mode)
-#+END_SRC
 
-
-** Colors
-Colorize colors as text with their value
-#+BEGIN_SRC emacs-lisp
 (use-package rainbow-mode
   :custom
   (rainbow-x-colors-major-mode-list '()))
-#+END_SRC
 
-
-** Comments
-#+BEGIN_SRC emacs-lisp
 (use-package newcomment
   :ensure nil
   :bind
@@ -310,23 +157,13 @@ Colorize colors as text with their value
   :custom
   (comment-auto-fill-only-comments t)
   (comment-multi-line t))
-#+END_SRC
 
-
-** Diff
-#+BEGIN_SRC emacs-lisp
 (use-package ediff-wind
   :ensure nil
   :custom
   (ediff-split-window-function #'split-window-horizontally)
   (ediff-window-setup-function #'ediff-setup-windows-plain))
-#+END_SRC
 
-
-** HTML
-HTML mode is defined in =sgml-mode.el=
-
-#+BEGIN_SRC emacs-lisp
 (use-package sgml-mode
   :ensure nil
   :preface
@@ -339,37 +176,21 @@ HTML mode is defined in =sgml-mode.el=
    (html-mode . toggle-truncate-lines))
   :custom
   (sgml-basic-offset 2))
-#+END_SRC
 
-** JSON
-
-#+BEGIN_SRC emacs-lisp
 (use-package json-mode
   :mode "\\.json\\'"
   :preface
   (defun bunny/json-set-indent-level ()
     (setq-local js-indent-level 2))
   :hook (json-mode . bunny/json-set-indent-level))
-#+END_SRC
 
-
-** Lisp
-#+BEGIN_SRC emacs-lisp
 (use-package ielm
   :ensure nil
   :hook (ielm-mode . (lambda () (setq-local scroll-margin 0))))
-#+END_SRC
 
-
-#+BEGIN_SRC emacs-lisp
 (use-package python
   :ensure nil
   :hook (python-mode . turn-on-prettify-symbols-mode))
-#+END_SRC
 
-
-** YAML
-#+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
   :mode ("\\.yml\\'"))
-#+END_SRC
