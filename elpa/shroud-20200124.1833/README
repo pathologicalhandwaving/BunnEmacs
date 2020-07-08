@@ -1,0 +1,149 @@
+;; -*- mode:org -*-
+* Emacs-Shroud Interface
+  :PROPERTIES:
+  :ALT_TITLE: Introduction
+  :DESCRIPTION: Shroud secrets manager
+  :END:
+  Shroud is a password manager written in Guile which uses GnuPG in
+  the backend. See Shroud's website at [[https://dthompson.us/projects/shroud.html][this link.]] This package is an
+  Emacs interface to Shroud using the Buffers User Interface library.
+
+  Shroud stores secrets as a plain text encrypted using
+  GnuPG. Particularly, in Lisp's S-expressions, in a form of
+  associaton lists. This provides the dual benefit that, the file is
+  trivial to parse by machine, yet at the same time, is perfectly
+  readable/editable by a human.
+
+  You can view, copy and edit secrets from Emacs.
+
+** Features
+   :PROPERTIES:
+   :ALT_TITLE: Features
+   :DESCRIPTION: Facilities provided by this package
+   :END:
+   - Elisp procedures to operate the Shroud command line interface.
+   - An Elisp implementation of Shroud, using EPG and dash.
+   - A Buffers User Interface to view entries in the database.
+
+** For a quick start
+   :PROPERTIES:
+   :ALT_TITLE: Usage
+   :DESCRIPTION: Common usage commands
+   :END:
+   - M-x shroud (for minimal interface) M-x shroud-bui (for buffers interface)
+   - (global-set-key (kbd "C-c p") 'shroud)
+   - Keybinds: To view the keybinding press =C-h m= in the *Shroud*
+     Buffer
+   |-----+---------------------|
+   | Key | Action              |
+   |-----+---------------------|
+   | c   | copy password       |
+   | I   | copy username       |
+   | a   | add new entry       |
+   | d   | delete entry        |
+   | g   | refresh buffer      |
+   | e   | edit entry at point |
+   | w   | copy url            |
+   |-----+---------------------|
+
+* Installation
+  :PROPERTIES:
+  :ALT_TITLE: Installation
+  :DESCRIPTION: This section will guide you through setting up Shroud.el
+  :END:
+** with guix
+   :PROPERTIES:
+   :ALT_TITLE: Install with Guix
+   :DESCRIPTION: Using the Gnu Guix package manager
+   :END:
+   To install, simply clone the repo, or download file =guix.scm= and
+   build the package =emacs-shroud= present in =guix.scm=.
+   #+begin_src shell
+    git clone https://github.com/o-nly/emacs-shroud.git
+    cd emacs-shroud
+    guix package -i guix.scm
+   #+end_src
+** from git
+   :PROPERTIES:
+   :ALT_TITLE: From Sources
+   :DESCRIPTION: Install from Git
+   :END:
+   #+begin_src emacs-lisp
+    (push (directory-file-name "/path/to/emacs-shroud/") load-path)
+    (require 'shroud)
+   #+end_src
+** from Melpa
+   :PROPERTIES:
+   :ALT_TITLE: From Melpa Package Repository
+   :DESCRIPTION: Install from Melpa
+   :END:
+   The easiest way to install is to use MELPA, and just type:
+   =M-x package-install RET shroud= inside Emacs.
+
+* Configuration
+  :PROPERTIES:
+  :ALT_TITLE: Configuration
+  :DESCRIPTION: Pick some options, set variables
+  :END:
+  Shroud's configuration options can be changed in the =$HOME/.shroud=
+  file. The default database is located in =~/.config/shroud/db.gpg=.
+
+  However, Emacs-shroud also includes an elisp implementation of
+  Shroud. It can be configured to use the same defaults as Shroud.
+  #+begin_src emacs-lisp
+    (setq shroud-el--database-file "~/.config/shroud/db.gpg")
+    (setq shroud-el--config-file "~/.shroud")
+    (setq shroud-el--gpg-key "user@example.com")
+  #+end_src
+  If gpg-key is not set and no configuration file is found Shroud may
+  prompt you to choose a key each time you edit the database(remember
+  it's just alists)
+  You can choose to use the elisp implementation only with this bit of Elisp.
+  #+begin_src emacs-lisp
+    (setq shroud-executable nil)
+    (shroud--init)
+  #+end_src
+  If the shroud-executable is nil shroud--init will setup accordingly.
+
+* Examples
+  :PROPERTIES:
+  :ALT_TITLE: Example Setup
+  :DESCRIPTION: A minimal setup
+  :END:
+** Sample Shroud Config
+   :PROPERTIES:
+   :ALT_TITLE: Shroud Config
+   :DESCRIPTION: Config file
+   :END:
+   =$HOME/.shroud= or M-x customize-group shroud
+   #+begin_src emacs-lisp
+    '((user-id . "AAOEUOEUP12323"))
+   #+end_src
+** Sample Shroud Database
+   :PROPERTIES:
+   :ALT_TITLE: Shroud Database
+   :DESCRIPTION: Database file
+   :END:
+   #+begin_src emacs-lisp
+    ;; -*- epa-file-encrypt-to: ("AAOEUOEUP12323") -*-
+    (((id . "my-bank") (contents  ("password" . "hackme") ("username" . "pwned") ...)) ...)
+   #+end_src
+* Legalese
+  :PROPERTIES:
+  :COPYING:  t
+  :END:
+
+   Copyright (C) 2019 Amar Singh
+
+   This program is free software: you can redistribute it and/or
+   modify it under the terms of the GNU General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.

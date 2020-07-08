@@ -6,6 +6,8 @@
 (tool-bar-mode -1)
 (tooltip-mode +1)
 
+(size-indication-mode t)
+
 (scroll-bar-mode -1)
 (setq scroll-margin 0
       scroll-conservatively 10000
@@ -23,6 +25,30 @@
 (add-to-list 'default-frame-alist '(alpha 85 85))
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+
+(unless (package-installed-p 'imenu-anywhere)
+  (package-refresh-contents)
+  (package-install 'imenu-anywhere))
+
+(use-package ido
+  :config
+  (setq ido-enable-prefix nil
+  	ido-enable-flex-matching t
+	ido-create-new-buffer 'always
+	ido-use-filename-at-point 'guess
+	ido-max-prospects 10
+	ido-default-file-method 'selected-window
+	ido-auto-merge-work-directories-length -1)
+  (ido-mode +1)
+  (ido-ubiquitous-mode +1))
+
+(use-package smex
+  :bind
+  ("M-x" . 'smex)
+  ("M-X" . 'smex-major-mode-commands)
+  :config
+  (setq smex-save-file (expand-file-name ".smex-items" prelude-savefile-dir))
+  (smex-initialize))
 
 (prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -118,9 +144,18 @@
   :custom
   (company-dabbrev-downcase nil)
   (company-idle-delay .2)
-  (company-minimum-prefix-length 1)
+  (company-minimum-prefix-length 2)
+  (company-tooltip-limit 10)
+  (company-show-numbers t)
   (company-require-match nil)
-  (company-tooltip-align-annotations t))
+  (company-tooltip-align-annotations t)
+  (company-tooltip-flip-when-above t))
+
+(global-company-mode 1)
+
+(use-package which-key
+  :config
+  (which-key-mode +1))
 
 (use-package define-word)
 

@@ -1,0 +1,16 @@
+
+;; ----- smex-history -----
+(
+ neotree-toggle
+ cd
+ 5x5
+ amx
+ arp
+ asx
+ dbx
+)
+
+;; ----- smex-data -----
+(
+ (neotree-toggle . 1)
+)
