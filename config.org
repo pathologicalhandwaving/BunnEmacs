@@ -17,15 +17,18 @@
 (setq-default initial-scratch-message "")
 #+END_SRC
 
-** Bar Modes
+* Bar Modes
 #+BEGIN_SRC emacs-lisp
 (menu-bar-mode +1)
 (tool-bar-mode -1)
 (tooltip-mode +1)
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(size-indication-mode t)
+#+END_SRC
 
-*** Scroll-bar Mode
+** Scroll-bar Mode
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (setq scroll-margin 0
@@ -64,6 +67,38 @@
 
 ** FIXME This isn't working
 =(add-to-list 'default-frame-alist '(ns-appearance . light))=
+
+* iMenu
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'imenu-anywhere)
+  (package-refresh-contents)
+  (package-install 'imenu-anywhere))
+#+END_SRC
+
+* ido
+#+BEGIN_SRC emacs-lisp
+(use-package ido
+  :config
+  (setq ido-enable-prefix nil
+  	ido-enable-flex-matching t
+	ido-create-new-buffer 'always
+	ido-use-filename-at-point 'guess
+	ido-max-prospects 10
+	ido-default-file-method 'selected-window
+	ido-auto-merge-work-directories-length -1)
+  (ido-mode +1)
+  (ido-ubiquitous-mode +1))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package smex
+  :bind
+  ("M-x" . 'smex)
+  ("M-X" . 'smex-major-mode-commands)
+  :config
+  (setq smex-save-file (expand-file-name ".smex-items" prelude-savefile-dir))
+  (smex-initialize))
+#+END_SRC
 
 
 * Encoding
@@ -235,9 +270,22 @@ You should customize =user-full-name= and =user-mail-address=.
   :custom
   (company-dabbrev-downcase nil)
   (company-idle-delay .2)
-  (company-minimum-prefix-length 1)
+  (company-minimum-prefix-length 2)
+  (company-tooltip-limit 10)
+  (company-show-numbers t)
   (company-require-match nil)
-  (company-tooltip-align-annotations t))
+  (company-tooltip-align-annotations t)
+  (company-tooltip-flip-when-above t))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(global-company-mode 1)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+  :config
+  (which-key-mode +1))
 #+END_SRC
 
 
