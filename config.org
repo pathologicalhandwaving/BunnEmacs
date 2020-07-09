@@ -543,6 +543,7 @@ HTML mode is defined in =sgml-mode.el=
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 #+END_SRC
 
+*** org-babel languages
 #+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -565,19 +566,27 @@ HTML mode is defined in =sgml-mode.el=
 
 =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
 
+#+BEGIN_SRC emacs-lisp
+(setq org-confirm-babel-evaluate nil)
+#+END_SRC
 
+
+*** org-src block fontify
 #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
 #+END_SRC
 
+*** Dont spell check these regions
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
 #+END_SRC
 
-
+*** Modify demote bullets
 #+BEGIN_SRC emacs-lisp
 (setq org-list-demote-modify-bullet (quote (
                                       ("+" . "-")
@@ -585,15 +594,22 @@ HTML mode is defined in =sgml-mode.el=
                                             ("1." . "-"))))
 #+END_SRC
 
+*** hide emphasis markers
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-emphasis-markers t)
 #+END_SRC
 
+*** fontify headlines
 #+BEGIN_SRC emacs-lisp
 (setq org-fontify-whole-headline t)
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(setq org-fontify-done-headline t)
+#+END_SRC
 
+
+*** fontify quote and verse blocks
 #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
 #+END_SRC
@@ -617,7 +633,7 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 #+END_SRC
 
-**** Priority 
+*** Priority 
 #+BEGIN_SRC emacs-lisp
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
@@ -625,9 +641,8 @@ HTML mode is defined in =sgml-mode.el=
 #+END_SRC
 
 
-**** Org Files
+*** Org Files
 default directory
-
 #+BEGIN_SRC emacs-lisp
 (setq org-directory (expand-file-name "~/OrgDB"))
 #+END_SRC
@@ -645,6 +660,11 @@ Notes file
 #+END_SRC
 
 
+Inbox file
+#+BEGIN_SRC emacs-lisp
+(defvar bunny-inbox-file "~/OrgDB/Inbox/inbox.org")
+#+END_SRC
+
 *** Maximize description list indent
 #+BEGIN_SRC emacs-lisp
 (setq org-list-description-max-indent 5)
@@ -657,6 +677,7 @@ Notes file
 (use-package poporg
   :bind (("C-c /" . poporg-dwim)))
 #+END_SRC
+
 
 
 ** Python
