@@ -16,6 +16,9 @@
 (setq-default initial-scratch-message "")
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(require 'ox)
+#+END_SRC
 
 * Bar Modes
 #+BEGIN_SRC emacs-lisp
@@ -535,6 +538,56 @@ HTML mode is defined in =sgml-mode.el=
 
 
 ** OrgMode
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (emacs-lisp . t)
+   (org . t)
+   (shell . t)
+   (C . t)
+   (python . t)
+   (gnuplot . t)
+   (octave . t)
+   (R . t)
+   (dot . t)
+   (awk . t)
+   ))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+(setq org-list-demote-modify-bullet (quote (
+                                      ("+" . "-")
+                                            ("*" . "-")
+                                            ("1." . "-"))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-hide-emphasis-markers t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-fontify-whole-headline t)
+#+END_SRC
+
+
 
 *** org-agenda options
 
