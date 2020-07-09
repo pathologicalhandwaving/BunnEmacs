@@ -553,12 +553,18 @@ HTML mode is defined in =sgml-mode.el=
    (C . t)
    (python . t)
    (gnuplot . t)
-   (octave . t)
-   (R . t)
+   (sql . t)
+   (js . t)
    (dot . t)
    (awk . t)
+   (plantuml . t)
    ))
 #+END_SRC
+
+** TODO Add plantuml path
+
+=(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
+
 
 #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
