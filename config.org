@@ -190,10 +190,17 @@
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c a") 'org-agenda)
 #+END_SRC
+
 *** capture
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c c") 'org-capture)
 #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c l") 'org-store-link))
+#+END_SRC
+
+
 
 * Help
 #+BEGIN_SRC emacs-lisp
@@ -554,9 +561,23 @@ HTML mode is defined in =sgml-mode.el=
 #+END_SRC
 
 
-**** Agenda Files
+**** Org Files
+default directory
+
+#+BEGIN_SRC emacs-lisp
+(setq org-directory (expand-file-name "~/OrgDB"))
+#+END_SRC
+
+Agenda file
+
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '(("/Users/emd/OrgDB/Inbox/agenda.org")))
+#+END_SRC
+
+Notes file
+
+#+BEGIN_SRC emacs-lisp
+(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+END_SRC
 
 
