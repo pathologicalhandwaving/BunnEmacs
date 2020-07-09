@@ -125,10 +125,7 @@
 (load-theme 'doom-outrun-electric t)
 #+END_SRC
 
-** Font
-#+BEGIN_SRC emacs-lisp
-(setq default-frame-alist '((font . "Hack-Regular-13")))
-#+END_SRC
+
 
 ** Nyan-Mode
 #+BEGIN_SRC emacs-lisp
