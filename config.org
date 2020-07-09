@@ -592,9 +592,6 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-fontify-quote-and-verse-blocks t)
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(setq org-src-fontify-natively t)
-#+END_SRC
 
 
 *** org-agenda options
