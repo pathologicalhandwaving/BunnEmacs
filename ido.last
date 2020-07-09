@@ -1,0 +1,30 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/emd/" . ".emacs.d/")
+ ("/Users/" . "emd/")
+ ("/" . "Users/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/emd/.emacs.d/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "config.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/emd/.emacs.d/" (24326 22425 256370 499000) "package-list.org" ".git/" "elpa/" "COPYING.md" "README.md" "init.el" "auto-save-list/" "config.el" "var/" "custom.el" "transient/" "config.org" "smex-items" ".DS_Store" "custom.el~" "snippets/" "../" "./")
+
+ ("/Users/emd/" (24326 7654 646560 786000) "Progz/" "arangodb.log" ".aliases" ".bookmarks" ".viminfo" ".bash_history" ".erc/" ".spiderfoot_history" ".gitconfig" ".cache/" "Downloads/" ".oh-my-zsh/" ".hammerspoon/" ".espanso/" "CK/" ".gem/" ".aspell.en.pws" ".bash_profile" ".notesrc.el" "Documents/" ".npm/" ".jupyter/" ".aspell.en.prepl" ".Trash/" ".sdirs" ".profile" "Applications/" ".vimrc" "Movies/" ".ssh/" ".dots/" ".exports" ".utils/" ".mapscii/" ".emacs-alts/" "package-lock.json" ".gitignore" ".emacs_anywhere/" "Virtual Machines.localized/" ".bash_prompt" "Public/" ".mplayer/" ".iterm2/" "Google Drive/" ".bash_sessions/" "Sites/" "Adlm/" ".cups/" ".gitignore_global" ".cargo/" ".elfeed/" ".scripts/" ".emacs.d/" "tv" ".oracle_jre_usage/" ".doom.d/" ".bitnami/" ".electron/" ".matplotlib/" ".bitbar_text_on_menubar" "Library/" "Desktop/" ".iterm2_shell_integration.zsh" ".ipython/" ".searchlink" ".haxornewsconfig" ".cpan/" ".awesome_cache/" ".notesrc" ".keyboard/" ".bundle/" ".rainbow_config.json" "node_modules/" ".cfg/" "Pictures/" ".local/" "ohai-emacs/" "bak/" ".zshrc" ".cpanm/" ".bashrc" ".subversion/" ".iterm2_shell_integration.bash" ".wget-hsts" ".CFUserTextEncoding" "VirtualBox VMs/" ".wolfram_key" "Torrents/" ".bashprompt" ".gnupg/" ".DS_Store" "go/" "OrgDB/" ".arangosh.history" ".virtualenvs/" "Databases/" ".docker/" "Repos/" "Music/" ".config/" ".eureka/" ".calc_history" "Librarian/" "../" "./")
+
+ ("/Users/" (24322 27720 920544 71000) "emd/" ".emacs.d/" "Shared/" "user/" "chip/" ".localized" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

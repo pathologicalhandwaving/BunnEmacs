@@ -1,16 +1,17 @@
 
 ;; ----- smex-history -----
 (
+ package-install
  neotree-toggle
  cd
  5x5
  amx
  arp
  asx
- dbx
 )
 
 ;; ----- smex-data -----
 (
  (neotree-toggle . 1)
+ (package-install . 4)
 )
