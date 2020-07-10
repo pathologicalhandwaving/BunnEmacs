@@ -522,7 +522,10 @@ Temporarily highlight changes to buffer after pasting
   
 ** BibTeX
 
-
+*** Org-Ref
+    #+begin_src emacs-lisp
+      (use-package org-ref)
+    #+end_src
 
 ** CSS
 
