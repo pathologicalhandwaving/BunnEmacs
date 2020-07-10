@@ -1,10 +1,44 @@
 #+TITLE: BunnEmacs
 #+AUTHOR: Kris Short
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-08]
+#+DATE_MODIFIED: [2020-07-09]
 
 
-* Startup
+* Load Files
+
+** Load =.custom.el=
+
+One is able to use the customization interface that is bundled within Emacs. It
+is meant to help people who are not familiar with Emacs Lisp in the
+configuration of Emacs itself. By default, changes in the customization will be
+automatically detected and appended at the end of the configuration file,
+=init.el=.
+
+Since that in my case, the actual configuration file is a new one, crafted by
+=org-mode=, adding code at the end of =init.el= might mess things up. The
+following tells Emacs to add extra code in another file that would be then
+loaded, if existing.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+#+END_SRC
+
+
+** Load =.secrets.el=
+
+
+#+BEGIN_SRC emacs-lisp
+(let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
+  (when (file-exists-p secret.el)
+    (load secret.el)))
+#+END_SRC
+
+
+
+* Startup Options
+
 ** Startup message
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
@@ -16,16 +50,13 @@
 (setq-default initial-scratch-message "")
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(require 'ox)
-#+END_SRC
-
-* Bar Modes
+** Bar Modes
 #+BEGIN_SRC emacs-lisp
 (menu-bar-mode +1)
 (tool-bar-mode -1)
 (tooltip-mode +1)
 #+END_SRC
+
 
 #+BEGIN_SRC emacs-lisp
 (size-indication-mode t)
@@ -40,11 +71,11 @@
 #+END_SRC
 
 
+
 ** Highlight Current Line
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-hl-line-mode)
 #+END_SRC
-*** FIXME Not working
 
 
 ** Line Numbers
@@ -61,8 +92,55 @@
 #+END_SRC
 
 
+** Encoding
+#+BEGIN_SRC emacs-lisp
+(prefer-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+#+END_SRC
+
+
+
+** Exec Path From Shell
+#+BEGIN_SRC emacs-lisp
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+#+END_SRC
+
+
+** Garbage Collection
+
+** If not in focus, garbage collect
+#+BEGIN_SRC emacs-lisp
+(add-hook 'focus-out-hook #'garbage-collect)
+#+END_SRC
+
+
+** Large File Warning
+#+BEGIN_SRC emacs-lisp
+(setq large-file-warning-threshold 100000000)
+#+END_SRC
+
+
+** Yes-or-No
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+
+** Newline at end of file
+#+BEGIN_SRC emacs-lisp
+(setq require-final-newline t)
+#+END_SRC
+
+
 
 * MacOS UI
+
+
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 #+END_SRC
@@ -82,14 +160,6 @@
 #+BEGIN_SRC emacs-lisp
 (setq mac-option-modifer 'meta)
 (setq mac-command-modifer 'super)
-#+END_SRC
-
-
-** Exec Path From Shell
-#+BEGIN_SRC emacs-lisp
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
 #+END_SRC
 
 
@@ -160,6 +230,7 @@
 
 
 
+
 ** Replace buffer menu with ibuffer
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -197,7 +268,7 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-c l") 'org-store-link))
+(global-set-key (kbd "C-c l") 'org-store-link)
 #+END_SRC
 
 
@@ -270,6 +341,16 @@
   (which-key-mode +1))
 #+END_SRC
 
+
+#+BEGIN_SRC emacs-lisp
+(use-package smex
+  :bind
+  ("M-x" . 'smex)
+  ("M-X" . 'smex-major-mode-commands)
+  :config
+  (setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
+  (smex-initialize))
+#+END_SRC
 
 
 ** Crux
@@ -382,6 +463,7 @@
   (global-set-key [remap mark-sexp] 'easy-mark)
 #+END_SRC
 
+
 ** Clipboard
 Save current system clipboard to kill-ring
 #+BEGIN_SRC emacs-lisp
@@ -396,6 +478,7 @@ Save current system clipboard to kill-ring
   :init
   (setq wttrin-default-cities '("Durham,NC")))
 #+END_SRC
+
 
 ** AutoSave
 Auto save after 30 typed characters
@@ -427,8 +510,19 @@ Temporarily highlight changes to buffer after pasting
 #+END_SRC
 
 
+** Structure Templates
+#+BEGIN_SRC emacs-lisp
+(require 'org-tempo)
+#+END_SRC
+
+
+
 
 * Languages
+  
+** BibTeX
+
+
 
 ** CSS
 
@@ -522,7 +616,7 @@ HTML mode is defined in =sgml-mode.el=
 
 *** Highlight LaTeX in Org
 #+BEGIN_SRC emacs-lisp
-(setq org-highlight-latex-and-relate '(latex))
+(setq org-highlight-latex-and-related '(latex bibtex))
 #+END_SRC
 
 
@@ -540,26 +634,9 @@ HTML mode is defined in =sgml-mode.el=
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 #+END_SRC
 
-*** org-babel languages
-#+BEGIN_SRC emacs-lisp
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (emacs-lisp . t)
-   (org . t)
-   (shell . t)
-   (C . t)
-   (python . t)
-   (gnuplot . t)
-   (sql . t)
-   (js . t)
-   (dot . t)
-   (awk . t)
-   (plantuml . t)
-   ))
-#+END_SRC
 
-** TODO Add plantuml path
+
+*** TODO Add plantuml path
 
 =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
 
@@ -585,11 +662,12 @@ HTML mode is defined in =sgml-mode.el=
 
 *** Modify demote bullets
 #+BEGIN_SRC emacs-lisp
-(setq org-list-demote-modify-bullet (quote (
-                                      ("+" . "-")
-                                            ("*" . "-")
-                                            ("1." . "-"))))
+(setq org-list-demote-modify-bullet '(("-" . "+")
+                                      ("+" . "*")
+				      ("*" . "-")))
 #+END_SRC
+
+
 
 *** hide emphasis markers
 #+BEGIN_SRC emacs-lisp
@@ -622,7 +700,7 @@ HTML mode is defined in =sgml-mode.el=
 
 **** Show all tasks due in next two weeks
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-span (quote fortnight))
+(setq org-agenda-span 7)
 #+END_SRC
 
 **** Dont show tasks as scheduled if they are categorized with a deadline
@@ -639,15 +717,16 @@ HTML mode is defined in =sgml-mode.el=
 
 
 *** Org Files
+
 default directory
 #+BEGIN_SRC emacs-lisp
-(setq org-directory (expand-file-name "~/OrgDB"))
+(setq org-directory "/Users/emd/OrgDB")
 #+END_SRC
 
 Agenda file
 
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files '(("/Users/emd/OrgDB/Inbox/agenda.org")))
+(setq org-agenda-files (list org-directory))
 #+END_SRC
 
 Notes file
@@ -656,11 +735,6 @@ Notes file
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+END_SRC
 
-
-Inbox file
-#+BEGIN_SRC emacs-lisp
-(defvar bunny-inbox-file "~/OrgDB/Inbox/inbox.org")
-#+END_SRC
 
 *** Maximize description list indent
 #+BEGIN_SRC emacs-lisp

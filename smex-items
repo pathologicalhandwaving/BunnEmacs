@@ -1,17 +1,20 @@
 
 ;; ----- smex-history -----
 (
+ pdf-info-check-epdfinfo
+ pdf-tools-install
  package-install
+ nyan-mode
  neotree-toggle
  cd
  5x5
- amx
- arp
- asx
 )
 
 ;; ----- smex-data -----
 (
  (neotree-toggle . 1)
- (package-install . 4)
+ (package-install . 7)
+ (nyan-mode . 2)
+ (pdf-tools-install . 1)
+ (pdf-info-check-epdfinfo . 1)
 )

@@ -1,3 +1,11 @@
+(setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
+  (when (file-exists-p secret.el)
+    (load secret.el)))
+
 (setq inhibit-startup-message t)
 
 (setq-default initial-scratch-message "")
@@ -21,6 +29,24 @@
 
 (global-visual-line-mode t)
 
+(prefer-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
+(add-hook 'focus-out-hook #'garbage-collect)
+
+(setq large-file-warning-threshold 100000000)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(setq require-final-newline t)
+
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (modify-frame-parameters (selected-frame) '((alpha . 75)))
@@ -30,10 +56,6 @@
 
 (setq mac-option-modifer 'meta)
 (setq mac-command-modifer 'super)
-
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
 
 (use-package neotree
   :bind ("C-x n" . neotree-toggle)
@@ -54,8 +76,6 @@
   (doom-themes-org-config))
 
 (load-theme 'doom-outrun-electric t)
-
-(setq default-frame-alist '((font . "Hack-Regular-13")))
 
 (use-package nyan-mode
   :init
@@ -85,6 +105,8 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (global-set-key (kbd "C-c c") 'org-capture)
+
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 (use-package help-mode
   :ensure nil
@@ -132,6 +154,14 @@
   (setq which-key-popup-type 'minibuffer)
   (setq which-key-frame-max-height 20)
   (which-key-mode +1))
+
+(use-package smex
+  :bind
+  ("M-x" . 'smex)
+  ("M-X" . 'smex-major-mode-commands)
+  :config
+  (setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
+  (smex-initialize))
 
 (use-package crux
   :bind (("C-a" . crux-move-beginning-of-line)
@@ -215,6 +245,8 @@
   :config
   (volatile-highlights-mode t))
 
+(require 'org-tempo)
+
 (use-package css-mode
   :ensure nil
   :custom (css-indent-offset 2))
@@ -268,15 +300,40 @@
     (setq-local js-indent-level 2))
   :hook (json-mode . bunny/json-set-indent-level))
 
-(setq org-highlight-latex-and-relate '(latex))
+(setq org-highlight-latex-and-related '(latex bibtex))
 
 (use-package ielm
   :ensure nil
   :hook (ielm-mode . (lambda () (setq-local scroll-margin 0))))
 
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+(setq org-confirm-babel-evaluate nil)
+
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
+
+(setq org-list-demote-modify-bullet '(("-" . "+")
+                                      ("+" . "*")
+				      ("*" . "-")))
+
+(setq org-hide-emphasis-markers t)
+
+(setq org-fontify-whole-headline t)
+
+(setq org-fontify-done-headline t)
+
+(setq org-fontify-quote-and-verse-blocks t)
+
 (setq org-deadline-warning-days 7)
 
-(setq org-agenda-span (quote fortnight))
+(setq org-agenda-span 7)
 
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 
@@ -284,7 +341,11 @@
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
 
-(setq org-agenda-files '(("/Users/emd/OrgDB/Inbox/agenda.org")))
+(setq org-directory "/Users/emd/OrgDB")
+
+(setq org-agenda-files (list org-directory))
+
+(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 
 (setq org-list-description-max-indent 5)
 
