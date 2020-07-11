@@ -569,6 +569,12 @@ Temporarily highlight changes to buffer after pasting
 	    bibtex-completion-library-path "~/Librarian/PDFs"))
     #+end_src
 
+*** =BIBINPUTS=
+    #+begin_src emacs-lisp
+    BIBINPUTS=/Users/emd/Librarian/Bibliography/default.bib
+    export BIBINPUTS
+    #+end_src
+
 ** CSS
 
 #+BEGIN_SRC emacs-lisp
@@ -659,6 +665,11 @@ HTML mode is defined in =sgml-mode.el=
 
 ** LaTeX
 
+*** =ox-latex=
+    #+begin_src emacs-lisp
+    (require 'ox-latex)
+    #+end_src
+
 *** PDF Process
     #+begin_src emacs-lisp
     (setq org-latex-pdf-process
@@ -678,6 +689,19 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-highlight-latex-and-related '(latex bibtex))
 #+END_SRC
 
+*** =org-latex-classes=
+    #+begin_src emacs-lisp
+    (unless (boundp 'org-latex-classes)
+      (setq org-latex-classes nil))
+    (add-to-list 'org-latex-classes
+                    '("article"
+		      "\\documentclass{article}"
+		      ("\\section{%s}" . "\\section*{%s}")
+		      ("\\subsection{%s}" . "\\subsection*{%s}")
+		      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    #+end_src
 
 ** Lisp
 #+BEGIN_SRC emacs-lisp
