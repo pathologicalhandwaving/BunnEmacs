@@ -545,23 +545,30 @@ Temporarily highlight changes to buffer after pasting
 *** RefTeX
     #+begin_src emacs-lisp
       (use-package refTeX
-	:config
-	(setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+        :commands turn-on-reftex
+	:init
+	(progn
+	  (setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+	  (setq reftex-plug-intoAUCTex t)))
     #+end_src
+
 *** Org-Ref
     #+begin_src emacs-lisp
       (use-package org-ref
-	:config
+        :after org
+	:init
+	(setq reftext-default-bibliography '("~/Librarian/Bibliography/default.bib"))
 	(setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
-	      org-ref-pdf-directory "~/Librarian/PDFs")
+	      org-ref-pdf-directory "~/Librarian/PDFs"))
     #+end_src
 
     #+begin_src emacs-lisp
     (use-package helm-bibtex
       :config
       (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
-	    bibtex-completion-library-path "~/Librarian/PDFs")
+	    bibtex-completion-library-path "~/Librarian/PDFs"))
     #+end_src
+
 ** CSS
 
 #+BEGIN_SRC emacs-lisp
@@ -651,6 +658,20 @@ HTML mode is defined in =sgml-mode.el=
 
 
 ** LaTeX
+
+*** PDF Process
+    #+begin_src emacs-lisp
+    (setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
+	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+	"pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+    #+end_src
+
+*** File Extensions
+    #+begin_src emacs-lisp
+    (setq org-latex-logfiles-extensions '(("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "bld" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+    #+end_src
 
 *** Highlight LaTeX in Org
 #+BEGIN_SRC emacs-lisp
