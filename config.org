@@ -224,11 +224,31 @@ loaded, if existing.
 #+END_SRC
 
 ** M-x without meta
+   #+begin_src emacs-lisp
+     (use-package helm
+       :config
+       (helm-mode 1))
+   #+end_src
+
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x C-m") 'smex)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
+(setq helm-buffers-fuzzy-matching t)
+(setq helm-recentf-fuzzy-match t)
 #+END_SRC
 
+#+begin_src emacs-lisp
+(use-package semantic
+  :config
+  (semantic-mode 1))
+#+end_src
 
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x C-m") 'helm-semantic-or-imenu)
+#+end_src
 
 
 ** Replace buffer menu with ibuffer
@@ -522,11 +542,26 @@ Temporarily highlight changes to buffer after pasting
   
 ** BibTeX
 
+*** RefTeX
+    #+begin_src emacs-lisp
+      (use-package refTeX
+	:config
+	(setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+    #+end_src
 *** Org-Ref
     #+begin_src emacs-lisp
-      (use-package org-ref)
+      (use-package org-ref
+	:config
+	(setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
+	      org-ref-pdf-directory "~/Librarian/PDFs")
     #+end_src
 
+    #+begin_src emacs-lisp
+    (use-package helm-bibtex
+      :config
+      (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
+	    bibtex-completion-library-path "~/Librarian/PDFs")
+    #+end_src
 ** CSS
 
 #+BEGIN_SRC emacs-lisp
