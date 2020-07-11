@@ -90,7 +90,23 @@
                                 (interactive)
 				(other-window -1)))
 
-(global-set-key (kbd "C-x C-m") 'smex)
+(use-package helm
+  :config
+  (helm-mode 1))
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
+(setq helm-buffers-fuzzy-matching t)
+(setq helm-recentf-fuzzy-match t)
+
+(use-package semantic
+  :config
+  (semantic-mode 1))
+
+(global-set-key (kbd "C-x C-m") 'helm-semantic-or-imenu)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -246,6 +262,20 @@
   (volatile-highlights-mode t))
 
 (require 'org-tempo)
+
+(use-package refTeX
+  :config
+  (setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib")))
+
+(use-package org-ref
+  :config
+  (setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
+	org-ref-pdf-directory "~/Librarian/PDFs")
+
+(use-package helm-bibtex
+  :config
+  (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
+	bibtex-completion-library-path "~/Librarian/PDFs")
 
 (use-package css-mode
   :ensure nil
