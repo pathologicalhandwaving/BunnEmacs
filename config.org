@@ -1,7 +1,7 @@
 #+TITLE: BunnEmacs
 #+AUTHOR: Kris Short
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-09]
+#+DATE_MODIFIED: [2020-07-11]
 
 
 * Load Files
