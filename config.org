@@ -795,6 +795,16 @@ Auto save after 30 typed characters
 (setq auto-save-interval 30)
 #+END_SRC
 
+Autosaves in same place
+#+begin_src emacs-lisp
+(defvar emacs-autosave-directory
+(concat user-emacs-directory "autosaves/"))
+(unless (file-exists-p emacs-autosave-directory)
+(make-directory emacs-autosave-directory))
+(setq auto-save-file-name-transforms
+'((".*" . emacs-autosave-directory t)))
+#+end_src
+
 *** Backups
 #+BEGIN_SRC emacs-lisp
 (setq backup-by-copying t)
