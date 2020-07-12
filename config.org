@@ -611,6 +611,15 @@ Package dependencies providing modern APIs for working with lisp structures
   (helm-descbinds-mode))
 #+end_src
 
+*** Helm-org-rifle
+#+begin_src emacs-lisp
+(use-package helm-org-rifle
+  :after (helm org)
+  :commands helm-org-rifle-current-buffer
+  :config
+  (define-key org-mode-map (kbd "M-r") 'helm-org-rifle-current-buffer))
+#+end_src
+
 ** YaSnippets
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
