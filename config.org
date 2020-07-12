@@ -793,7 +793,7 @@ Package dependencies providing modern APIs for working with lisp structures
 
 *** eBuku
 #+begin_src emacs-lisp
-(setq ebuku-buku-path "/Users/emd/.local/share/buku/bookmarks.db")
+(setq ebuku-buku-path "/Users/emd/.local/share/buku/")
 #+end_src
 ** Kill
 #+BEGIN_SRC emacs-lisp
