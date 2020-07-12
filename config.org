@@ -739,7 +739,7 @@ HTML mode is defined in =sgml-mode.el=
 
 default directory
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "/Users/emd/OrgDB")
+(setq org-directory "/Users/emd/OrgDB/")
 #+END_SRC
 
 Agenda file
