@@ -127,11 +127,24 @@ loaded, if existing.
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
-** Newline at end of file
+** Editing
+*** Use spaces
+#+begin_src emacs-lisp
+(setq-default indent-tabs-mode nil)
+#+end_src
+
+*** Newline at end of file
 #+BEGIN_SRC emacs-lisp
 (setq require-final-newline t)
 #+END_SRC
 
+** Security
+#+begin_src emacs-lisp
+(progn
+(setq org-confirm-babel-evaluate nil)
+(setq org-confirm-elisp-link-function nil)
+(setq org-confirm-shell-link-function nil)
+#+end_src
 
 ** Server
 #+begin_src emacs-lisp
