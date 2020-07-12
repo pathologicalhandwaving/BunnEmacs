@@ -1,8 +1,8 @@
 
 ;; ----- smex-history -----
 (
- org-mode
  load-theme
+ org-mode
  check-parens
  package-install
  cd
@@ -13,7 +13,7 @@
 ;; ----- smex-data -----
 (
  (package-install . 15)
- (load-theme . 6)
+ (load-theme . 7)
  (check-parens . 1)
  (org-mode . 2)
 )
