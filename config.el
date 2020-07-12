@@ -6,6 +6,9 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
+(getenv "HOME")
+(setq-default default-directory "~/")
+
 (setq inhibit-startup-message t)
 
 (setq-default initial-scratch-message "")
@@ -29,6 +32,10 @@
 
 (global-visual-line-mode t)
 
+(set-default 'truncate-lines nil)
+(set-default 'word-wrap t)
+(setq helm-buffers-truncate-lines nil)
+
 (prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -45,11 +52,14 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq-default indent-tabs-mode nil)
+
 (setq require-final-newline t)
 
-(set-default 'truncate-lines nil)
-(set-default 'word-wrap t)
-(setq helm-buffers-truncate-lines nil)
+(progn
+(setq org-confirm-babel-evaluate nil)
+(setq org-confirm-elisp-link-function nil)
+(setq org-confirm-shell-link-function nil))
 
 (server-start)
 
@@ -218,6 +228,10 @@
 (bunny-librarian-file-name "ePubs/index.org")
 "ePubs Index file-name")
 
+(defvar bunny-elfeed-org-files
+(bunny-librarian-file-name "feeds.org")
+"feeds.org file-name")
+
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (modify-frame-parameters (selected-frame) '((alpha . 75)))
@@ -315,6 +329,12 @@
   :config
   (helm-descbinds-mode))
 
+(use-package helm-org-rifle
+  :after (helm org)
+  :commands helm-org-rifle-current-buffer
+  :config
+  (define-key org-mode-map (kbd "M-r") 'helm-org-rifle-current-buffer))
+
 (use-package yasnippet
   :ensure t
   :init
@@ -411,6 +431,10 @@
          ("<f2>" . bm-next)
 	 ("<S-f2>" . bm-previous)))
 
+(with-eval-after-load 'helm
+(require 'helm-bookmark)
+(global-set-key (kbd "C-x C-b") 'helm-bookmark))
+
 (use-package easy-kill)
 
 (global-set-key [remap kill-ring-save] 'easy-kill)
@@ -435,12 +459,17 @@
 (unless (file-exists-p emacs-autosave-directory)
 (make-directory emacs-autosave-directory))
 
+(setq backup-directory-alist `((".*" . ,emacs-autosave-directory)))
+
 (setq backup-by-copying t)
-(setq kept-new-versions 3)
+(setq kept-new-versions 10)
 (setq kept-old-versions 0)
 (setq delete-old-versions t)
 (setq version-control t)
 (setq vc-make-backup-files t)
+
+(use-package backup-each-save
+  :config (add-hook 'after-save-hook 'backup-each-save))
 
 (setq initial-major-mode 'org-mode)
 
@@ -518,8 +547,6 @@
 
 (setq org-startup-folded t)
 
-(setq org-confirm-babel-evaluate nil)
-
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
@@ -547,7 +574,10 @@
 
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
-	      (sequence "FIXME" "|" "FIXED")))
+	      (sequence "FIXME" "|" "FIXED")
+        (sequence "ADD" "|" "ADDED")
+        (sequence "REMOVE" "|" "REMOVED")
+        (sequence "MOVE" "|" "MOVED")))
 
 (setq org-deadline-warning-days 7)
 
@@ -573,10 +603,6 @@
 
 (use-package poporg
   :bind (("C-c /" . poporg-dwim)))
-
-(use-package helm-org-rifle
-  :init
-  (setq helm-org-rifle-show-path t))
 
 (use-package python
   :ensure nil
