@@ -562,46 +562,13 @@ Temporarily highlight changes to buffer after pasting
 	      org-ref-pdf-directory "~/Librarian/PDFs"))
     #+end_src
 
+*** Helm biblatex
     #+begin_src emacs-lisp
     (use-package helm-bibtex
       :config
       (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
 	    bibtex-completion-library-path "~/Librarian/PDFs"))
     #+end_src
-
-*** Org LaTeX Default Packages List
-    #+begin_src emacs-lisp
-    (setq '(org-latex-default-packages-alist
-            '(("utf8" "inputenc" t
-	       ("pdflatex"))
-	      ("T1" "fontenc" t
-	       ("pdflatex"))
-	      ("" "graphix" t nil)
-	      ("" "xcolor" t nil)
-	      ("" "grffile" t nil)
-	      ("" "longtable" nil nil)
-	      ("" "wrapfig" nil nil)
-	      ("" "rotating" nil nil)
-	      ("normalem" "ulem" t nil)
-	      ("" "amsmath" t nil)
-	      ("" "amssymb" t nil)
-	      ("" "stmaryrd" t nil)
-	      ("" "fontawesome" t nil)
-	      ("" "fullpage" t nil)
-	      ("" "textcomp" t nil)
-	      ("" "caption" nil nil)
-	      ("parfill" "parskip" t t)
-	      ("none" "hyphenat" t t)
-	      ("" "listings" nil nil)
-	      ("" "booktabs" nil nil)
-	      ("" "colortbl" nil nil)
-	      ("" "tikz" nil nil)
-	      ("" "tikz-3dplot" nil nil)
-	      ("" "tikz-linknodes" nil nil)
-	      ("" "tikzducks" nil nil)
-	      ("" "float" t nil))))
-    #+end_src
-
 
 *** =BIBINPUTS=
     The following environment variable is set in =~/.exports=
@@ -739,6 +706,34 @@ HTML mode is defined in =sgml-mode.el=
 		      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     #+end_src
 
+*** Org LaTeX Default Packages List
+    #+begin_src emacs-lisp
+    (setq '(org-latex-default-packages-alist
+            '(("utf8" "inputenc" t
+	       ("pdflatex"))
+	      ("T1" "fontenc" t
+	       ("pdflatex"))
+	      ("" "graphix" t nil)
+	      ("" "xcolor" t nil)
+	      ("" "grffile" t nil)
+	      ("" "longtable" nil nil)
+	      ("" "wrapfig" nil nil)
+	      ("" "rotating" nil nil)
+	      ("normalem" "ulem" t nil)
+	      ("" "amsmath" t nil)
+	      ("" "amssymb" t nil)
+	      ("" "stmaryrd" t nil)
+	      ("" "fontawesome" t nil)
+	      ("" "fullpage" t nil)
+	      ("" "textcomp" t nil)
+	      ("" "caption" nil nil)
+	      ("parfill" "parskip" t t)
+	      ("none" "hyphenat" t t)
+	      ("" "listings" nil nil)
+	      ("" "booktabs" nil nil))))
+    #+end_src
+	     
+
 ** Lisp
 #+BEGIN_SRC emacs-lisp
 (use-package ielm
@@ -794,13 +789,13 @@ HTML mode is defined in =sgml-mode.el=
 #+END_SRC
 
 *** fontify headlines
-#+BEGIN_SRC emacs-lisp
-(setq org-fontify-whole-headline t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+  (setq org-fontify-whole-headline t)
+  #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(setq org-fontify-done-headline t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+  (setq org-fontify-done-headline t)
+  #+END_SRC
 
 
 *** fontify quote and verse blocks
