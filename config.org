@@ -1156,8 +1156,9 @@ Notes file
   :after (elfeed)
   :config
   (elfeed-org)
-  (setq bunny-elfeed-org-files (list (bunny-org-
+  (setq bunny-elfeed-org-files (list (bunny-librarian-file-name "feeds.org"))))
 #+end_src
+
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package python
