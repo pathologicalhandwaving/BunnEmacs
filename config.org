@@ -784,13 +784,17 @@ Package dependencies providing modern APIs for working with lisp structures
 	 ("<S-f2>" . bm-previous)))
 #+END_SRC
 
-*** Helm-bookmakes
+*** Helm-bookmarks
 #+begin_src emacs-lisp
 (with-eval-after-load 'helm
 (require 'helm-bookmark)
 (global-set-key (kbd "C-x C-b") 'helm-bookmark))
 #+end_src
 
+*** eBuku
+#+begin_src emacs-lisp
+(setq ebuku-buku-path "/Users/emd/.local/share/buku/bookmarks.db")
+#+end_src
 ** Kill
 #+BEGIN_SRC emacs-lisp
 (use-package easy-kill)
