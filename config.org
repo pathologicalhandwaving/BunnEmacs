@@ -799,6 +799,13 @@ HTML mode is defined in =sgml-mode.el=
   (setq org-fontify-quote-and-verse-blocks t)
   #+END_SRC
 
+*** toc-org
+    #+begin_src emacs-lisp
+    (use-package toc-org
+      :config
+      (add-hook 'org-mode-hook 'toc-org-enable))
+    #+end_src
+
 *** Agenda options
 
 **** Warn if deadline within next 7 days
