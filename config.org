@@ -57,6 +57,7 @@ loaded, if existing.
 #+END_SRC
 
 ** Bar Modes
+*** Enable modes
  #+BEGIN_SRC emacs-lisp
  (menu-bar-mode +1)
  (tool-bar-mode -1)
@@ -70,6 +71,14 @@ loaded, if existing.
        scroll-conservatively 10000
        scroll-preserve-screen-position 1)
  #+END_SRC
+
+*** SideNotes
+    #+begin_src emacs-lisp
+    (use-package side-notes
+      :init
+      (setq side-notes-file "~/OrgDB/Notes/notes.org")
+      (define-key (current-global-map) (kbd "M-s n") '#side-notes-toggle-notes))
+    #+end_src
 
 ** Buffers
 *** Indicate Size of Buffer
@@ -145,6 +154,7 @@ loaded, if existing.
  #+END_SRC
 
 
+
 * Languages
   
 ** BibTeX
@@ -159,22 +169,29 @@ loaded, if existing.
     #+end_src
 
 *** Org-Ref
-    #+begin_src emacs-lisp
-      (use-package org-ref
-	:after org
-	:init
-	(setq reftext-default-bibliography '("~/Librarian/Bibliography/default.bib"))
-	(setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
-	      org-ref-pdf-directory "~/Librarian/PDFs"))
-    #+end_src
+**** Defaults
+     #+begin_src emacs-lisp
+       (use-package org-ref
+	 :after org
+	 :init
+	 (setq reftext-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+	 (setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
+	       org-ref-pdf-directory "~/Librarian/PDFs"))
+     #+end_src
 
-*** Helm biblatex
-    #+begin_src emacs-lisp
-    (use-package helm-bibtex
-      :config
-      (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
-	    bibtex-completion-library-path "~/Librarian/PDFs"))
-    #+end_src
+**** Default Citation Type
+     #+begin_src emacs-lisp
+     (setq org-ref-default-citation-link "cite")
+     #+end_src
+
+**** Helm biblatex
+     #+begin_src emacs-lisp
+     (use-package helm-bibtex
+       :config
+       (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
+	     bibtex-completion-library-path "~/Librarian/PDFs"))
+     #+end_src
+
 
 ** CSS
 
@@ -486,6 +503,7 @@ HTML mode is defined in =sgml-mode.el=
      #+begin_src emacs-lisp
      (setq org-cycle-include-plain-lists t)
      #+end_src
+
 
 *** Capture
     #+begin_src emacs-lisp
