@@ -233,6 +233,14 @@ Package dependencies providing modern APIs for working with lisp structures
 (concat bunny-org-dir file-name))
 #+end_src
 
+*** Create file-name variable relative to librarian directory
+#+begin_src emacs-lisp
+(defun bunny-librarian (file-name)
+"Create file-name relative to bunny-librarian directory"
+(concat bunny-librarian file-name))
+#+end_src
+
+
 *** notes-file
 #+begin_src emacs-lisp
 (defvar bunny-notes-file
@@ -345,6 +353,61 @@ Package dependencies providing modern APIs for working with lisp structures
 "observations file-name")
 #+end_src
 
+*** PDFs Index File
+#+begin_src emacs-lisp
+(defvar bunny-pdfs-index-file
+(bunny-librarian-file-name "PDFs/index.org")
+"PDFs Index file-name")
+#+end_src
+
+*** Articles Index File
+#+begin_src emacs-lisp
+(defvar bunny-articles-index-file
+(bunny-librarian-file-name "Articles/index.org")
+"Articles Index file-name")
+#+end_src
+
+*** Data Index File
+#+begin_src emacs-lisp
+(defvar bunny-data-index-file
+(bunny-librarian-file-name "Data/index.org")
+"Data Index file-name")
+#+end_src
+
+*** Dictionary Index File
+#+begin_src emacs-lisp
+(defvar bunny-dictionary-index-file
+(bunny-librarian-file-name "Dictionary/index.org")
+"Dictionary Index file-name")
+#+end_src
+
+*** Legis Index File
+#+begin_src emacs-lisp
+(defvar bunny-legis-index-file
+(bunny-librarian-file-name "Legis/index.org")
+"Legis Index file-name")
+#+end_src
+
+*** Quotes Index File
+#+begin_src emacs-lisp
+(defvar bunny-quotes-index-file
+(bunny-librarian-file-name "Quotes/index.org")
+"Quotes Index file-name")
+#+end_src
+
+*** Text Index File
+#+begin_src emacs-lisp
+(defvar bunny-text-index-file
+(bunny-librarian-file-name "Text/index.org")
+"Text Index file-name")
+#+end_src
+
+*** ePubs Index File
+#+begin_src emacs-lisp
+(defvar bunny-epubs-index-file
+(bunny-librarian-file-name "ePubs/index.org")
+"ePubs Index file-name")
+#+end_src
 
 
 
