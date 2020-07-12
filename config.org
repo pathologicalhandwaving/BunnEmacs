@@ -766,6 +766,13 @@ Package dependencies providing modern APIs for working with lisp structures
 	 ("<S-f2>" . bm-previous)))
 #+END_SRC
 
+*** Helm-bookmakes
+#+begin_src emacs-lisp
+(with-eval-after-load 'helm
+(require 'helm-bookmark)
+(global-set-key (kbd "C-x C-b") 'helm-bookmark))
+#+end_src
+
 ** Kill
 #+BEGIN_SRC emacs-lisp
 (use-package easy-kill)
@@ -994,7 +1001,6 @@ HTML mode is defined in =sgml-mode.el=
 
  =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
 
-
 *** Grammar and Spelling
 **** Dont spell check these regions
  #+BEGIN_SRC emacs-lisp
@@ -1052,7 +1058,8 @@ HTML mode is defined in =sgml-mode.el=
 #+begin_src emacs-lisp
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
-	      (sequence "FIXME" "|" "FIXED")))
+	      (sequence "FIXME" "|" "FIXED")
+        (sequence "ADD" "|" "ADDED")))
 #+end_src
 
 *** Agenda
@@ -1120,6 +1127,7 @@ Notes file
   :init
   (setq helm-org-rifle-show-path t))
 #+end_src
+
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package python
