@@ -82,10 +82,17 @@ loaded, if existing.
 (column-number-mode t)
 #+END_SRC
 
-** Wrap at edge of screen
+** Wrapping
 #+BEGIN_SRC emacs-lisp
 (global-visual-line-mode t)
 #+END_SRC
+
+*** Do not trunate lines and word wrap
+#+begin_src emacs-lisp
+(set-default 'truncate-lines nil)
+(set-default 'word-wrap t)
+(setq helm-buffers-truncate-lines nil)
+#+end_src
 
 ** Encoding
 #+BEGIN_SRC emacs-lisp
@@ -125,13 +132,6 @@ loaded, if existing.
 (setq require-final-newline t)
 #+END_SRC
 
-
-** Do not trunate lines and word wrap
-#+begin_src emacs-lisp
-(set-default 'truncate-lines nil)
-(set-default 'word-wrap t)
-(setq helm-buffers-truncate-lines nil)
-#+end_src
 
 ** Server
 #+begin_src emacs-lisp
