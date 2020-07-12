@@ -376,6 +376,11 @@ HTML mode is defined in =sgml-mode.el=
   (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
   #+END_SRC
 
+**** Sentence does not need a double space on the end
+     #+begin_src emacs-lisp
+     (setq sentence-end-double-space nil)
+     #+end_src
+
 *** Fontify
 **** FIXME hide emphasis markers
    #+BEGIN_SRC emacs-lisp
@@ -761,7 +766,6 @@ HTML mode is defined in =sgml-mode.el=
   (setq require-final-newline t)
   #+END_SRC
 
-
 ** Backups
 #+BEGIN_SRC emacs-lisp
 (setq backup-by-copying t)
@@ -849,7 +853,6 @@ Save current system clipboard to kill-ring
 #+BEGIN_SRC emacs-lisp
 (require 'org-tempo)
 #+END_SRC
-
 
 ** Volatile Highlights
 Temporarily highlight changes to buffer after pasting
