@@ -338,6 +338,14 @@ Package dependencies providing modern APIs for working with lisp structures
 "Templates index file-name")
 #+end_src
 
+*** Observations File
+#+begin_src emacs-lisp
+(defvar bunny-observations-file
+(bunny-org-file-name "Logs/observations.org")
+"observations file-name")
+#+end_src
+
+
 
 
 
