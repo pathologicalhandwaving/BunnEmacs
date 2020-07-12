@@ -1073,7 +1073,9 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-todo-keywords
       '((sequence "TODO" "|" "DONE")
 	      (sequence "FIXME" "|" "FIXED")
-        (sequence "ADD" "|" "ADDED")))
+        (sequence "ADD" "|" "ADDED")
+        (sequence "REMOVE" "|" "REMOVED")
+        (sequence "MOVE" "|" "MOVED")))
 #+end_src
 
 *** Agenda
