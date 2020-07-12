@@ -319,29 +319,28 @@ HTML mode is defined in =sgml-mode.el=
 
 *** Org LaTeX Default Packages List
     #+begin_src emacs-lisp
-    (setq '(org-latex-default-packages-alist
-            '(("utf8" "inputenc" t
-	       ("pdflatex"))
-	      ("T1" "fontenc" t
-	       ("pdflatex"))
-	      ("" "graphix" t nil)
-	      ("" "xcolor" t nil)
-	      ("" "grffile" t nil)
-	      ("" "longtable" nil nil)
-	      ("" "wrapfig" nil nil)
-	      ("" "rotating" nil nil)
-	      ("normalem" "ulem" t nil)
-	      ("" "amsmath" t nil)
-	      ("" "amssymb" t nil)
-	      ("" "stmaryrd" t nil)
-	      ("" "fontawesome" t nil)
-	      ("" "fullpage" t nil)
-	      ("" "textcomp" t nil)
-	      ("" "caption" nil nil)
-	      ("parfill" "parskip" t t)
-	      ("none" "hyphenat" t t)
-	      ("" "listings" nil nil)
-	      ("" "booktabs" nil nil))))
+    (setq org-latex-default-packages-alist
+          '(("utf8" "inputenc" t (pdflatex))
+	    ("T1" "fontenc" t (pdflatex))
+	    ("" "graphix" t)
+	    ("" "xcolor" t)
+	    ("" "grffile" t)
+	    ("" "longtable" nil)
+	    ("" "wrapfig" nil)
+	    ("" "rotating" nil)
+	    ("normalem" "ulem" t)
+	    ("" "amsmath" t)
+	    ("" "amssymb" t)
+	    ("" "stmaryrd" t)
+	    ("" "fontawesome" t)
+	    ("" "fullpage" t)
+	    ("" "textcomp" t)
+	    ("" "caption" nil)
+	    ("parfill" "parskip" t)
+	    ("none" "hyphenat" t)
+	    ("" "listings" nil)
+	    ("" "booktabs" nil)
+	    ("" "hyperref" nil)))
     #+end_src
 	     
 
