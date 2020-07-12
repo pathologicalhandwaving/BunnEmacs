@@ -143,7 +143,7 @@ loaded, if existing.
 (progn
 (setq org-confirm-babel-evaluate nil)
 (setq org-confirm-elisp-link-function nil)
-(setq org-confirm-shell-link-function nil)
+(setq org-confirm-shell-link-function nil))
 #+end_src
 
 ** Server
