@@ -49,6 +49,8 @@
   ;; latest orgmode
   (use-package org :ensure org-plus-contrib)
 
+  (setq-default default-directory "~/")
+  
   ;; tangle config
   (org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
   (garbage-collect))
