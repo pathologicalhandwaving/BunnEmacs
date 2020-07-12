@@ -780,9 +780,9 @@ HTML mode is defined in =sgml-mode.el=
 #+END_SRC
 
 *** FIXME hide emphasis markers
-#+BEGIN_SRC emacs-lisp
-(setq org-hide-emphasis-markers t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+  (setq org-hide-emphasis-markers t)
+  #+END_SRC
 
 *** fontify headlines
   #+BEGIN_SRC emacs-lisp
