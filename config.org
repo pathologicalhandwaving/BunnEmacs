@@ -157,7 +157,7 @@ loaded, if existing.
 ** BibTeX
 *** RefTeX
     #+begin_src emacs-lisp
-      (use-package refTeX
+      (use-package reftex
 	:commands turn-on-reftex
 	:init
 	(progn
