@@ -744,6 +744,10 @@ HTML mode is defined in =sgml-mode.el=
 
 ** OrgMode
 
+*** Org Keywords
+    #+begin_src emacs-lisp
+    (setq org-todo-keywords '((sequence "FIXME" | "FIXED")))
+    #+end_src
 *** auto-mode-alist extentions and modes
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
