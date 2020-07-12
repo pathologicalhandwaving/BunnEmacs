@@ -292,8 +292,14 @@ loaded, if existing.
 	     ("C-x b" . helm-mini)
 	     ("C-x C-r" . helm-recentf)
 	     ("C-c i" . helm-imenu)
-	     ("M-y" . helm-show-kill-ring)))
+	     ("M-y" . helm-show-kill-ring)
+	     ("C-c o" . helm-occur)
+	     ("C-x r b" . helm-bookmarks)
+	     ("C-c R" . helm-register))
+  :config
+  (helm-autoresize-mode 1))
 #+end_src
+
 
 *** Helm-Org
 #+begin_src emacs-lisp
@@ -301,6 +307,20 @@ loaded, if existing.
   :config
   (add-to-list 'helm-completing-read-handlers-alist '(org-capture . helm-org-completing-read-tags))
   (add-to-list 'helm-completing-read-handlers-alist '(org-set-tags . helm-org-completing-read-tags)))
+#+end_src
+
+
+*** Helm-Themes
+#+begin_src emacs-lisp
+(use-package helm-themes)
+#+end_src
+
+*** Helm-descbinds
+#+begin_src emacs-lisp
+(use-package helm-descbinds
+  :demand
+  :config
+  (helm-descbinds-mode))
 #+end_src
 
 ** YaSnippets
