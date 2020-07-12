@@ -633,7 +633,10 @@ HTML mode is defined in =sgml-mode.el=
    (require 'org-indent)
    (setq org-startup-indented t)
    #+end_src
-
+**** Truncated
+#+begin_src emacs-lisp
+(setq org-startup-truncated nil)
+#+end_src
 
 *** Babel
 **** TODO Add plantuml path
