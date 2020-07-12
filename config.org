@@ -811,12 +811,18 @@ Set backups directory
 
 #+BEGIN_SRC emacs-lisp
 (setq backup-by-copying t)
-(setq kept-new-versions 3)
+(setq kept-new-versions 10)
 (setq kept-old-versions 0)
 (setq delete-old-versions t)
 (setq version-control t)
 (setq vc-make-backup-files t)
 #+END_SRC
+
+Backup after every save
+#+begin_src emacs-lisp
+(use-package backup-each-save
+  :config (add-hook 'after-save-hook 'backup-each-save))
+#+end_src
 
 ** Scratch Buffer
 #+BEGIN_SRC emacs-lisp
