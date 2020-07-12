@@ -803,7 +803,12 @@ Autosaves in same place
 (make-directory emacs-autosave-directory))
 #+end_src
 
-*** Backups
+** Backups
+Set backups directory
+#+begin_src emacs-lisp
+(setq backup-directory-alist `((".*" . ,emacs-autosave-directory)))
+#+end_src
+
 #+BEGIN_SRC emacs-lisp
 (setq backup-by-copying t)
 (setq kept-new-versions 3)
