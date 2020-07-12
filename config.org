@@ -198,9 +198,8 @@ loaded, if existing.
 ** Nyan-Mode
 #+BEGIN_SRC emacs-lisp
 (use-package nyan-mode
-  :init
   :config
-  (nyan-mode t)
+  (nyan-mode 1)
   (nyan-toggle-wavy-trail)
   (nyan-start-animation))
 #+END_SRC
@@ -306,7 +305,6 @@ loaded, if existing.
   (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
 #+END_SRC
 
-
 ** Auto-Complete
 #+BEGIN_SRC emacs-lisp
 (use-package company
@@ -334,7 +332,6 @@ loaded, if existing.
 (global-company-mode 1)
 #+END_SRC
 
-
 ** Which-key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
@@ -355,7 +352,6 @@ loaded, if existing.
   (smex-initialize))
 #+END_SRC
 
-
 ** Crux
 #+BEGIN_SRC emacs-lisp
 (use-package crux
@@ -369,7 +365,6 @@ loaded, if existing.
 	     ("C-c D" . crux-delete-file-and-buffer)
 	     ("C-k" . crux-smart-kill-line)))
 #+END_SRC
-
 
 ** Abbrev
 #+BEGIN_SRC emacs-lisp
