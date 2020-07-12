@@ -754,6 +754,10 @@ Notes file
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+END_SRC
 
+*** Refile
+#+begin_src emacs-lisp
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+#+end_src
 *** Utilities
 **** PopOrg
  #+BEGIN_SRC emacs-lisp
