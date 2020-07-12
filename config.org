@@ -225,6 +225,20 @@ Package dependencies providing modern APIs for working with lisp structures
 (defvar bunny-production-dir (concat bunny-sites-dir "Production/"))
 #+end_src
 
+** File Variables
+*** Create file-name variable relative to org directory
+#+begin_src emacs-lisp
+(defun bunny-org-file-name (file-name)
+"Create file-name relative to bunny-org-dir"
+(concate bunny-org-dir file-name))
+#+end_src
+
+*** notes-file
+#+begin_src emacs-lisp
+(defvar bunny-notes-file
+(bunny-org-file-name "Notes/notes.org")
+"Notes catcher file-name")
+#+end_src
 
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
