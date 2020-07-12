@@ -577,11 +577,12 @@ Temporarily highlight changes to buffer after pasting
 	      ("T1" "fontenc" t
 	       ("pdflatex"))
 	      ("" "graphix" t nil)
+	      ("" "xcolor" t nil)
 	      ("" "grffile" t nil)
 	      ("" "longtable" nil nil)
 	      ("" "wrapfig" nil nil)
 	      ("" "rotating" nil nil)
-	      ("normalem" "ulem" t nil")
+	      ("normalem" "ulem" t nil)
 	      ("" "amsmath" t nil)
 	      ("" "amssymb" t nil)
 	      ("" "stmaryrd" t nil)
@@ -590,8 +591,17 @@ Temporarily highlight changes to buffer after pasting
 	      ("" "textcomp" t nil)
 	      ("" "caption" nil nil)
 	      ("parfill" "parskip" t t)
-	      ("none" "hyphenat" t t)))
+	      ("none" "hyphenat" t t)
+	      ("" "listings" nil nil)
+	      ("" "booktabs" nil nil)
+	      ("" "colortbl" nil nil)
+	      ("" "tikz" nil nil)
+	      ("" "tikz-3dplot" nil nil)
+	      ("" "tikz-linknodes" nil nil)
+	      ("" "tikzducks" nil nil)
+	      ("" "float" t nil))))
     #+end_src
+
 
 *** =BIBINPUTS=
     The following environment variable is set in =~/.exports=
