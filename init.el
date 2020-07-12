@@ -49,7 +49,7 @@
   ;; latest orgmode
   (use-package org :ensure org-plus-contrib)
 
-  (setq-default default-directory "~/")
+  (setq-default default-directory "/Users/emd/")
   
   ;; tangle config
   (org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
