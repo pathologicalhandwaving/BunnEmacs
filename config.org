@@ -340,6 +340,46 @@ HTML mode is defined in =sgml-mode.el=
 
 
 ** OrgMode
+*** Startup
+**** Startup with Aligned Tables
+     #+begin_src emacs-lisp
+     (setq org-startup-align-all-tables t)
+     #+end_src
+**** Startup Folded
+     #+begin_src emacs-lisp
+     (setq org-startup-folded t)
+     #+end_src
+**** Startup Indented
+     #+begin_src emacs-lisp
+     (setq org-startup-indented t)
+     #+end_src
+**** Startup with Inline Images
+     #+begin_src emacs-lisp
+     (setq org-startup-with-inline-images t)
+     #+end_src
+**** Startup with LaTeX Preview
+     #+begin_src emacs-lisp
+     (setq org-startup-with-latex-preview t)
+     #+end_src
+**** Return Follows Link
+     #+begin_src emacs-lisp
+     (setq org-return-follows-link t)
+     #+end_src
+
+*** Yank
+**** Yank Adjusted Subtrees
+     #+begin_src emacs-lisp
+     (setq org-yank-adjusted-subtrees t)
+     #+end_src
+
+**** Yank Folded Subtrees
+     #+begin_src emacs-lisp
+     (setq org-yank-folded-subtrees t)
+     #+end_src
+**** Catch Invisible Edits
+     #+begin_src emacs-lisp
+     (setq org-catch-invisible-edits 'error)
+     #+end_src
 
 *** Org Files
 **** default directory
@@ -379,6 +419,11 @@ HTML mode is defined in =sgml-mode.el=
 **** Sentence does not need a double space on the end
      #+begin_src emacs-lisp
      (setq sentence-end-double-space nil)
+     #+end_src
+
+**** Subscripts and Superscripts
+     #+begin_src emacs-lisp
+     (setq org-use-sub-superscripts '{})
      #+end_src
 
 *** Fontify
@@ -429,6 +474,19 @@ HTML mode is defined in =sgml-mode.el=
    #+BEGIN_SRC emacs-lisp
    (setq org-list-description-max-indent 5)
    #+END_SRC
+
+**** org-bullets
+     #+begin_src emacs-lisp
+     (use-package org-bullets
+       :init
+       (org-bullets-mode +1))
+     #+end_src
+
+**** Cycle Plain Lists
+     #+begin_src emacs-lisp
+     (setq org-cycle-include-plain-lists t)
+     #+end_src
+
 
 *** Agenda
 **** Warn if deadline within next 7 days
