@@ -142,7 +142,7 @@ loaded, if existing.
 Package dependencies providing modern APIs for working with lisp structures
 
 #+begin_src emacs-lisp
-(require 'cl)
+(require 'cl-lib)
 (use-package f :demand t)        ; files
 (use-package dash :demand t)     ; lists
 (use-package ht :demand t)       ; hash-tables
@@ -160,6 +160,7 @@ Package dependencies providing modern APIs for working with lisp structures
 (defvar bunny-librarian (concat bunny-home-dir "Librarian/"))
 (defvar bunny-pictures-dir (concat bunny-home-dir "Pictures/"))
 (defvar bunny-movies-dir (concat bunny-home-dir "Movies/"))
+(defvar bunny-music-dir (concat bunny-home-dir "Music/"))
 (defvar bunny-progz-dir (concat bunny-home-dir "Progz/"))
 (defvar bunny-repos-dir (concat bunny-home-dir "Repos/"))
 (defvar bunny-sites-dir (concat bunny-home-dir "Sites/"))
