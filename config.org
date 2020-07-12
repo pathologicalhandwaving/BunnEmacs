@@ -801,8 +801,6 @@ Autosaves in same place
 (concat user-emacs-directory "autosaves/"))
 (unless (file-exists-p emacs-autosave-directory)
 (make-directory emacs-autosave-directory))
-(setq auto-save-file-name-transforms
-'((".*" . ,emacs-autosave-directory t)))
 #+end_src
 
 *** Backups
