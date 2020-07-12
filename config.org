@@ -159,7 +159,7 @@ Package dependencies providing modern APIs for working with lisp structures
 (defvar bunny-emacs-dir (concat bunny-home-dir ".emacs.d/"))
 (defvar bunny-librarian (concat bunny-home-dir "Librarian/"))
 (defvar bunny-pictures-dir (concat bunny-home-dir "Pictures/"))
-(defvar bunny-movies-dir (concat bunny-home-dir "Movies/"
+(defvar bunny-movies-dir (concat bunny-home-dir "Movies/"))
 (defvar bunny-progz-dir (concat bunny-home-dir "Progz/"))
 (defvar bunny-repos-dir (concat bunny-home-dir "Repos/"))
 (defvar bunny-sites-dir (concat bunny-home-dir "Sites/"))
