@@ -20,6 +20,7 @@ all-the-icons-ivy-20190508.1803
 all-the-icons-ivy-rich-20200704.1638
 amx-20200701.2108
 anaconda-mode-20200129.1718
+anaphora-20180618.2200
 annotate-20200703.1447
 apib-mode-20200101.1017
 aqi-20200215.1334
@@ -43,6 +44,7 @@ autobookmarks-20190919.841
 autothemer-20180920.923
 avy-20200624.1148
 avy-menu-20190713.1348
+backup-each-save-20180227.557
 bash-completion-20200705.1054
 better-defaults-20200209.1717
 bibclean-format-20190302.2017
@@ -53,6 +55,7 @@ bibslurp-20151202.2346
 bibtex-completion-20200513.852
 bibtex-utils-20190703.2117
 bind-key-20191110.416
+bm-20190807.1217
 bog-20200626.1010
 bongo-20190722.1644
 browse-kill-ring-20200210.921
@@ -104,11 +107,13 @@ company-quickhelp-20200626.1245
 company-quickhelp-terminal-20200627.908
 company-reftex-20181222.906
 company-restclient-20190426.1312
+company-suggest-20180527.1631
 competitive-programming-snippets-20200501.1205
 concurrent-20161229.330
 connection-20191111.446
 counsel-20200706.1447
 crontab-mode-20200330.920
+crux-20200616.543
 csv-mode-1.12
 csv-mode-1.12.signed
 ctable-20171006.11
@@ -127,6 +132,7 @@ decide-20190201.2137
 deferred-20170901.1330
 define-it-20191230.1409
 define-word-20200417.844
+desktop+-20170107.2132
 dictcc-20200421.1422
 dictionary-20191111.446
 diff-hl-20200701.2141
@@ -143,12 +149,15 @@ doom-20180301.2308
 doom-modeline-20200704.1056
 doom-themes-20200621.109
 easy-jekyll-20200506.117
+easy-kill-20181114.2330
 ebib-20200628.2157
 ebuku-20200427.1143
 edbi-20160225.141
 edit-chrome-textarea-20200324.1513
 edit-server-20181016.1125
 editorconfig-20200519.1128
+elfeed-20200209.1942
+elfeed-org-20181015.1100
 eloud-20190706.1707
 elpl-20191229.1929
 elpy-20200527.2021
@@ -162,6 +171,8 @@ epc-20140610.534
 epic-20170210.23
 epl-20180205.2049
 ereader-20170810.501
+eshell-toggle-20200528.1124
+ess-20200623.1908
 esxml-20171129.807
 exec-path-from-shell-20200526.324
 exiftool-20190520.1106
@@ -202,6 +213,7 @@ ghub-20200707.845
 gif-screencast-20200327.1332
 gist-20171128.406
 git-20140128.1041
+git-auto-commit-mode-20200705.1428
 git-commit-20200701.2112
 git-gutter-20200326.1814
 git-gutter-fringe-20200323.2249
@@ -226,8 +238,17 @@ hackernews-20200604.1557
 haml-mode-20190219.2102
 helm-20200705.1517
 helm-bibtex-20200429.1606
+helm-books-20170325.631
+helm-chrome-20160719.520
+helm-chrome-control-20190707.1807
 helm-core-20200706.420
+helm-descbinds-20190501.935
+helm-dictionary-20200406.1632
+helm-eww-20190315.907
 helm-org-20200311.633
+helm-org-rifle-20200512.1943
+helm-themes-20200323.712
+helm-wikipedia-20200630.504
 hierarchy-20190425.842
 highlight-indentation-20181204.839
 historian-20200203.1927
@@ -523,6 +544,7 @@ transcribe-1.5.2
 transcribe-1.5.2.signed
 transfer-sh-20200601.1708
 transient-20200707.2034
+transmission-20200620.402
 transwin-20200704.356
 tree-mode-20151104.1331
 treepy-20191108.2217
@@ -537,6 +559,7 @@ uuid-20120910.851
 uuidgen-20200223.509
 verb-20200627.2134
 visual-fill-column-20200428.816
+volatile-highlights-20160612.155
 w3m-20200702.406
 walkman-20200418.1554
 wallpaper-20200408.1353
