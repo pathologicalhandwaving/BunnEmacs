@@ -427,9 +427,12 @@ Package dependencies providing modern APIs for working with lisp structures
 "ePubs Index file-name")
 #+end_src
 
-
-
-
+*** feeds.org
+#+begin_src emacs-lisp
+(defvar bunny-elfeed-org-files
+(bunny-librarian-file-name "feeds.org")
+"feeds.org file-name")
+#+end_src
 
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
@@ -1137,7 +1140,24 @@ Notes file
  #+END_SRC
 
 
+**** elFeed
+#+begin_src emacs-lisp
+(use-package elfeed
+  :bind (("C-x w" . elfeed-show))
+  :config
+  (add-hook 'elfeed-search-update-hook 'elfeed-font-size-hook)
+  (advice-unadvice 'elfeed-show-entry)
+  (advice-add 'elfeed-show-entry :after 'elfeed-show-refresh-advice))
+#+end_src
 
+**** elfeed-org
+#+begin_src emacs-lisp
+(use-package elfeed-org
+  :after (elfeed)
+  :config
+  (elfeed-org)
+  (setq bunny-elfeed-org-files (list (bunny-org-
+#+end_src
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package python
