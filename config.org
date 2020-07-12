@@ -235,7 +235,7 @@ Package dependencies providing modern APIs for working with lisp structures
 
 *** Create file-name variable relative to librarian directory
 #+begin_src emacs-lisp
-(defun bunny-librarian (file-name)
+(defun bunny-librarian-file-name (file-name)
 "Create file-name relative to bunny-librarian directory"
 (concat bunny-librarian file-name))
 #+end_src
