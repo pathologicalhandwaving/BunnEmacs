@@ -5,7 +5,6 @@
 
 
 * Load Files
-
 ** Load =.custom.el=
 
 One is able to use the customization interface that is bundled within Emacs. It
@@ -25,7 +24,6 @@ loaded, if existing.
   (load custom-file))
 #+END_SRC
 
-
 ** Load =.secrets.el=
 
 
@@ -36,16 +34,22 @@ loaded, if existing.
 #+END_SRC
 
 
-
 ** =BIBINPUTS=
    The following environment variable is set in =~/.exports=
    =BIBINPUTS=/Users/emd/Librarian/Bibliography/default.bib=
    =export BIBINPUTS=
-    
-** Functions
-
+ 
 
 * Startup Options
+** User
+*** Name
+   #+begin_src emacs-lisp
+   (setq user-full-name "K. M. Short")
+   #+end_src
+*** Email
+    #+begin_src emacs-lisp
+    (setq user-mail-address "kristimshort@icloud.com")
+    #+end_src
 
 ** Startup message
 #+BEGIN_SRC emacs-lisp
@@ -67,13 +71,11 @@ loaded, if existing.
        scroll-preserve-screen-position 1)
  #+END_SRC
 
-
 ** Buffers
 *** Indicate Size of Buffer
   #+BEGIN_SRC emacs-lisp
   (size-indication-mode t)
   #+END_SRC
-
 
 ** Indicators
 *** Highlight Current Line
@@ -98,13 +100,11 @@ loaded, if existing.
  (setq large-file-warning-threshold 100000000)
  #+END_SRC
 
-
 ** Wrapping
 *** Wrap at edge of screen
   #+BEGIN_SRC emacs-lisp
   (global-visual-line-mode t)
   #+END_SRC
-
 
 ** Encoding
 #+BEGIN_SRC emacs-lisp
@@ -115,13 +115,11 @@ loaded, if existing.
 (setq locale-coding-system 'utf-8)
 #+END_SRC
 
-
 ** Garbage Collection
 *** If not in focus, garbage collect
   #+BEGIN_SRC emacs-lisp
   (add-hook 'focus-out-hook #'garbage-collect)
   #+END_SRC
-
 
 ** Paths
 *** Exec Path From Shell
@@ -134,7 +132,6 @@ loaded, if existing.
 *** External Paths
 **** TODO Add plantuml path
  =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
-
 
 ** File Extentions and modes
 *** Initial Major Mode
@@ -553,7 +550,6 @@ HTML mode is defined in =sgml-mode.el=
 
 
 * Keybinds
-
 ** GoTo Next Window
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x o") (lambda ()
@@ -588,7 +584,6 @@ HTML mode is defined in =sgml-mode.el=
 (global-set-key (kbd "C-x C-m") 'helm-semantic-or-imenu)
 #+end_src
 
-
 ** Replace buffer menu with ibuffer
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -602,7 +597,6 @@ HTML mode is defined in =sgml-mode.el=
 #+BEGIN_SRC emacs-lisp
 (define-key global-map (kbd "C-c M-4") (lambda () (interactive) (insert "↯")))
 #+END_SRC
-
 
 ** Delete Frame
 #+BEGIN_SRC emacs-lisp
