@@ -700,6 +700,13 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-list-description-max-indent 5)
  #+END_SRC
 
+*** Keywords
+#+begin_src emacs-lisp
+(setq org-todo-keywords
+      '((sequence "TODO" "|" "DONE")
+	      (sequence "FIXME" "|" "FIXED")))
+#+end_src
+
 *** Agenda
 **** Warn if deadline within next 7 days
 #+BEGIN_SRC emacs-lisp
