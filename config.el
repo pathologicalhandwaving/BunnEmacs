@@ -435,6 +435,9 @@
 (require 'helm-bookmark)
 (global-set-key (kbd "C-x C-b") 'helm-bookmark))
 
+(setq ebuku-buku-path "/usr/local/bin/buku")
+(setq ebuku-database-path "/Users/emd/.local/share/buku/bookmarks.db")
+
 (use-package easy-kill)
 
 (global-set-key [remap kill-ring-save] 'easy-kill)

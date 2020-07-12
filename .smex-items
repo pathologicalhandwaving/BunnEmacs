@@ -1,19 +1,20 @@
 
 ;; ----- smex-history -----
 (
+ ebuku
  load-theme
  org-mode
  check-parens
  package-install
  cd
  5x5
- amx
 )
 
 ;; ----- smex-data -----
 (
  (package-install . 15)
- (load-theme . 10)
+ (load-theme . 14)
  (check-parens . 1)
  (org-mode . 2)
+ (ebuku . 3)
 )
