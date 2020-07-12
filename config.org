@@ -638,6 +638,11 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-startup-truncated nil)
 #+end_src
 
+**** Folded
+#+begin_src emacs-lisp
+(setq org-startup-folded t)
+#+end_src
+
 *** Babel
 **** TODO Add plantuml path
 
