@@ -44,7 +44,6 @@ loaded, if existing.
 (setq inhibit-startup-message t)
 #+END_SRC
 
-
 ** Scratch Message
 #+BEGIN_SRC emacs-lisp
 (setq-default initial-scratch-message "")
@@ -71,12 +70,10 @@ loaded, if existing.
 #+END_SRC
 
 
-
 ** Highlight Current Line
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-hl-line-mode)
 #+END_SRC
-
 
 ** Line Numbers
 #+BEGIN_SRC emacs-lisp
@@ -85,12 +82,10 @@ loaded, if existing.
 (column-number-mode t)
 #+END_SRC
 
-
 ** Wrap at edge of screen
 #+BEGIN_SRC emacs-lisp
 (global-visual-line-mode t)
 #+END_SRC
-
 
 ** Encoding
 #+BEGIN_SRC emacs-lisp
@@ -102,7 +97,6 @@ loaded, if existing.
 #+END_SRC
 
 
-
 ** Exec Path From Shell
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell
@@ -110,26 +104,21 @@ loaded, if existing.
   (exec-path-from-shell-initialize))
 #+END_SRC
 
-
 ** Garbage Collection
-
-** If not in focus, garbage collect
+*** If not in focus, garbage collect
 #+BEGIN_SRC emacs-lisp
 (add-hook 'focus-out-hook #'garbage-collect)
 #+END_SRC
-
 
 ** Large File Warning
 #+BEGIN_SRC emacs-lisp
 (setq large-file-warning-threshold 100000000)
 #+END_SRC
 
-
 ** Yes-or-No
 #+BEGIN_SRC emacs-lisp
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-
 
 ** Newline at end of file
 #+BEGIN_SRC emacs-lisp
@@ -137,6 +126,12 @@ loaded, if existing.
 #+END_SRC
 
 
+** Do not trunate lines and word wrap
+#+begin_src emacs-lisp
+(set-default 'truncate-lines nil)
+(set-default 'word-wrap t)
+(setq helm-buffers-truncate-lines nil)
+#+end_src
 
 * MacOS UI
 
