@@ -6,26 +6,34 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
-(setq inhibit-startup-message t)
+(setq user-full-name "K. M. Short")
 
-(setq-default initial-scratch-message "")
+(setq user-mail-address "kristimshort@icloud.com")
+
+(setq inhibit-startup-message t)
 
 (menu-bar-mode +1)
 (tool-bar-mode -1)
 (tooltip-mode +1)
-
-(size-indication-mode t)
 
 (scroll-bar-mode -1)
 (setq scroll-margin 3
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
+(use-package side-notes)
+
+(size-indication-mode t)
+
 (add-hook 'after-init-hook 'global-hl-line-mode)
 
 (line-number-mode +1)
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(setq large-file-warning-threshold 100000000)
 
 (global-visual-line-mode t)
 
@@ -35,17 +43,227 @@
 (set-selection-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
 
+(add-hook 'focus-out-hook #'garbage-collect)
+
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
 
-(add-hook 'focus-out-hook #'garbage-collect)
+(setq initial-major-mode 'org-mode)
 
-(setq large-file-warning-threshold 100000000)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-(fset 'yes-or-no-p 'y-or-n-p)
+(use-package reftex
+  :commands turn-on-reftex
+  :init
+  (progn
+    (setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+    (setq reftex-plug-intoAUCTex t)))
 
-(setq require-final-newline t)
+(use-package org-ref
+  :after org
+  :init
+  (setq reftext-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+  (setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
+	org-ref-pdf-directory "~/Librarian/PDFs"))
+
+(setq org-ref-default-citation-link "cite")
+
+(use-package helm-bibtex
+  :config
+  (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
+	bibtex-completion-library-path "~/Librarian/PDFs"))
+
+(use-package css-mode
+  :ensure nil
+  :custom (css-indent-offset 2))
+
+(use-package scss-mode
+  :ensure nil
+  :preface
+  (defun bunny/scss-set-comment-style ()
+    (setq-local comment-end "")
+    (setq-local comment-start "//"))
+  :mode ("\\.sass\\'" "\\.scss\\'")
+  :hook (scss-mode . bunny/scss-set-comment-style))
+
+(use-package csv-mode)
+
+(use-package rainbow-mode
+  :custom
+  (rainbow-x-colors-major-mode-list '()))
+
+(use-package newcomment
+  :ensure nil
+  :bind
+  ("<M-return>" . comment-indent-new-line)
+  :custom
+  (comment-auto-fill-only-comments t)
+  (comment-multi-line t))
+
+(use-package ediff-wind
+  :ensure nil
+  :custom
+  (ediff-split-window-function #'split-window-horizontally)
+  (ediff-window-setup-function #'ediff-setup-windows-plain))
+
+(use-package sgml-mode
+  :ensure nil
+  :preface
+  (defun bunny/html-set-pretty-print-function ()
+    (setq bunny/pretty-print-function #'sgml-pretty-print))
+  :hook
+  ((html-mode . bunny/html-set-pretty-print-function)
+   (html-mode . sgml-electric-tag-pair-mode)
+   (html-mode . sgml-name-8bit-mode)
+   (html-mode . toggle-truncate-lines))
+  :custom
+  (sgml-basic-offset 2))
+
+(use-package json-mode
+  :mode "\\.json\\'"
+  :preface
+  (defun bunny/json-set-indent-level ()
+    (setq-local js-indent-level 2))
+  :hook (json-mode . bunny/json-set-indent-level))
+
+(require 'ox-latex)
+
+(setq org-latex-logfiles-extensions '(("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "bld" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+
+(setq org-highlight-latex-and-related '(latex bibtex))
+
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+(add-to-list 'org-latex-classes
+                '("article"
+		  "\\documentclass{article}"
+		  ("\\section{%s}" . "\\section*{%s}")
+		  ("\\subsection{%s}" . "\\subsection*{%s}")
+		  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+		  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(setq org-latex-default-packages-alist
+      '(("utf8" "inputenc" t ("pdflatex"))
+	("T1" "fontenc" t ("pdflatex"))
+	("" "graphix" t)
+	("" "xcolor" t)
+	("" "grffile" t)
+	("" "longtable" nil)
+	("" "wrapfig" nil)
+	("" "rotating" nil)
+	("normalem" "ulem" t)
+	("" "amsmath" t)
+	("" "amssymb" t)
+	("" "stmaryrd" t)
+	("" "fontawesome" t)
+	("" "fullpage" t)
+	("" "textcomp" t)
+	("" "caption" nil)
+	("parfill" "parskip" t)
+	("none" "hyphenat" t)
+	("" "listings" nil)
+	("" "booktabs" nil)
+	("" "hyperref" nil)))
+
+(use-package ielm
+  :ensure nil
+  :hook (ielm-mode . (lambda () (setq-local scroll-margin 0))))
+
+(setq org-startup-align-all-tables t)
+
+(setq org-startup-folded t)
+
+(setq org-startup-indented t)
+
+(setq org-startup-with-inline-images t)
+
+(setq org-startup-with-latex-preview t)
+
+(setq org-return-follows-link t)
+
+(setq org-yank-adjusted-subtrees t)
+
+(setq org-yank-folded-subtrees t)
+
+(setq org-catch-invisible-edits 'error)
+
+(setq org-directory "/Users/emd/OrgDB")
+
+(setq org-agenda-files (list org-directory))
+
+(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
+
+(setq org-todo-keywords 
+      '((sequence "FIXME" | "FIXED")))
+
+(setq org-todo-keyword-faces
+      '((("FIXME" . org-warning) ("FIXED" . "black"))))
+
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
+
+(setq sentence-end-double-space nil)
+
+(setq org-use-sub-superscripts '{})
+
+(setq org-hide-emphasis-markers t)
+
+(setq org-fontify-whole-headline t)
+
+(setq org-fontify-done-headline t)
+
+(setq org-fontify-quote-and-verse-blocks t)
+
+(setq org-list-demote-modify-bullet '(("-" . "+")
+                                      ("+" . "*")
+				      ("*" . "-")))
+
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+
+(use-package toc-org
+  :config
+  (add-hook 'org-mode-hook 'toc-org-enable))
+
+(setq org-list-description-max-indent 5)
+
+(use-package org-bullets
+  :init
+  (org-bullets-mode +1))
+
+(setq org-cycle-include-plain-lists t)
+
+(setq org-capture-templates
+      '(("t" "TODO" entry (file "~/OrgDB/Inbox/inbox.org")
+	 "* TODO %?" :empty-lines 1)
+	("n" "Note" entry (file "~/OrgDB/Notes/notes.org")
+	 "* NOTE %?" :empty-lines 1)))
+
+(setq org-deadline-warning-days 7)
+
+(setq org-agenda-span 7)
+
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?C)
+(setq org-default-priority ?A)
+
+(setq org-confirm-babel-evaluate nil)
+
+(use-package poporg)
+
+(use-package python
+  :ensure nil
+  :hook (python-mode . turn-on-prettify-symbols-mode))
+
+(use-package yaml-mode
+  :mode ("\\.yml\\'"))
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
@@ -200,6 +418,31 @@
 
 (use-package google-translate)
 
+(setq require-final-newline t)
+
+(setq backup-by-copying t)
+(setq kept-new-versions 10)
+(setq kept-old-versions 2)
+(setq delete-old-versions t)
+(setq version-control t)
+(setq vc-make-backup-files t)
+
+(use-package ebuku)
+
+(use-package bm
+  :bind (("<C-f2>" . bm-toggle)
+         ("<f2>" . bm-next)
+	 ("<S-f2>" . bm-previous)))
+
+(setq save-interprogram-paste-before-kill t)
+
+(setq browse-url-browser-function 'eww-browse-url)
+
+(use-package easy-kill)
+
+(global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key [remap mark-sexp] 'easy-mark)
+
 (use-package pdf-tools
   :pin manual
   :config
@@ -226,165 +469,12 @@
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
-(use-package ebuku)
-
-(use-package bm
-  :bind (("<C-f2>" . bm-toggle)
-         ("<f2>" . bm-next)
-	 ("<S-f2>" . bm-previous)))
-
-(use-package easy-kill)
-
-(global-set-key [remap kill-ring-save] 'easy-kill)
-(global-set-key [remap mark-sexp] 'easy-mark)
-
-(setq save-interprogram-paste-before-kill t)
+(use-package volatile-highlights
+  :config
+  (volatile-highlights-mode t))
 
 (use-package wttrin
   :ensure t
   :commands (wttrin)
   :init
   (setq wttrin-default-cities '("Durham,NC")))
-
-(setq auto-save-interval 30)
-
-(setq backup-by-copying t)
-(setq kept-new-versions 10)
-(setq kept-old-versions 2)
-(setq delete-old-versions t)
-(setq version-control t)
-(setq vc-make-backup-files t)
-
-(setq initial-major-mode 'org-mode)
-
-(use-package volatile-highlights
-  :config
-  (volatile-highlights-mode t))
-
-(require 'org-tempo)
-
-(use-package refTeX
-  :config
-  (setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib")))
-
-(use-package org-ref
-  :config
-  (setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib")
-	org-ref-pdf-directory "~/Librarian/PDFs")
-
-(use-package helm-bibtex
-  :config
-  (setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib"
-	bibtex-completion-library-path "~/Librarian/PDFs")
-
-(use-package css-mode
-  :ensure nil
-  :custom (css-indent-offset 2))
-
-(use-package scss-mode
-  :ensure nil
-  :preface
-  (defun bunny/scss-set-comment-style ()
-    (setq-local comment-end "")
-    (setq-local comment-start "//"))
-  :mode ("\\.sass\\'" "\\.scss\\'")
-  :hook (scss-mode . bunny/scss-set-comment-style))
-
-(use-package csv-mode)
-
-(use-package rainbow-mode
-  :custom
-  (rainbow-x-colors-major-mode-list '()))
-
-(use-package newcomment
-  :ensure nil
-  :bind
-  ("<M-return>" . comment-indent-new-line)
-  :custom
-  (comment-auto-fill-only-comments t)
-  (comment-multi-line t))
-
-(use-package ediff-wind
-  :ensure nil
-  :custom
-  (ediff-split-window-function #'split-window-horizontally)
-  (ediff-window-setup-function #'ediff-setup-windows-plain))
-
-(use-package sgml-mode
-  :ensure nil
-  :preface
-  (defun bunny/html-set-pretty-print-function ()
-    (setq bunny/pretty-print-function #'sgml-pretty-print))
-  :hook
-  ((html-mode . bunny/html-set-pretty-print-function)
-   (html-mode . sgml-electric-tag-pair-mode)
-   (html-mode . sgml-name-8bit-mode)
-   (html-mode . toggle-truncate-lines))
-  :custom
-  (sgml-basic-offset 2))
-
-(use-package json-mode
-  :mode "\\.json\\'"
-  :preface
-  (defun bunny/json-set-indent-level ()
-    (setq-local js-indent-level 2))
-  :hook (json-mode . bunny/json-set-indent-level))
-
-(setq org-highlight-latex-and-related '(latex bibtex))
-
-(use-package ielm
-  :ensure nil
-  :hook (ielm-mode . (lambda () (setq-local scroll-margin 0))))
-
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-
-(setq org-confirm-babel-evaluate nil)
-
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 0)
-(setq org-src-preserve-indentation t)
-
-(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
-
-(setq org-list-demote-modify-bullet '(("-" . "+")
-                                      ("+" . "*")
-				      ("*" . "-")))
-
-(setq org-hide-emphasis-markers t)
-
-(setq org-fontify-whole-headline t)
-
-(setq org-fontify-done-headline t)
-
-(setq org-fontify-quote-and-verse-blocks t)
-
-(setq org-deadline-warning-days 7)
-
-(setq org-agenda-span 7)
-
-(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-
-(setq org-highest-priority ?A)
-(setq org-lowest-priority ?C)
-(setq org-default-priority ?A)
-
-(setq org-directory "/Users/emd/OrgDB")
-
-(setq org-agenda-files (list org-directory))
-
-(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
-
-(setq org-list-description-max-indent 5)
-
-(use-package poporg
-  :bind (("C-c /" . poporg-dwim)))
-
-(use-package python
-  :ensure nil
-  :hook (python-mode . turn-on-prettify-symbols-mode))
-
-(use-package yaml-mode
-  :mode ("\\.yml\\'"))
