@@ -487,6 +487,13 @@ HTML mode is defined in =sgml-mode.el=
      (setq org-cycle-include-plain-lists t)
      #+end_src
 
+*** Capture
+    #+begin_src emacs-lisp
+    (setq org-capture-templates
+          '(("t" "TODO" entry (file "~/OrgDB/Inbox/inbox.org")
+	     "* TODO %?" :empty-lines 1)
+	    ("n" "Note" entry (file "~/OrgDB/Notes/notes.org"))))
+    #+end_src
 
 *** Agenda
 **** Warn if deadline within next 7 days
