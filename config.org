@@ -492,7 +492,8 @@ HTML mode is defined in =sgml-mode.el=
     (setq org-capture-templates
           '(("t" "TODO" entry (file "~/OrgDB/Inbox/inbox.org")
 	     "* TODO %?" :empty-lines 1)
-	    ("n" "Note" entry (file "~/OrgDB/Notes/notes.org"))))
+	    ("n" "Note" entry (file "~/OrgDB/Notes/notes.org")
+	     "* NOTE %?" :empty-lines 1)))
     #+end_src
 
 *** Agenda
