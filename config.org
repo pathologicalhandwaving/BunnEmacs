@@ -230,7 +230,7 @@ Package dependencies providing modern APIs for working with lisp structures
 #+begin_src emacs-lisp
 (defun bunny-org-file-name (file-name)
 "Create file-name relative to bunny-org-dir"
-(concate bunny-org-dir file-name))
+(concat bunny-org-dir file-name))
 #+end_src
 
 *** notes-file
