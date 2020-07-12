@@ -240,6 +240,62 @@ Package dependencies providing modern APIs for working with lisp structures
 "Notes catcher file-name")
 #+end_src
 
+*** inbox-file
+#+begin_src emacs-lisp
+(defvar bunny-inbox-file
+(bunny-org-file-name "Inbox/inbox.org")
+"Inbox catcher file-name")
+#+end_src
+
+*** agenda-file
+#+begin_src emacs-lisp
+(defvar bunny-agenda-file
+(bunny-org-file-name "Inbox/agenda.org")
+"Agenda catcher file-name")
+#+end_src
+
+*** ideas-file
+#+begin_src emacs-lisp
+(defvar bunny-ideas-file
+(bunny-org-file-name "Inbox/ideas.org")
+"Ideas catcher file-name")
+#+end_src
+
+*** todos-file
+#+begin_src emacs-lisp
+(defvar bunny-todos-file
+(bunny-org-file-name "Inbox/todos.org")
+"Todos catcher file-name")
+#+end_src
+
+*** recipes-file
+#+begin_src emacs-lisp
+(defvar bunny-recipes-file
+(bunny-org-file-name "Inbox/recipes.org")
+"Recipes file-name")
+#+end_src
+
+*** remember-file
+#+BEGIN_SRC emacs-lisp
+(defvar bunny-remember-file
+(bunny-org-file-name "Inbox/remember.org")
+"remember file-name")
+#+END_SRC
+
+*** routine-file
+#+begin_src emacs-lisp
+(defvar bunny-routine-file
+(bunny-org-file-name "Inbox/routine.org")
+"routine file-name")
+#+end_src
+
+*** holidays-file
+#+begin_src emacs-lisp
+(defvar bunny-holidays-file
+(bunny-org-file-name "Inbox/holidays.org")
+"Holidays file-name")
+#+end_src
+
 
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
