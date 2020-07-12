@@ -1,0 +1,19 @@
+
+;; ----- smex-history -----
+(
+ org-mode
+ load-theme
+ check-parens
+ package-install
+ cd
+ 5x5
+ amx
+)
+
+;; ----- smex-data -----
+(
+ (package-install . 15)
+ (load-theme . 6)
+ (check-parens . 1)
+ (org-mode . 2)
+)
