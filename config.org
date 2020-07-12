@@ -139,8 +139,6 @@ loaded, if existing.
 #+end_src
 
 * MacOS UI
-
-
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 #+END_SRC
@@ -223,13 +221,6 @@ loaded, if existing.
 				(other-window -1)))
 #+END_SRC
 
-** M-x without meta
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x C-m") 'smex)
-#+END_SRC
-
-
-
 
 ** Replace buffer menu with ibuffer
 #+BEGIN_SRC emacs-lisp
@@ -292,6 +283,18 @@ loaded, if existing.
 
 
 * Expand
+** Helm
+#+begin_src emacs-lisp
+(use-package helm
+  :diminish
+  :init (helm-mode t)
+  :bind (("M-x" . helm-M-x)
+	     ("C-x C-f" . helm-find-files)
+	     ("C-x b" . helm-mini)
+	     ("C-x C-r" . helm-recentf)
+	     ("C-c i" . helm-imenu)
+	     ("M-y" . helm-show-kill-ring)))
+#+end_src
 
 ** YaSnippets
 #+BEGIN_SRC emacs-lisp
@@ -357,15 +360,14 @@ loaded, if existing.
 #+BEGIN_SRC emacs-lisp
 (use-package crux
   :bind (("C-a" . crux-move-beginning-of-line)
-         ("C-c f" . crux-recentf-find-file)
-	 ("C-c u" . crux-view-url)
-	 ("C-c k" . crux-kill-other-buffers)
-	 ("C-c i" . crux-ispell-word-then-abbrev)
-	 ("C-x C-u" . crux-upcase-region)
-	 ("C-x C-l" . crux-downcase-region)
-	 ("C-c r" . crux-rename-file-and-buffer)
-	 ("C-c D" . crux-delete-file-and-buffer)
-	 ("C-k" . crux-smart-kill-line)))
+	     ("C-c u" . crux-view-url)
+	     ("C-c k" . crux-kill-other-buffers)
+	     ("C-c i" . crux-ispell-word-then-abbrev)
+	     ("C-x C-u" . crux-upcase-region)
+	     ("C-x C-l" . crux-downcase-region)
+	     ("C-c r" . crux-rename-file-and-buffer)
+	     ("C-c D" . crux-delete-file-and-buffer)
+	     ("C-k" . crux-smart-kill-line)))
 #+END_SRC
 
 
