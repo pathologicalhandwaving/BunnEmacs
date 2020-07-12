@@ -225,6 +225,7 @@ Package dependencies providing modern APIs for working with lisp structures
 (defvar bunny-production-dir (concat bunny-sites-dir "Production/"))
 #+end_src
 
+
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
