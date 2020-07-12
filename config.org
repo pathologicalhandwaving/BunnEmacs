@@ -1150,6 +1150,44 @@ Notes file
   (advice-add 'elfeed-show-entry :after 'elfeed-show-refresh-advice))
 #+end_src
 
+#+begin_src emacs-lisp
+(defun advice-unadvice (sym)
+"Remove all advices from symbol SYM"
+(interactive "aFunction symbol: ")
+(advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun elfeed-font-size-hook ()
+(buffer-face-set '(:height 1.35)))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package visual-fill-column
+  :config
+  (global-visual-fill-column-mode))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun elfeed-visual-fill-hook ()
+  (visual-fill-column-mode 1))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun elfeed-show-refresh-advice (entry)
+(elfeed-font-size-hook)
+(visual-fill-column-mode 1)
+(setq word-wrap 1)
+(elfeed-show-refresh))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun elfeed-show ()
+  (interactive)
+  (elfeed)
+  (delete-other-windows))
+#+end_src
+
 **** elfeed-org
 #+begin_src emacs-lisp
 (use-package elfeed-org
