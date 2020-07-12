@@ -569,11 +569,37 @@ Temporarily highlight changes to buffer after pasting
 	    bibtex-completion-library-path "~/Librarian/PDFs"))
     #+end_src
 
-*** =BIBINPUTS=
+*** Org LaTeX Default Packages List
     #+begin_src emacs-lisp
-    BIBINPUTS=/Users/emd/Librarian/Bibliography/default.bib
-    export BIBINPUTS
+    (setq '(org-latex-default-packages-alist
+            '(("utf8" "inputenc" t
+	       ("pdflatex"))
+	      ("T1" "fontenc" t
+	       ("pdflatex"))
+	      ("" "graphix" t nil)
+	      ("" "grffile" t nil)
+	      ("" "longtable" nil nil)
+	      ("" "wrapfig" nil nil)
+	      ("" "rotating" nil nil)
+	      ("normalem" "ulem" t nil")
+	      ("" "amsmath" t nil)
+	      ("" "amssymb" t nil)
+	      ("" "stmaryrd" t nil)
+	      ("" "fontawesome" t nil)
+	      ("" "fullpage" t nil)
+	      ("" "textcomp" t nil)
+	      ("" "caption" nil nil)
+	      ("parfill" "parskip" t t)
+	      ("none" "hyphenat" t t)))
     #+end_src
+
+*** =BIBINPUTS=
+    The following environment variable is set in =~/.exports=
+    =BIBINPUTS=/Users/emd/Librarian/Bibliography/default.bib=
+    =export BIBINPUTS=
+    
+*** Functions
+
 
 ** CSS
 
