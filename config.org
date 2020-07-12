@@ -296,6 +296,51 @@ Package dependencies providing modern APIs for working with lisp structures
 "Holidays file-name")
 #+end_src
 
+*** log-file
+#+begin_src emacs-lisp
+(defvar bunny-log-file
+(bunny-org-file-name "Logs/log.org")
+"Log catcher file-name")
+#+end_src
+
+*** investigations-file
+#+begin_src emacs-lisp
+(defvar bunny-invest-file
+(bunny-org-file-name "Investigations/investigations.org")
+"Investigations list file-name")
+#+end_src
+
+*** lldb-file
+#+begin_src emacs-lisp
+(defvar bunny-lldb-file
+(bunny-org-file-name "LLDB/lldb.org")
+"LLDB file-name")
+#+end_src
+
+*** Lists Index File
+#+begin_src emacs-lisp
+(defvar bunny-lists-index-file
+(bunny-org-file-name "Lists/index.org")
+"Lists index file-name")
+#+end_src
+
+*** projects-list-file
+#+begin_src emacs-lisp
+(defvar bunny-project-list-file
+(bunny-org-file-name "Projects/projects.org")
+"Projects list file-name")
+#+end_src
+
+*** Templates Index File
+#+begin_src emacs-lisp
+(defvar bunny-templates-index-file
+(bunny-org-file-name "Templates/index.org")
+"Templates index file-name")
+#+end_src
+
+
+
+
 
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
