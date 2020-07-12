@@ -133,6 +133,11 @@ loaded, if existing.
 (setq helm-buffers-truncate-lines nil)
 #+end_src
 
+** Server
+#+begin_src emacs-lisp
+(server-start)
+#+end_src
+
 * MacOS UI
 
 
