@@ -781,6 +781,15 @@ Save current system clipboard to kill-ring
 
 
 ** AutoSave
+#+begin_src emacs-lisp
+(setq auto-save-default t)
+#+end_src
+
+Autosave every 30 seconds
+#+begin_src emacs-lisp
+(setq auto-save-timeout 30)
+#+end_src
+
 Auto save after 30 typed characters
 #+BEGIN_SRC emacs-lisp
 (setq auto-save-interval 30)
