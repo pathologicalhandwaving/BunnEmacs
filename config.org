@@ -1130,12 +1130,6 @@ Notes file
  #+END_SRC
 
 
-**** Org-Rifle
-#+begin_src emacs-lisp
-(use-package helm-org-rifle
-  :init
-  (setq helm-org-rifle-show-path t))
-#+end_src
 
 ** Python
 #+BEGIN_SRC emacs-lisp
