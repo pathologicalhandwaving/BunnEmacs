@@ -74,10 +74,7 @@ loaded, if existing.
 
 *** SideNotes
     #+begin_src emacs-lisp
-    (use-package side-notes
-      :init
-      (setq side-notes-file "~/OrgDB/Notes/notes.org")
-      (define-key (current-global-map) (kbd "M-s n") '#side-notes-toggle-notes))
+    (use-package side-notes)
     #+end_src
 
 ** Buffers
