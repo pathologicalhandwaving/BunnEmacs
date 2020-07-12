@@ -1,7 +1,7 @@
 #+TITLE: BunnEmacs
 #+AUTHOR: Kris Short
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-09]
+#+DATE_MODIFIED: [2020-07-12]
 
 
 * Load Files
@@ -136,6 +136,92 @@ loaded, if existing.
 ** Server
 #+begin_src emacs-lisp
 (server-start)
+#+end_src
+
+** Lisp APIs
+Package dependencies providing modern APIs for working with lisp structures
+
+#+begin_src emacs-lisp
+(require 'cl)
+(use-package f :demand t)        ; files
+(use-package dash :demand t)     ; lists
+(use-package ht :demand t)       ; hash-tables
+(use-package s :demand t)        ; strings
+(use-package a :demand t)        ; association lists
+(use-package anaphora :demand t) ; enables temp variables
+#+end_src
+
+** Directory Variables
+
+*** Home Directory Variables
+#+begin_src emacs-lisp
+(defvar bunny-home-dir (expand-file-name "~/"))
+(defvar bunny-emacs-dir (concat bunny-home-dir ".emacs.d/"))
+(defvar bunny-librarian (concat bunny-home-dir "Librarian/"))
+(defvar bunny-pictures-dir (concat bunny-home-dir "Pictures/"))
+(defvar bunny-movies-dir (concat bunny-home-dir "Movies/"
+(defvar bunny-progz-dir (concat bunny-home-dir "Progz/"))
+(defvar bunny-repos-dir (concat bunny-home-dir "Repos/"))
+(defvar bunny-sites-dir (concat bunny-home-dir "Sites/"))
+(defvar bunny-torrents-dir (concat bunny-home-dir "Torrents/"))
+(defvar bunny-org-dir (concat bunny-home-dir "OrgDB/"))
+
+#+end_src
+
+*** OrgDB Directory Variables
+#+begin_src emacs-lisp
+(defvar bunny-adhd-dir (concat bunny-org-dir "ADHD/"))
+(defvar bunny-archive-dir (concat bunny-org-dir "Archive/"))
+(defvar bunny-code-dir (concat bunny-org-dir "Code/"))
+(defvar bunny-dmp-dir (concat bunny-org-dir "DMP/"))
+(defvar bunny-invest-dir (concat bunny-org-dir "Investigations/"))
+(defvar bunny-inbox-dir (concat bunny-org-dir "Inbox/"))
+(defvar bunny-lldb-dir (concat bunny-org-dir "LLDB/"))
+(defvar bunny-lists-dir (concat bunny-org-dir "Lists/"))
+(defvar bunny-logs-dir (concat bunny-org-dir "Logs/"))
+(defvar bunny-notes-dir (concat bunny-org-dir "Notes/"))
+(defvar bunny-paperless-dir (concat bunny-org-dir "Paperless/"))
+(defvar bunny-projects-dir (concat bunny-org-dir "Projects/"))
+(defvar bunny-tmp-dir (concat bunny-org-dir "TMP/"))
+(defvar bunny-templates-dir (concat bunny-org-dir "Templates/"))
+(defvar bunny-work-dir (concat bunny-org-dir "Work/"))
+#+end_src
+
+*** Librarian Directory Variables
+#+begin_src emacs-lisp
+(defvar bunny-articles-dir (concat bunny-librarian "Articles/"))
+(defvar bunny-bib-dir (concat bunny-librarian "Bibliography/"))
+(defvar bunny-data-dir (concat bunny-librarian "Data/"))
+(defvar bunny-dictionary-dir (concat bunny-librarian "Dictionary/"))
+(defvar bunny-legis-dir (concat bunny-librarian "Legis/"))
+(defvar bunny-pdfs-dir (concat bunny-librarian "PDFs/"))
+(defvar bunny-quotes-dir (concat bunny-librarian "Quotes/"))
+(defvar bunny-text-dir (concat bunny-librarian "Text/"))
+(defvar bunny-webarchives-dir (concat bunny-librarian "WebArchives/"))
+(defvar bunny-epubs-dir (concat bunny-librarian "ePubs/"))
+#+end_src
+
+*** Movies Directory Variables
+#+begin_src emacs-lisp
+(defvar bunny-films-dir (concat bunny-movies-dir "Films/"))
+(defvar bunny-lectures-dir (concat bunny-movies-dir "Lectures/"))
+(defvar bunny-tv-dir (concat bunny-movies-dir "TV/"))
+(defvar bunny-talks-dir (concat bunny-movies-dir "Talks/"))
+#+end_src
+
+*** Music Directory Variables
+#+begin_src emacs-lisp
+(defvar bunny-audiobooks-dir (concat bunny-music-dir "AudioBooks/"))
+(defvar bunny-songs-dir (concat bunny-music-dir "Music/"))
+(defvar bunny-sounds-dir (concat bunny-music-dir "Sounds/"))
+#+end_src
+
+*** Sites Directory Variables
+#+begin_src emacs-lisp
+(defvar bunny-content-dir (concat bunny-sites-dir "Content/"))
+(defvar bunny-devl-dir (concat bunny-sites-dir "Devl/"))
+(defvar bunny-drafts-dir (concat bunny-sites-dir "Drafts/"))
+(defvar bunny-production-dir (concat bunny-sites-dir "Production/"))
 #+end_src
 
 * MacOS UI
