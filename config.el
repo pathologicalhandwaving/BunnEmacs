@@ -47,6 +47,12 @@
 
 (setq require-final-newline t)
 
+(set-default 'truncate-lines nil)
+(set-default 'word-wrap t)
+(setq helm-buffers-truncate-lines nil)
+
+(server-start)
+
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (modify-frame-parameters (selected-frame) '((alpha . 75)))
@@ -78,9 +84,8 @@
 (load-theme 'doom-outrun-electric t)
 
 (use-package nyan-mode
-  :init
   :config
-  (nyan-mode t)
+  (nyan-mode 1)
   (nyan-toggle-wavy-trail)
   (nyan-start-animation))
 
@@ -89,8 +94,6 @@
 (global-set-key (kbd "C-x o") (lambda ()
                                 (interactive)
 				(other-window -1)))
-
-(global-set-key (kbd "C-x C-m") 'smex)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -119,6 +122,33 @@
   :ensure nil
   :config
   (global-eldoc-mode -1))
+
+(use-package helm
+  :diminish
+  :init (helm-mode t)
+  :bind (("M-x" . helm-M-x)
+	     ("C-x C-f" . helm-find-files)
+	     ("C-x b" . helm-mini)
+	     ("C-x C-r" . helm-recentf)
+	     ("C-c i" . helm-imenu)
+	     ("M-y" . helm-show-kill-ring)
+	     ("C-c o" . helm-occur)
+	     ("C-x r b" . helm-bookmarks)
+	     ("C-c R" . helm-register))
+  :config
+  (helm-autoresize-mode 1))
+
+(use-package helm-org
+  :config
+  (add-to-list 'helm-completing-read-handlers-alist '(org-capture . helm-org-completing-read-tags))
+  (add-to-list 'helm-completing-read-handlers-alist '(org-set-tags . helm-org-completing-read-tags)))
+
+(use-package helm-themes)
+
+(use-package helm-descbinds
+  :demand
+  :config
+  (helm-descbinds-mode))
 
 (use-package yasnippet
   :ensure t
@@ -165,15 +195,14 @@
 
 (use-package crux
   :bind (("C-a" . crux-move-beginning-of-line)
-         ("C-c f" . crux-recentf-find-file)
-	 ("C-c u" . crux-view-url)
-	 ("C-c k" . crux-kill-other-buffers)
-	 ("C-c i" . crux-ispell-word-then-abbrev)
-	 ("C-x C-u" . crux-upcase-region)
-	 ("C-x C-l" . crux-downcase-region)
-	 ("C-c r" . crux-rename-file-and-buffer)
-	 ("C-c D" . crux-delete-file-and-buffer)
-	 ("C-k" . crux-smart-kill-line)))
+	     ("C-c u" . crux-view-url)
+	     ("C-c k" . crux-kill-other-buffers)
+	     ("C-c i" . crux-ispell-word-then-abbrev)
+	     ("C-x C-u" . crux-upcase-region)
+	     ("C-x C-l" . crux-downcase-region)
+	     ("C-c r" . crux-rename-file-and-buffer)
+	     ("C-c D" . crux-delete-file-and-buffer)
+	     ("C-k" . crux-smart-kill-line)))
 
 (setq save-abbrevs 'silently)
 (setq-default abbrev-mode t)
@@ -233,8 +262,8 @@
 (setq auto-save-interval 30)
 
 (setq backup-by-copying t)
-(setq kept-new-versions 10)
-(setq kept-old-versions 2)
+(setq kept-new-versions 3)
+(setq kept-old-versions 0)
 (setq delete-old-versions t)
 (setq version-control t)
 (setq vc-make-backup-files t)
@@ -308,12 +337,14 @@
 
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-(setq org-confirm-babel-evaluate nil)
+(require 'org-indent)
+(setq org-startup-indented t)
 
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 0)
-(setq org-src-preserve-indentation t)
+(setq org-startup-truncated nil)
+
+(setq org-startup-folded t)
+
+(setq org-confirm-babel-evaluate nil)
 
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
@@ -325,11 +356,24 @@
 
 (setq org-hide-emphasis-markers t)
 
+(setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+
 (setq org-fontify-whole-headline t)
 
 (setq org-fontify-done-headline t)
 
 (setq org-fontify-quote-and-verse-blocks t)
+
+(setq org-list-description-max-indent 5)
+
+(setq org-checkbox-hierarchical-statistics nil)
+
+(setq org-todo-keywords
+      '((sequence "TODO" "|" "DONE")
+	      (sequence "FIXME" "|" "FIXED")))
 
 (setq org-deadline-warning-days 7)
 
@@ -341,16 +385,24 @@
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
 
-(setq org-directory "/Users/emd/OrgDB")
+(setq org-directory "/Users/emd/OrgDB/")
 
 (setq org-agenda-files (list org-directory))
 
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 
-(setq org-list-description-max-indent 5)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+(setq org-refile-targets '((nil :maxlevel . 9)
+			         (org-agenda-files :maxlevel . 9)))
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-use-outline-path '(file))
 
 (use-package poporg
   :bind (("C-c /" . poporg-dwim)))
+
+(use-package helm-org-rifle
+  :init
+  (setq helm-org-rifle-show-path t))
 
 (use-package python
   :ensure nil
