@@ -744,11 +744,10 @@ HTML mode is defined in =sgml-mode.el=
 
 ** OrgMode
 
+*** auto-mode-alist extentions and modes
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 #+END_SRC
-
-
 
 *** TODO Add plantuml path
 
@@ -757,7 +756,6 @@ HTML mode is defined in =sgml-mode.el=
 #+BEGIN_SRC emacs-lisp
 (setq org-confirm-babel-evaluate nil)
 #+END_SRC
-
 
 *** org-src block fontify
 #+BEGIN_SRC emacs-lisp
@@ -781,8 +779,6 @@ HTML mode is defined in =sgml-mode.el=
 				      ("*" . "-")))
 #+END_SRC
 
-
-
 *** hide emphasis markers
 #+BEGIN_SRC emacs-lisp
 (setq org-hide-emphasis-markers t)
@@ -793,19 +789,17 @@ HTML mode is defined in =sgml-mode.el=
   (setq org-fontify-whole-headline t)
   #+END_SRC
 
+*** org fontify done headline
   #+BEGIN_SRC emacs-lisp
   (setq org-fontify-done-headline t)
   #+END_SRC
 
-
 *** fontify quote and verse blocks
-#+BEGIN_SRC emacs-lisp
-(setq org-fontify-quote-and-verse-blocks t)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+  (setq org-fontify-quote-and-verse-blocks t)
+  #+END_SRC
 
-
-
-*** org-agenda options
+*** Agenda options
 
 **** Warn if deadline within next 7 days
 #+BEGIN_SRC emacs-lisp
@@ -829,39 +823,32 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-default-priority ?A)
 #+END_SRC
 
-
 *** Org Files
+**** default directory
+   #+BEGIN_SRC emacs-lisp
+   (setq org-directory "/Users/emd/OrgDB")
+   #+END_SRC
 
-default directory
-#+BEGIN_SRC emacs-lisp
-(setq org-directory "/Users/emd/OrgDB")
-#+END_SRC
+**** Agenda file
+   #+BEGIN_SRC emacs-lisp
+   (setq org-agenda-files (list org-directory))
+   #+END_SRC
 
-Agenda file
-
-#+BEGIN_SRC emacs-lisp
-(setq org-agenda-files (list org-directory))
-#+END_SRC
-
-Notes file
-
-#+BEGIN_SRC emacs-lisp
-(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
-#+END_SRC
-
+**** Notes file
+   #+BEGIN_SRC emacs-lisp
+   (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
+   #+END_SRC
 
 *** Maximize description list indent
-#+BEGIN_SRC emacs-lisp
-(setq org-list-description-max-indent 5)
-#+END_SRC
-
-
+  #+BEGIN_SRC emacs-lisp
+  (setq org-list-description-max-indent 5)
+  #+END_SRC
 
 *** PopOrg
-#+BEGIN_SRC emacs-lisp
-(use-package poporg
-  :bind (("C-c /" . poporg-dwim)))
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+  (use-package poporg
+    :bind (("C-c /" . poporg-dwim)))
+  #+END_SRC
 
 
 
