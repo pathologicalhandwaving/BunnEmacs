@@ -40,7 +40,8 @@ loaded, if existing.
 * Startup Options
 ** Set Default Starting Directory
 #+begin_src emacs-lisp
-(setq-default default-directory "/Users/emd/")
+(getenv "HOME")
+(setq-default default-directory "~/")
 #+end_src
 
 ** Startup message
