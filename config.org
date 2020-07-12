@@ -629,70 +629,75 @@ HTML mode is defined in =sgml-mode.el=
 
 
 ** OrgMode
+*** Startup
+  #+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  #+END_SRC
+**** Indented
+   #+begin_src emacs-lisp
+   (require 'org-indent)
+   (setq org-startup-indented t)
+   #+end_src
 
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-#+END_SRC
 
+*** Babel
+**** TODO Add plantuml path
 
+ =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
 
-*** TODO Add plantuml path
-
-=(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
-
-#+BEGIN_SRC emacs-lisp
+ #+BEGIN_SRC emacs-lisp
 (setq org-confirm-babel-evaluate nil)
-#+END_SRC
+ #+END_SRC
 
+*** Grammar and Spelling
+**** Dont spell check these regions
+ #+BEGIN_SRC emacs-lisp
+(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
+ #+END_SRC
 
-*** org-src block fontify
-#+BEGIN_SRC emacs-lisp
+*** Layout
+**** Modify demote bullets
+ #+BEGIN_SRC emacs-lisp
+(setq org-list-demote-modify-bullet '(("-" . "+")
+                                      ("+" . "*")
+				      ("*" . "-")))
+ #+END_SRC
+
+**** hide emphasis markers
+ #+BEGIN_SRC emacs-lisp
+(setq org-hide-emphasis-markers t)
+ #+END_SRC
+
+**** org-src block fontify
+ #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
 (setq org-edit-src-content-indentation 0)
 (setq org-src-preserve-indentation t)
-#+END_SRC
+ #+END_SRC
 
-*** Dont spell check these regions
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
-(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
-#+END_SRC
-
-*** Modify demote bullets
-#+BEGIN_SRC emacs-lisp
-(setq org-list-demote-modify-bullet '(("-" . "+")
-                                      ("+" . "*")
-				      ("*" . "-")))
-#+END_SRC
-
-
-
-*** hide emphasis markers
-#+BEGIN_SRC emacs-lisp
-(setq org-hide-emphasis-markers t)
-#+END_SRC
-
-*** fontify headlines
-#+BEGIN_SRC emacs-lisp
+**** fontify headlines
+ #+BEGIN_SRC emacs-lisp
 (setq org-fontify-whole-headline t)
-#+END_SRC
+ #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+ #+BEGIN_SRC emacs-lisp
 (setq org-fontify-done-headline t)
-#+END_SRC
+ #+END_SRC
 
-
-*** fontify quote and verse blocks
-#+BEGIN_SRC emacs-lisp
+**** fontify quote and verse blocks
+ #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
-#+END_SRC
+ #+END_SRC
 
+**** Maximize description list indent
+ #+BEGIN_SRC emacs-lisp
+(setq org-list-description-max-indent 5)
+ #+END_SRC
 
-
-*** org-agenda options
-
+*** Agenda
 **** Warn if deadline within next 7 days
 #+BEGIN_SRC emacs-lisp
 (setq org-deadline-warning-days 7)
@@ -708,13 +713,12 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 #+END_SRC
 
-*** Priority 
-#+BEGIN_SRC emacs-lisp
+**** Priority 
+ #+BEGIN_SRC emacs-lisp
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
-#+END_SRC
-
+ #+END_SRC
 
 *** Org Files
 
@@ -735,19 +739,12 @@ Notes file
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+END_SRC
 
-
-*** Maximize description list indent
-#+BEGIN_SRC emacs-lisp
-(setq org-list-description-max-indent 5)
-#+END_SRC
-
-
-
-*** PopOrg
-#+BEGIN_SRC emacs-lisp
+*** Utilities
+**** PopOrg
+ #+BEGIN_SRC emacs-lisp
 (use-package poporg
   :bind (("C-c /" . poporg-dwim)))
-#+END_SRC
+ #+END_SRC
 
 
 
