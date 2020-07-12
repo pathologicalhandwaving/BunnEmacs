@@ -114,6 +114,110 @@
 (defvar bunny-drafts-dir (concat bunny-sites-dir "Drafts/"))
 (defvar bunny-production-dir (concat bunny-sites-dir "Production/"))
 
+(defun bunny-org-file-name (file-name)
+"Create file-name relative to bunny-org-dir"
+(concat bunny-org-dir file-name))
+
+(defun bunny-librarian-file-name (file-name)
+"Create file-name relative to bunny-librarian directory"
+(concat bunny-librarian file-name))
+
+(defvar bunny-notes-file
+(bunny-org-file-name "Notes/notes.org")
+"Notes catcher file-name")
+
+(defvar bunny-inbox-file
+(bunny-org-file-name "Inbox/inbox.org")
+"Inbox catcher file-name")
+
+(defvar bunny-agenda-file
+(bunny-org-file-name "Inbox/agenda.org")
+"Agenda catcher file-name")
+
+(defvar bunny-ideas-file
+(bunny-org-file-name "Inbox/ideas.org")
+"Ideas catcher file-name")
+
+(defvar bunny-todos-file
+(bunny-org-file-name "Inbox/todos.org")
+"Todos catcher file-name")
+
+(defvar bunny-recipes-file
+(bunny-org-file-name "Inbox/recipes.org")
+"Recipes file-name")
+
+(defvar bunny-remember-file
+(bunny-org-file-name "Inbox/remember.org")
+"remember file-name")
+
+(defvar bunny-routine-file
+(bunny-org-file-name "Inbox/routine.org")
+"routine file-name")
+
+(defvar bunny-holidays-file
+(bunny-org-file-name "Inbox/holidays.org")
+"Holidays file-name")
+
+(defvar bunny-log-file
+(bunny-org-file-name "Logs/log.org")
+"Log catcher file-name")
+
+(defvar bunny-invest-file
+(bunny-org-file-name "Investigations/investigations.org")
+"Investigations list file-name")
+
+(defvar bunny-lldb-file
+(bunny-org-file-name "LLDB/lldb.org")
+"LLDB file-name")
+
+(defvar bunny-lists-index-file
+(bunny-org-file-name "Lists/index.org")
+"Lists index file-name")
+
+(defvar bunny-project-list-file
+(bunny-org-file-name "Projects/projects.org")
+"Projects list file-name")
+
+(defvar bunny-templates-index-file
+(bunny-org-file-name "Templates/index.org")
+"Templates index file-name")
+
+(defvar bunny-observations-file
+(bunny-org-file-name "Logs/observations.org")
+"observations file-name")
+
+(defvar bunny-pdfs-index-file
+(bunny-librarian-file-name "PDFs/index.org")
+"PDFs Index file-name")
+
+(defvar bunny-articles-index-file
+(bunny-librarian-file-name "Articles/index.org")
+"Articles Index file-name")
+
+(defvar bunny-data-index-file
+(bunny-librarian-file-name "Data/index.org")
+"Data Index file-name")
+
+(defvar bunny-dictionary-index-file
+(bunny-librarian-file-name "Dictionary/index.org")
+"Dictionary Index file-name")
+
+(defvar bunny-legis-index-file
+(bunny-librarian-file-name "Legis/index.org")
+"Legis Index file-name")
+
+(defvar bunny-quotes-index-file
+(bunny-librarian-file-name "Quotes/index.org")
+"Quotes Index file-name")
+
+(defvar bunny-text-index-file
+(bunny-librarian-file-name "Text/index.org")
+"Text Index file-name")
+
+(defvar bunny-epubs-index-file
+(bunny-librarian-file-name "ePubs/index.org")
+"ePubs Index file-name")
+
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (modify-frame-parameters (selected-frame) '((alpha . 75)))
@@ -320,7 +424,16 @@
   :init
   (setq wttrin-default-cities '("Durham,NC")))
 
+(setq auto-save-default t)
+
+(setq auto-save-timeout 30)
+
 (setq auto-save-interval 30)
+
+(defvar emacs-autosave-directory
+(concat user-emacs-directory "autosaves/"))
+(unless (file-exists-p emacs-autosave-directory)
+(make-directory emacs-autosave-directory))
 
 (setq backup-by-copying t)
 (setq kept-new-versions 3)
