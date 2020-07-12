@@ -484,8 +484,8 @@ Auto save after 30 typed characters
 *** Backups
 #+BEGIN_SRC emacs-lisp
 (setq backup-by-copying t)
-(setq kept-new-versions 10)
-(setq kept-old-versions 2)
+(setq kept-new-versions 3)
+(setq kept-old-versions 0)
 (setq delete-old-versions t)
 (setq version-control t)
 (setq vc-make-backup-files t)
