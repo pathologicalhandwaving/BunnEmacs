@@ -1007,6 +1007,10 @@ HTML mode is defined in =sgml-mode.el=
 
 ** OrgMode
 *** Startup
+#+begin_src emacs-lisp
+(setq org-directory "~/OrgDB")
+#+end_src
+
   #+BEGIN_SRC emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   #+END_SRC
@@ -1035,7 +1039,8 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-capture-templates
   (("a" "ADHD Log" entry
     (file+datetree
-     (concat 
+     (bunny-adhd-log-file))
+    "** %^{Heading}")
 #+end_src
 *** Grammar and Spelling
 **** Dont spell check these regions
