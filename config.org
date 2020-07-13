@@ -152,9 +152,7 @@ loaded, if existing.
 #+end_src
 
 ** Server
-#+begin_src emacs-lisp
-(server-start)
-#+end_src
+
 
 ** Lisp APIs
 Package dependencies providing modern APIs for working with lisp structures
