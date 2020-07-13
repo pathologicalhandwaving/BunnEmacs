@@ -1007,6 +1007,7 @@ HTML mode is defined in =sgml-mode.el=
 *** Startup
 #+begin_src emacs-lisp
 (setq org-directory "~/OrgDB")
+(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+end_src
 
   #+BEGIN_SRC emacs-lisp
