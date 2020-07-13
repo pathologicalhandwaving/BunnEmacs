@@ -434,6 +434,12 @@ Package dependencies providing modern APIs for working with lisp structures
 "feeds.org file-name")
 #+end_src
 
+*** ADHD Log
+#+begin_src emacs-lisp
+(defvar bunny-adhd-log-file 
+(bunny-org-file-name "ADHD/log.org")
+"ADHD log file-name")
+#+end_src
 
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
@@ -1027,12 +1033,9 @@ HTML mode is defined in =sgml-mode.el=
 *** Capture
 #+begin_src emacs-lisp
 (setq org-capture-templates
-      '(
-        (("w"
-          "Protocol Template"
-          entry
-          (file+headline "~/OrgDB/Notes/notes.org" "Notes")
-          "* %^{Title}\n\n Source: %u, %c\n\n %i" :empty-lines 1))))
+  (("a" "ADHD Log" entry
+    (file+datetree
+     (concat 
 #+end_src
 *** Grammar and Spelling
 **** Dont spell check these regions
