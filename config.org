@@ -1035,10 +1035,8 @@ HTML mode is defined in =sgml-mode.el=
 *** Capture
 #+begin_src emacs-lisp
 (setq org-capture-templates
-  (("a" "ADHD Log" entry
-    (file+datetree
-     (concat org-directory "/ADHD/log.org")
-     "*** %U%?%a \n" :tree-type day))))
+  (("a" "ADHD Log" entry (file+datetree "~/OrgDB/ADHD/log.org")
+   "*** %U%?%a \n" :tree-type day)))
 #+end_src
 *** Grammar and Spelling
 **** Dont spell check these regions
