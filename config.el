@@ -61,8 +61,6 @@
 (setq org-confirm-elisp-link-function nil)
 (setq org-confirm-shell-link-function nil))
 
-(server-start)
-
 (require 'cl-lib)
 (use-package f :demand t)        ; files
 (use-package dash :demand t)     ; lists
@@ -231,6 +229,10 @@
 (defvar bunny-elfeed-org-files
 (bunny-librarian-file-name "feeds.org")
 "feeds.org file-name")
+
+(defvar bunny-adhd-log-file 
+(bunny-org-file-name "ADHD/log.org")
+"ADHD log file-name")
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
@@ -541,6 +543,9 @@
   :ensure nil
   :hook (ielm-mode . (lambda () (setq-local scroll-margin 0))))
 
+(setq org-directory "~/OrgDB")
+(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
+
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 (require 'org-indent)
@@ -549,6 +554,10 @@
 (setq org-startup-truncated nil)
 
 (setq org-startup-folded t)
+
+(setq org-capture-templates
+  '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
+     "** TODO %?\n %i\n %a")))
 
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
