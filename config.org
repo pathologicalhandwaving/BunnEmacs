@@ -1,7 +1,7 @@
 #+TITLE: BunnEmacs
 #+AUTHOR: Kris Short
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-12]
+#+DATE_MODIFIED: [2020-07-13]
 
 
 * Load Files
@@ -1037,8 +1037,8 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-capture-templates
   (("a" "ADHD Log" entry
     (file+datetree
-     (bunny-adhd-log-file))
-    "*** %U%?%a \n" :tree-type day)))
+     (concat org-directory "/ADHD/log.org")
+     "*** %U%?%a \n" :tree-type day))))
 #+end_src
 *** Grammar and Spelling
 **** Dont spell check these regions
