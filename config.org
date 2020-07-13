@@ -1040,7 +1040,7 @@ HTML mode is defined in =sgml-mode.el=
   (("a" "ADHD Log" entry
     (file+datetree
      (bunny-adhd-log-file))
-    "** %^{Heading}")
+    "*** %U%?%a \n" :tree-type day)))
 #+end_src
 *** Grammar and Spelling
 **** Dont spell check these regions
