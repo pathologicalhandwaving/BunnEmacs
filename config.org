@@ -1025,7 +1025,15 @@ HTML mode is defined in =sgml-mode.el=
  =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
 
 *** Capture
-
+#+begin_src emacs-lisp
+(setq org-capture-templates
+      '(
+        (("w"
+          "Protocol Template"
+          entry
+          (file+headline "~/OrgDB/Notes/notes.org" "Notes")
+          "* %^{Title}\n\n Source: %u, %c\n\n %i" :empty-lines 1))))
+#+end_src
 *** Grammar and Spelling
 **** Dont spell check these regions
  #+BEGIN_SRC emacs-lisp
