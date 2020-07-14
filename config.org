@@ -45,16 +45,7 @@ loaded, if existing.
 
 *** Initial Size and POsition
 #+begin_src emacs-lisp
-(defun bunny-set-frame ()
-  (let* ((base-factor 0.70)
-         (a-width (* (display-pixel-width) base-factor))
-         (a-height (* (display-pixel-height) base-factor))
-         (a-left (truncate (/ (- (display-pixel-width) a-width) 2)))
-         (a-top (truncate(/ (- (display-pixel-height) a-height) 2))))
-    (set-frame position (selected-frame) a-left a-top)
-    (set-frame-size (selected-frame) (trunate a-width) (trunate a-height) t)))
-(setq frame-resize-pixelwise t)
-(bunny-set-frame)
+(setq default-frame-alist '((left . 0) (width . 141) (fullscreen . fullheight)))
 #+end_src
 
 ** Set Default Starting Directory
