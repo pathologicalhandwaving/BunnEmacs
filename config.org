@@ -1030,8 +1030,7 @@ HTML mode is defined in =sgml-mode.el=
 
 *** Archives
 #+begin_src emacs-lisp
-(setq org-archive-location "~/OrgDB/Archive/" (format-time-string "%Y-%m") ".org::"))
-(advice-add 'save-buffer :after #'org-save-all-org-buffers)
+(setq org-archive-location "~/OrgDB/Archive")
 #+end_src
 
 *** Babel
