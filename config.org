@@ -1028,6 +1028,12 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-startup-folded t)
 #+end_src
 
+*** Archives
+#+begin_src emacs-lisp
+(setq org-archive-location "~/OrgDB/Archive/" (format-time-string "%Y-%m") ".org::"))
+(advice-add 'save-buffer :after #'org-save-all-org-buffers)
+#+end_src
+
 *** Babel
 **** TODO Add plantuml path
 
