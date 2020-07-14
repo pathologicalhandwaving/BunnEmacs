@@ -45,7 +45,7 @@ loaded, if existing.
 
 *** Initial Size and POsition
 #+begin_src emacs-lisp
-(setq default-frame-alist '((left . 0) (width . 141) (fullscreen . fullheight)))
+(setq default-frame-alist '((left . 25) (width . 90) (fullscreen . fullheight)))
 #+end_src
 
 
