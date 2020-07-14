@@ -2,7 +2,17 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Config"
+(("ToDos"
+ (filename . "~/OrgDB/Inbox/todos.org")
+ (front-context-string . "** TODO Test\n** ")
+ (rear-context-string . "D(c!)\n\n\n* ToDos\n")
+ (position . 294))
+("org-capture-last-stored"
+ (filename . "~/OrgDB/Inbox/todos.org")
+ (front-context-string)
+ (rear-context-string . "f OrgDB\n* ToDos\n")
+ (position . 771))
+("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")
  (rear-context-string)

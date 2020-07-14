@@ -555,6 +555,8 @@
 
 (setq org-startup-folded t)
 
+(setq org-archive-location "~/OrgDB/Archive")
+
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
      "** TODO %?\n %i\n %a")))
