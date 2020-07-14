@@ -12,8 +12,8 @@
 
 ;; ----- smex-data -----
 (
- (package-install . 18)
- (load-theme . 18)
+ (package-install . 19)
+ (load-theme . 20)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)

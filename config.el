@@ -6,6 +6,13 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
+(setq initial-buffer-choice "~/.emacs.d/deltacorps.txt")
+
+(setq initial-frame-alist '((width . 120)
+                            (height . 30)
+                            (left . 50)
+                            (top . 50)))
+
 (getenv "HOME")
 (setq-default default-directory "~/")
 
