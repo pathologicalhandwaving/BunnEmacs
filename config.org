@@ -48,6 +48,7 @@ loaded, if existing.
 (setq default-frame-alist '((left . 0) (width . 141) (fullscreen . fullheight)))
 #+end_src
 
+
 ** Set Default Starting Directory
 #+begin_src emacs-lisp
 (getenv "HOME")
