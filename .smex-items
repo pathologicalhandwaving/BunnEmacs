@@ -13,7 +13,7 @@
 ;; ----- smex-data -----
 (
  (package-install . 19)
- (load-theme . 20)
+ (load-theme . 21)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
