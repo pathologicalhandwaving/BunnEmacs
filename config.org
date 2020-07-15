@@ -63,7 +63,6 @@ loaded, if existing.
 (use-package dashboard
   :ensure t
   :config
-  (dashboard-setup-startup-hook)
   (setq dashboard-banner-logo-title "BunnEmacs Dashboard")
   (setq dashboard-show-shortcuts t)
   (setq add-to-list 'dashboard-item '(agenda) t)
@@ -73,7 +72,8 @@ loaded, if existing.
                           (agenda . 5)
                           (registers . 5)))
   (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t))
+  (setq dashboard-set-file-icons t)
+  (dashboard-setup-startup-hook))
 #+end_src
 
 ** Startup message
