@@ -69,13 +69,16 @@ loaded, if existing.
 #+begin_src emacs-lisp
 (setq dashboard-banner-logo-title "BunnEmacs Dashboard")
 (setq dashboard-show-shortcuts t)
-(setq add-to-list 'dashboard-item '(agenda) t)
-(setq show-week-agenda-p t)
 (setq dashboard-items '((recents . 5)
                         (bookmarks . 5)
                         (agenda . 5)))
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
+#+end_src
+
+#+begin_src emacs-lisp
+(setq add-to-list 'dashboard-item '(agenda) t)
+(setq show-week-agenda-p t)
 #+end_src
 
 ** Startup message
