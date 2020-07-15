@@ -58,6 +58,24 @@ loaded, if existing.
 (setq-default default-directory "~/")
 #+end_src
 
+** Dashboard
+#+begin_src emacs-lisp
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title "BunnEmacs Dashboard")
+  (setq dashboard-show-shortcuts t)
+  (setq add-to-list 'dashboard-item '(agenda) t)
+  (setq show-week-agenda-p t)
+  (setq dashboard-items '((recents . 5)
+                          (bookmarks . 5)
+                          (agenda . 5)
+                          (registers . 5)))
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t))
+#+end_src
+
 ** Startup message
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-message t)
