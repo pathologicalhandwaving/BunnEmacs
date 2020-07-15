@@ -68,7 +68,7 @@ loaded, if existing.
 
 #+begin_src emacs-lisp
 (setq dashboard-banner-logo-title "BunnEmacs Dashboard")
-(setq dashboard-show-shortcuts t)
+(setq dashboard-show-shortcuts nil)
 (setq dashboard-items '((recents . 5)
                         (bookmarks . 5)
                         (agenda . 5)))
