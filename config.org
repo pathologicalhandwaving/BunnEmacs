@@ -1,3 +1,4 @@
+
 #+TITLE: BunnEmacs
 #+AUTHOR: Kris Short
 #+DATE_CREATED: [2020-07-06]
@@ -76,10 +77,7 @@ loaded, if existing.
 (setq dashboard-set-file-icons t)
 #+end_src
 
-#+begin_src emacs-lisp
-(setq add-to-list 'dashboard-item '(agenda) t)
-(setq show-week-agenda-p t)
-#+end_src
+
 
 ** Startup message
 #+BEGIN_SRC emacs-lisp
