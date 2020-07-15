@@ -39,9 +39,9 @@ loaded, if existing.
 
 * Startup Options
 ** Initial Buffer
-#+begin_src emacs-lisp
-(setq initial-buffer-choice "~/.emacs.d/deltacorps.txt")
-#+end_src
+;#+begin_src emacs-lisp
+;(setq initial-buffer-choice "~/.emacs.d/deltacorps.txt")
+;#+end_src
 
 *** Initial Size and POsition
 #+begin_src emacs-lisp
