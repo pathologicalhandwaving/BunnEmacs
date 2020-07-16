@@ -49,9 +49,7 @@ loaded, if existing.
 #+end_
 
 ** Startup Buffer
-#+begin_src emacs-lisp
-(setq initial-buffer-choice 'helm-recentf)
-#+end_src
+
 
 ** Startup message
 #+BEGIN_SRC emacs-lisp
