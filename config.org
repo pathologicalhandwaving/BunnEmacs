@@ -2,7 +2,7 @@
 #+AUTHOR: Kris Short
 #+CATEGORY: Config
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-15]
+#+DATE_MODIFIED: [2020-07-16]
 
 
 * Load Files
@@ -50,7 +50,7 @@ loaded, if existing.
 
 ** Startup Buffer
 #+begin_src emacs-lisp
-(setq initial-buffer-choice "~/.emacs.d/logo.png")
+(setq initial-buffer-choice 'helm-recentf)
 #+end_src
 
 ** Startup message
