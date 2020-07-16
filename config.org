@@ -2,7 +2,7 @@
 #+AUTHOR: Kris Short
 #+CATEGORY: Config
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-13]
+#+DATE_MODIFIED: [2020-07-15]
 
 
 * Load Files
@@ -39,44 +39,29 @@ loaded, if existing.
 
 
 * Startup Options
-** Initial Buffer
-;#+begin_src emacs-lisp
-;(setq initial-buffer-choice "~/.emacs.d/deltacorps.txt")
-;#+end_src
 
-*** Initial Size and POsition
+** Initial Size and Position
 #+begin_src emacs-lisp
 (setq initial-frame-alist '((width . 120)
                             (height . 30)
                             (left . 50)
                             (top . 50)))
-#+end_src
-
-
-** Set Default Starting Directory
-#+begin_src emacs-lisp
-(getenv "HOME")
-(setq-default default-directory "~/")
-#+end_src
+#+end_
 
 ** Dashboard
 #+begin_src emacs-lisp
 (use-package dashboard
-  :ensure t
+  :custom
+  (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (dashboard-startup-banner "~/.emacs.d/logo.png")
+  (dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
+  (dashboard-show-shortcuts nil)
+  (dashboard-items '((agenda)))
+  (dashboard-set-file-icons t)
+  (dashboard-set-navigator t)
   :config
   (dashboard-setup-startup-hook))
 #+end_src
-
-#+begin_src emacs-lisp
-(setq dashboard-banner-logo-title "BunnEmacs Dashboard")
-(setq dashboard-show-shortcuts nil)
-(setq dashboard-items '((recents . 5)
-                        (bookmarks . 5)
-                        (agenda . 5)))
-(setq dashboard-set-heading-icons t)
-(setq dashboard-set-file-icons t)
-#+end_src
-
 
 
 ** Startup message
