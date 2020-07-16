@@ -51,7 +51,8 @@ loaded, if existing.
 ** Dashboard
 #+begin_src emacs-lisp
 (require 'dashboard)
-(setq initial-buffer-choice 'helm-recentf)
+(if (< (length command-line-args) 2)
+    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
 (setq dashboard-startup-banner "~/.emacs.d/logo.png")
 (setq dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
 (setq dashboard-show-shortcuts nil)
