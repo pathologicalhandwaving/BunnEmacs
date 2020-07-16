@@ -1,5 +1,5 @@
 #+TITLE: BunnEmacs
-#+AUTHOR: Kris Short
+#+AUTHOR: PathologicalHandwaving
 #+CATEGORY: Config
 #+DATE_CREATED: [2020-07-06]
 #+DATE_MODIFIED: [2020-07-16]
