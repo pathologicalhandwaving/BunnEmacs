@@ -463,6 +463,7 @@ Package dependencies providing modern APIs for working with lisp structures
 "ADHD log file-name")
 #+end_src
 
+
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
