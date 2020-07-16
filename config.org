@@ -50,6 +50,9 @@ loaded, if existing.
 
 ** Dashboard
 #+begin_src emacs-lisp
+(require 'recentf)
+(require 'helm)
+(require 'helm-config)
 (use-package dashboard
   :ensure t
   :diminish dashboard-mode
