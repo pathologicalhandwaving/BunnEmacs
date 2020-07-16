@@ -48,19 +48,10 @@ loaded, if existing.
                             (top . 50)))
 #+end_
 
-** Dashboard
+** Startup Buffer
 #+begin_src emacs-lisp
-(require 'dashboard)
-(if (< (length command-line-args) 2)
-    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*"))))
-(setq dashboard-startup-banner "~/.emacs.d/logo.png")
-(setq dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
-(setq dashboard-show-shortcuts nil)
-(setq dashboard-set-file-icons t)
-(setq dashboard-set-navigator t)
-(dashboard-setup-startup-hook)
+(setq initial-buffer-choice "~/.emacs.d/logo.png")
 #+end_src
-
 
 ** Startup message
 #+BEGIN_SRC emacs-lisp
