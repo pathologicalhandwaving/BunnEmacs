@@ -56,7 +56,7 @@ loaded, if existing.
 (use-package dashboard
   :ensure t
   :diminish dashboard-mode
-  :config
+  :init
   (setq initial-buffer-choice 'helm-recentf)
   (setq dashboard-startup-banner "~/.emacs.d/logo.png")
   (setq dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
