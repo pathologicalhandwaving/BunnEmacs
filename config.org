@@ -50,21 +50,14 @@ loaded, if existing.
 
 ** Dashboard
 #+begin_src emacs-lisp
-(require 'recentf)
-(require 'helm)
-(require 'helm-config)
-(use-package dashboard
-  :ensure t
-  :diminish dashboard-mode
-  :init
-  (setq initial-buffer-choice 'helm-recentf)
-  (setq dashboard-startup-banner "~/.emacs.d/logo.png")
-  (setq dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
-  (setq dashboard-show-shortcuts nil)
-  (setq dashboard-items '((agenda)))
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-set-navigator t)
-  (dashboard-setup-startup-hook))
+(require 'dashboard)
+(setq initial-buffer-choice 'helm-recentf)
+(setq dashboard-startup-banner "~/.emacs.d/logo.png")
+(setq dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
+(setq dashboard-show-shortcuts nil)
+(setq dashboard-set-file-icons t)
+(setq dashboard-set-navigator t)
+(dashboard-setup-startup-hook)
 #+end_src
 
 
