@@ -1,21 +1,23 @@
 
 ;; ----- smex-history -----
 (
- load-theme
  package-install
+ load-theme
+ org-dashboard-display
+ org-set-property
  package-delete
  ebuku
  org-mode
- check-parens
- cd
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 19)
- (load-theme . 21)
+ (package-install . 22)
+ (load-theme . 30)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
  (package-delete . 1)
+ (org-set-property . 4)
+ (org-dashboard-display . 2)
 )
