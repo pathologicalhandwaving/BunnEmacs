@@ -51,23 +51,24 @@ loaded, if existing.
 ** Dashboard
 #+begin_src emacs-lisp
 (use-package dashboard
-  :custom
-  (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (dashboard-startup-banner "~/.emacs.d/logo.png")
-  (dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
-  (dashboard-show-shortcuts nil)
-  (dashboard-items '((agenda)))
-  (dashboard-set-file-icons t)
-  (dashboard-set-navigator t)
+  :ensure t
+  :diminish dashboard-mode
   :config
+  (setq initial-buffer-choice 'helm-recentf)
+  (setq dashboard-startup-banner "~/.emacs.d/logo.png")
+  (setq dashboard-banner-logo-title "Welcome to BunnEmacs Dashboard!")
+  (setq dashboard-show-shortcuts nil)
+  (setq dashboard-items '((agenda)))
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
   (dashboard-setup-startup-hook))
 #+end_src
 
 
 ** Startup message
-;#+BEGIN_SRC emacs-lisp
-;(setq inhibit-startup-message t)
-;#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+#+END_SRC
 
 ** Scratch Message
 #+BEGIN_SRC emacs-lisp
