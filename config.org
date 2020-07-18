@@ -1053,7 +1053,7 @@ HTML mode is defined in =sgml-mode.el=
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
      "** TODO %?\n %i\n %a")
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
-     "** APPOINTMENT %?\n:PROPERTIES:\n:CONTACT: %?\n:DATE: %^t\n:END:\n")))
+     "** APPOINTMENT %?\n %a")))
 #+end_src
 
 *** Refile
