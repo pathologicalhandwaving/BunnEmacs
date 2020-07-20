@@ -1053,7 +1053,9 @@ HTML mode is defined in =sgml-mode.el=
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
      "** TODO %?\n %i\n %a")
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
-     "** APPOINTMENT %?\n %a")))
+     "** APPOINTMENT %?\n %a")
+    ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
+     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n***Directions\n\n")))
 #+end_src
 
 *** Refile
@@ -1062,6 +1064,7 @@ HTML mode is defined in =sgml-mode.el=
 (use-package org-chef
   :ensure t)
 #+end_src
+
 *** Grammar and Spelling**** Dont spell check these regions
 
  #+BEGIN_SRC emacs-lisp
