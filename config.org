@@ -1057,8 +1057,13 @@ HTML mode is defined in =sgml-mode.el=
 #+end_src
 
 *** Refile
-*** Grammar and Spelling
-**** Dont spell check these regions
+*** Org-Chef
+#+begin_src emacs-lisp
+(use-package org-chef
+  :ensure t)
+#+end_src
+*** Grammar and Spelling**** Dont spell check these regions
+
  #+BEGIN_SRC emacs-lisp
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
