@@ -558,10 +558,7 @@
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
      "** APPOINTMENT %?\n %a")
     ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
-     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
-    ("r" "Recipe Import" entry (file "~/OrgDB/Chef/cookbook.org")
-     "%(org-chef-get-recipe-from-url)"
-     :empty-lines 1)))
+     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")))
 
 (use-package org-chef
   :ensure t)
