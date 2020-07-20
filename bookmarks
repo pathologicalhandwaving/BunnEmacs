@@ -9,9 +9,9 @@
  (position . 294))
 ("org-capture-last-stored"
  (filename . "~/OrgDB/Inbox/todos.org")
- (front-context-string)
- (rear-context-string . "f OrgDB\n* ToDos\n")
- (position . 771))
+ (front-context-string . "** TODO How to a")
+ (rear-context-string . "module of OrgDB\n")
+ (position . 796))
 ("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")

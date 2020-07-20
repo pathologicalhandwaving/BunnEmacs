@@ -1,23 +1,24 @@
 
 ;; ----- smex-history -----
 (
- package-install
+ org-chef-insert-recipe
  load-theme
+ package-install
  org-dashboard-display
  org-set-property
  package-delete
  ebuku
- org-mode
 )
 
 ;; ----- smex-data -----
 (
  (package-install . 22)
- (load-theme . 30)
+ (load-theme . 32)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
  (package-delete . 1)
  (org-set-property . 4)
  (org-dashboard-display . 2)
+ (org-chef-insert-recipe . 1)
 )

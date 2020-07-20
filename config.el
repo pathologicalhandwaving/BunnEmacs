@@ -550,11 +550,21 @@
 
 (setq org-startup-folded t)
 
-(setq org-archive-location "~/OrgDB/Archive")
+(setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
 
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
-     "** TODO %?\n %i\n %a")))
+     "** TODO %?\n %i\n %a")
+    ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
+     "** APPOINTMENT %?\n %a")
+    ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
+     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
+    ("r" "Recipe Import" entry (file "~/OrgDB/Chef/cookbook.org")
+     "%(org-chef-get-recipe-from-url)"
+     :empty-lines 1)))
+
+(use-package org-chef
+  :ensure t)
 
 (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
