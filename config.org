@@ -1039,7 +1039,7 @@ HTML mode is defined in =sgml-mode.el=
 
 *** Archives
 #+begin_src emacs-lisp
-(setq org-archive-location "~/OrgDB/Archive")
+(setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
 #+end_src
 
 *** Babel
