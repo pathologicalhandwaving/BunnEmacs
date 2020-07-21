@@ -997,6 +997,11 @@ HTML mode is defined in =sgml-mode.el=
 
 
 ** LaTeX
+*** LaTeX Path
+#+begin_src emacs-lisp
+(setenv "PATH" (concat ":/Library/TeX/texbin/" (getenv "PATH")))
+(add-to-list 'exec-path "/Library/TeX/texbin/")
+#+end_src
 
 *** Highlight LaTeX in Org
 #+BEGIN_SRC emacs-lisp
