@@ -8,7 +8,9 @@
 `------'  `----' `--''--'`--''--'`------'`--`--`--' `--`--' `---'`----'                                                                           
 ```
 
-A literate Emacs configuration
+A literate Emacs configuration exclusively for MacOS which aims to solve various OS specific integration issues.
+
+BunnEmacs uses emacsclient by default using a Hammerspoon launcher.
 
 
 ## Focus
@@ -26,6 +28,12 @@ A literate Emacs configuration
   - AucTeX
   - yasnippet
   - org-mode
+
+## Essential Supporting Software
+  - [Hammerspoon](https://www.hammerspoon.org/)
+  - [Karabiner Elements](https://karabiner-elements.pqrs.org/)
+  - [MacTeX](https://tug.org/mactex/)
+  
 
 ## Installation
 
