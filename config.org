@@ -482,7 +482,7 @@ Package dependencies providing modern APIs for working with lisp structures
   :config
   (neotree-dir "~/.emacs.d") 
   (add-hook 'sever-switch-hook (lambda () (call-interactively 'neotree-show)))
-  (switch-to-buffer-other-window "~/OrgDB/Inbox/inbox.org")
+  (switch-to-buffer-other-window "~/OrgDB/Inbox/inbox.org"))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
