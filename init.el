@@ -1,7 +1,7 @@
 ;;; init.el --- BunnEmacs Literate Config
 ;; Copyright (C) 2020 PathologicalHandwaving
-;; Author: Kris Short <kristimshort@icloud.com>
-;; Created: 2020-07-06
+;; Author: PathologicalHandwaving
+;; Created: 2020-07-24
 ;; Homepage: https://pathologicalhandwaving.github.io
 ;; Keywords: emacs, latex, orgmode
 ;;
