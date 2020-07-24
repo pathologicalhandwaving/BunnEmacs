@@ -1094,9 +1094,11 @@ HTML mode is defined in =sgml-mode.el=
 *** Capture
 
 #+begin_src emacs-lisp
-(defun capture-note-file (path)
+(defun bun-create-notes-file ()
+"Create an org file in ~/OrgDB/Notes."
+  (interactive)
   (let ((name (read-string "File Name: ")))
-    (expand-file-name (format "%s.org" name) path)))
+    (expand-file-name (format "%s.org" name) "~/OrgDB/Notes/")))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1109,8 +1111,8 @@ HTML mode is defined in =sgml-mode.el=
      "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
-    ("p" "New Notes File" entry (file (capture-note-file "~/OrgDB/Notes/name"))
-     "#+TITLE: %?")))
+    ("p" "New Notes File" entry (file bun-create-notes-file)
+     "#+TITLE: %?\n#+CATEGORY: Notes\n#+DATE: %U\n")))
 #+end_src
 
 
