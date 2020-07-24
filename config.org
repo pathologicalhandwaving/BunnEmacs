@@ -11,6 +11,8 @@ By default it launches emacsclient using a [[https://www.hammerspoon.org/][Hamme
 
 BunnEmacs is still in development but works great so far! Suggestions welcome!
 
+BunnEmacs use-cases are focused on note taking, academic style research and development work with heavy use of embedded LaTeX code and shell scripts.
+ 
 
 * Load Files
 
