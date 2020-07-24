@@ -68,6 +68,16 @@ use `rg` instead of `grep` to find files.
 brew install ripgrep
 ```
 
-## Features
+## Hammerspoon
 
+``` lua
+-- NUB ::
+nub   = {"cmd", "shift"}
+
+-- Launch or Focus Emacs
+hs.hotkey.bind(nub, "E", function()
+    hs.application.launchOrFocus("/usr/local/Cellar/emacs-head@28/28.0.50_1/Emacs.app")
+end)
+--
+```
 
