@@ -9,6 +9,7 @@
 
 By default it launches emacsclient using a [[https://www.hammerspoon.org/][Hammerspoon]] keybinding (see details in README).
 
+BunnEmacs is still in development but works great so far! Suggestions welcome!
 
 
 * Load Files
