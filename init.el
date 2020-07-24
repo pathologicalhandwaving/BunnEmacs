@@ -20,6 +20,7 @@
 ;;0. You just DO WHAT THE FUCK YOU WANT TO.
 ;; <http://www.wtfpl.net/>
 ;;
+;; NOTE: Is this the wrong kind of license for an Emacs config?
 ;; Commentary:
 ;; Loads an org file, builds config out of it.
 ;;; Code:
