@@ -484,6 +484,10 @@ Package dependencies providing modern APIs for working with lisp structures
 #+END_SRC
 
 #+begin_src emacs-lisp
+(global-set-key [f8] 'neotree-toggle)
+#+end_src
+
+#+begin_src emacs-lisp
 (defun neotree-startup ()
   (interactive)
   (neotree-show)
