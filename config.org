@@ -1110,9 +1110,7 @@ HTML mode is defined in =sgml-mode.el=
     ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
      "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
-     "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
-    ("p" "New Notes File" entry (function bun-create-notes-file)
-     "#+TITLE: %?\n#+CATEGORY: Notes\n#+DATE: %U\n")))
+     "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)))
 #+end_src
 
 
