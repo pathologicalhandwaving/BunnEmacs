@@ -16,8 +16,6 @@ BunnEmacs use-cases are focused on note taking, pdf annotation, and academic sty
  
 *NOTE:* BunnEmacs does not focus on org-export to LaTeX as a preference and uses LaTeX templates for academic document creation and referencing.
 
-
-
 * Load Files
 
 ** Load =.custom.el=
@@ -59,7 +57,7 @@ loaded, if existing.
                             (height . 30)
                             (left . 50)
                             (top . 50)))
-#+end_
+#+end_src
 
 ** Startup Buffer
 #+begin_src emacs-lisp
