@@ -483,6 +483,16 @@ Package dependencies providing modern APIs for working with lisp structures
   (neotree-dir "~/.emacs.d"))
 #+END_SRC
 
+#+begin_src emacs-lisp
+(defun neotree-startup ()
+  (interactive)
+  (neotree-show)
+  (call-interactively 'other-window))
+(if (daemonp)
+    (add-hook 'server-switch-hook #'neotree-startup)
+  (add-hook 'after-init-hook #'neotree-startup))
+#+end_src
+
 #+BEGIN_SRC emacs-lisp
 (use-package all-the-icons)
 #+END_SRC
