@@ -52,10 +52,23 @@ loaded, if existing.
 * Startup Options
 
 ** Initial Size and Position
+;#+begin_src emacs-lisp
+;(setq initial-frame-alist '((width . 171)
+;                            (left . 0)
+;                            (fullscreen . fullheight)))
+;#+end_src
+
 #+begin_src emacs-lisp
-(setq initial-frame-alist '((width . 171)
-                            (left . 0)
-                            (fullscreen . fullheight)))
+(defun bun-set-initial-frame ()
+  (let* ((base-factor 0.70)
+         (a-width (* (display-pixel-width) base-factor))
+         (a-height (* (display-pixel-height) base-factor))
+         (a-left (truncate (/ (- (display-pixel-width) a-width) 2)))
+         (a-top (truncate (/ (- (display-pixel-height) a-height) 2))))
+    (set-frame-position (selected-frame) a-left a-top)
+    (set-frame-size (selected-frame) (truncate a-width) (truncate a-height) t)))
+(setq frame-resize-pixelwise t)
+(bun-set-initial-frame)
 #+end_src
 
 ** Startup Buffer
