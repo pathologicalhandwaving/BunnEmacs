@@ -6,6 +6,8 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
+(setq inhibit-startup-message t)
+
 (setq-default initial-scratch-message "")
 
 (menu-bar-mode +1)
@@ -239,13 +241,6 @@
 (setq mac-option-modifer 'meta)
 (setq mac-command-modifer 'super)
 
-(use-package neotree
-  :bind ("C-x n" . neotree-toggle)
-  :config
-  (setq neo-smart-open t))
-
-(use-package all-the-icons)
-
 (use-package doom-themes
   :ensure t
   :config
@@ -258,6 +253,25 @@
   (doom-themes-org-config))
 
 (load-theme 'doom-outrun-electric t)
+
+(use-package neotree
+  :bind ("C-x n" . neotree-toggle)
+  :config
+  (neotree-dir "~/.emacs.d"))
+
+(global-set-key [f8] 'neotree-toggle)
+
+(defun neotree-startup ()
+  (interactive)
+  (neotree-show)
+  (call-interactively 'other-window))
+(if (daemonp)
+    (add-hook 'server-switch-hook #'neotree-startup)
+  (add-hook 'after-init-hook #'neotree-startup))
+
+(use-package all-the-icons)
+
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 (use-package nyan-mode
   :config
