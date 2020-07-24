@@ -532,6 +532,9 @@
     (setq-local js-indent-level 2))
   :hook (json-mode . bunny/json-set-indent-level))
 
+(setenv "PATH" (concat ":/Library/TeX/texbin/" (getenv "PATH")))
+(add-to-list 'exec-path "/Library/TeX/texbin/")
+
 (setq org-highlight-latex-and-related '(latex bibtex))
 
 (use-package ielm
@@ -554,11 +557,13 @@
 
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
-     "** TODO %?\n %i\n %a")
+     "** TODO %?\n")
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
      "** APPOINTMENT %?\n %a")
     ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
-     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")))
+     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
+    ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
+     "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)))
 
 (use-package org-chef
   :ensure t)

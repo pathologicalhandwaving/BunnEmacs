@@ -1,24 +1,27 @@
 
 ;; ----- smex-history -----
 (
- org-chef-insert-recipe
- load-theme
- package-install
- org-dashboard-display
  org-set-property
- package-delete
- ebuku
+ load-theme
+ org-toggle-latex-fragment
+ org-insert-link
+ recover-this-file
+ org-chef-insert-recipe
+ package-install
 )
 
 ;; ----- smex-data -----
 (
  (package-install . 22)
- (load-theme . 32)
+ (load-theme . 34)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
  (package-delete . 1)
- (org-set-property . 4)
+ (org-set-property . 6)
  (org-dashboard-display . 2)
  (org-chef-insert-recipe . 1)
+ (recover-this-file . 1)
+ (org-insert-link . 1)
+ (org-toggle-latex-fragment . 1)
 )

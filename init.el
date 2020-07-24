@@ -50,6 +50,11 @@
   (use-package org :ensure org-plus-contrib)
 
   (setq-default default-directory "/Users/emd/")
+
+  ;; exec-path-from-shell
+  (use-package exec-path-from-shell)
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
   
   ;; tangle config
   (org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
