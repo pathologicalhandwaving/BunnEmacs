@@ -3,7 +3,12 @@
 #+AUTHOR: PathologicalHandwaving
 #+CATEGORY: Config
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-23]
+#+DATE_MODIFIED: [2020-07-24]
+
+*BunnEmacs* is a MacOS centric emacs distribution, developed on MacOS Catalina 10.15.6 using the development version of *Emacs* 28 HEAD.
+
+By default it launches emacsclient using a [[https://www.hammerspoon.org/][Hammerspoon]] keybinding (see details in README).
+
 
 
 * Load Files
