@@ -50,7 +50,9 @@ loaded, if existing.
 #+end_
 
 ** Startup Buffer
+#+begin_src emacs-lisp
 
+#+end_src
 
 ** Startup message
 #+BEGIN_SRC emacs-lisp
@@ -478,7 +480,8 @@ Package dependencies providing modern APIs for working with lisp structures
 (use-package neotree
   :bind ("C-x n" . neotree-toggle)
   :config
-  (setq neo-smart-open t))
+  (setq neo-smart-open t)
+  (add-hook 'after-init-hook #'neotree-toggle))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
