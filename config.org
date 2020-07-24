@@ -475,6 +475,27 @@ Package dependencies providing modern APIs for working with lisp structures
 
 * Theme
 
+
+
+** Default Theme
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (doom-themes-neotree-config)
+  (setq doom-neotree-enable-file-icons t)
+  (setq doom-neotree-enable-chevron-icons t)
+  (setq doom-neotree-enable-type-colors t)
+  (doom-themes-org-config))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(load-theme 'doom-outrun-electric t)
+#+END_SRC
+
+
 ** Neotree
 #+BEGIN_SRC emacs-lisp
 (use-package neotree
@@ -501,25 +522,9 @@ Package dependencies providing modern APIs for working with lisp structures
 (use-package all-the-icons)
 #+END_SRC
 
-** Default Theme
-#+BEGIN_SRC emacs-lisp
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (doom-themes-neotree-config)
-  (setq doom-neotree-enable-file-icons t)
-  (setq doom-neotree-enable-chevron-icons t)
-  (setq doom-neotree-enable-type-colors t)
-  (doom-themes-org-config))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(load-theme 'doom-outrun-electric t)
-#+END_SRC
-
-
+#+begin_src emacs-lisp
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+#+end_src
 
 ** Nyan-Mode
 #+BEGIN_SRC emacs-lisp
