@@ -480,8 +480,9 @@ Package dependencies providing modern APIs for working with lisp structures
 (use-package neotree
   :bind ("C-x n" . neotree-toggle)
   :config
-  (setq neo-smart-open t)
-  (add-hook 'after-init-hook #'neotree-toggle))
+  (neotree-dir "~/.emacs.d") 
+  (add-hook 'sever-switch-hook (lambda () (call-interactively 'neotree-show)))
+  (switch-to-buffer-other-window "~/OrgDB/Inbox/inbox.org")
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
