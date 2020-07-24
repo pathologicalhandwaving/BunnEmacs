@@ -52,11 +52,7 @@ loaded, if existing.
 * Startup Options
 
 ** Initial Size and Position
-;#+begin_src emacs-lisp
-;(setq initial-frame-alist '((width . 171)
-;                            (left . 0)
-;                            (fullscreen . fullheight)))
-;#+end_src
+Startup in center of current screen
 
 #+begin_src emacs-lisp
 (defun bun-set-initial-frame ()
