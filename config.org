@@ -825,6 +825,12 @@ Enable global minor mode
 (require 'org-attach-git)
 #+end_src
 
+** helm-github-stars
+#+begin_src emacs-lisp
+(require 'helm-github-stars)
+(setq helm-github-stars-username "pathologicalhandwaving")
+#+end_src
+
 ** rfc-mode
 #+begin_src emacs-lisp
 (use-package rfc-mode
