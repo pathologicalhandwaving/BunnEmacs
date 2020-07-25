@@ -181,6 +181,16 @@ Startup in center of current screen
 
 ** Server
 
+** Quelpa
+#+begin_src emacs-lisp
+(use-package quelpa-use-package
+  :ensure t)
+
+** Bitwarden
+(use-package bitwarden
+  :ensure nil
+  :quelpa (bitwarden :fetcher github :repo "seanfarley/emacs-bitwarden"))
+#+end_src
 
 ** Lisp APIs
 Package dependencies providing modern APIs for working with lisp structures
@@ -991,6 +1001,8 @@ Temporarily highlight changes to buffer after pasting
                 "       27/Pom: Work + 7/Pom: Rest"))
   :bind (("C-c t" . helm-chronos-add-timer)))
 #+end_src
+
+** Alarm Clock
 
 ** Structure Templates
 #+BEGIN_SRC emacs-lisp
