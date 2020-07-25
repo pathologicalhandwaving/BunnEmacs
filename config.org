@@ -825,6 +825,13 @@ Enable global minor mode
 (require 'org-attach-git)
 #+end_src
 
+** rfc-mode
+#+begin_src emacs-lisp
+(use-package rfc-mode
+  :init
+  (setq rfc-mode-directory (expand-file-name "~/Librarian/Dictionary/RFCs/")
+        rfc-mode-index-path (concat rfc-mode-directory "rfc-index.org")))
+#+end_src
 
 ** pdf-tools
 #+BEGIN_SRC emacs-lisp
