@@ -784,6 +784,21 @@ Package dependencies providing modern APIs for working with lisp structures
 
 * Utilities
 
+** gitignore-templates
+#+begin_src emacs-lisp
+(require 'gitignore-templates)
+(setq gitignore-templates-api 'github)
+#+end_src
+
+** git-gutter-fringe
+#+begin_src emacs-lisp
+(require 'git-gutter-fringe)
+
+#+end_src
+
+#+RESULTS:
+: git-gutter-fringe
+
 ** Ewww
 #+BEGIN_SRC emacs-lisp
 (setq browse-url-browser-function 'eww-browse-url)
