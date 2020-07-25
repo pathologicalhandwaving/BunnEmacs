@@ -1155,6 +1155,10 @@ HTML mode is defined in =sgml-mode.el=
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)))
 #+end_src
 
+*** Links
+#+begin_src emacs-lisp
+(setq org-descriptive-links t)
+#+end_src
 
 *** Refile
 *** Org-Chef
