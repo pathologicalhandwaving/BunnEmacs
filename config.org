@@ -820,10 +820,11 @@ Enable global minor mode
 (setq-default gac-automatically-push-p t)
 #+end_src
 
-** Ewww
-#+BEGIN_SRC emacs-lisp
-(setq browse-url-browser-function 'eww-browse-url)
-#+END_SRC
+** org-attach-git
+#+begin_src emacs-lisp
+(require 'org-attach-git)
+#+end_src
+
 
 ** pdf-tools
 #+BEGIN_SRC emacs-lisp
