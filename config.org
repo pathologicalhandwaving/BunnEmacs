@@ -829,6 +829,8 @@ Enable global minor mode
 #+begin_src emacs-lisp
 (require 'helm-github-stars)
 (setq helm-github-stars-username "pathologicalhandwaving")
+(setq helm-github-stars-refetch 10.0)
+(setq helm-github-stars-name-length 17)
 #+end_src
 
 ** rfc-mode
