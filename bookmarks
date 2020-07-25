@@ -2,21 +2,31 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Cookbook"
+(("Agenda"
+ (filename . "~/OrgDB/Inbox/agenda.org")
+ (front-context-string . "#+TITLE: Agenda\n")
+ (rear-context-string)
+ (position . 1))
+("Inbox"
+ (filename . "~/OrgDB/Inbox/inbox.org")
+ (front-context-string . "* TODO Fix Linke")
+ (rear-context-string . "nbox\n\n* Inbox\n\n*")
+ (position . 94))
+("Cookbook"
  (filename . "~/OrgDB/Chef/cookbook.org")
  (front-context-string)
  (rear-context-string . "French bread.\n\n\n")
  (position . 3569))
 ("ToDos"
  (filename . "~/OrgDB/Inbox/todos.org")
- (front-context-string . "** TODO Test\n** ")
- (rear-context-string . "D(c!)\n\n\n* ToDos\n")
- (position . 294))
+ (front-context-string . "* ToDos\n** CANCE")
+ (rear-context-string . " CANCELED(c!)\n\n\n")
+ (position . 286))
 ("org-capture-last-stored"
  (filename . "~/OrgDB/Inbox/todos.org")
- (front-context-string . "** TODO Setup he")
- (rear-context-string . "lm-dash package\n")
- (position . 1238))
+ (front-context-string . "** TODO Setup ta")
+ (rear-context-string . "rmclock package\n")
+ (position . 1345))
 ("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")

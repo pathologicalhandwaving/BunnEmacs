@@ -1,25 +1,25 @@
 
 ;; ----- smex-history -----
 (
- package-install
+ helm-github-stars-fetch
  load-theme
- neotree-toggle
- pdf-tools-enable-minor-modes
- doc-view-toggle-display
- neotree-find
- neotree-enter
+ bookmark-set
+ org-todo-list
+ org-dashboard-display
+ org-agenda-file-to-front
+ org-agenda-list
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 31)
- (load-theme . 35)
+ (package-install . 43)
+ (load-theme . 38)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
- (package-delete . 2)
+ (package-delete . 3)
  (org-set-property . 6)
- (org-dashboard-display . 2)
+ (org-dashboard-display . 6)
  (org-chef-insert-recipe . 1)
  (recover-this-file . 1)
  (org-insert-link . 1)
@@ -32,5 +32,24 @@
  (neotree-find . 1)
  (doc-view-toggle-display . 1)
  (pdf-tools-enable-minor-modes . 1)
- (neotree-toggle . 1)
+ (neotree-toggle . 2)
+ (rfc-mode . 1)
+ (undo . 7)
+ (undo-redo . 1)
+ (undo-only . 23)
+ (package-refresh-contents . 1)
+ (quelpa . 2)
+ (alarm-clock-set . 1)
+ (fireplace . 4)
+ (fireplace-toggle-smoke . 2)
+ (fireplace-toggle-sound . 3)
+ (fireplace-off . 2)
+ (fireplace-mode . 3)
+ (fireplace-up . 1)
+ (org-agenda . 1)
+ (org-agenda-list . 1)
+ (org-agenda-file-to-front . 3)
+ (org-todo-list . 1)
+ (bookmark-set . 2)
+ (helm-github-stars-fetch . 1)
 )

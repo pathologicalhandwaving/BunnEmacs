@@ -294,6 +294,10 @@
 
 (use-package rainbow-delimiters)
 
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 (global-set-key (kbd "C-x o") (lambda ()
                                 (interactive)
 				(other-window -1)))
@@ -436,7 +440,20 @@
 (global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
 (add-to-list 'git-gutter:update-hooks 'focus-in-hook)
 
-(setq browse-url-browser-function 'eww-browse-url)
+(require 'git-auto-commit-mode)
+(setq-default gac-automatically-push-p t)
+
+(require 'org-attach-git)
+
+(require 'helm-github-stars)
+(setq helm-github-stars-username "pathologicalhandwaving")
+(setq helm-github-stars-refetch 10.0)
+(setq helm-github-stars-name-length 17)
+
+(use-package rfc-mode
+  :init
+  (setq rfc-mode-directory (expand-file-name "~/Librarian/Dictionary/RFCs/")
+        rfc-mode-index-path (concat rfc-mode-directory "rfc-index.org")))
 
 (use-package pdf-tools
   :pin manual
@@ -519,6 +536,19 @@
 (use-package volatile-highlights
   :config
   (volatile-highlights-mode t))
+
+(require 'chronos)
+
+(use-package helm-chronos
+  :ensure t
+  :init (setq helm-chronos-standard-timers
+              '("       5/Coffee"
+                "       30/Shower"
+                "       25/Email"
+                "       27/Pom: Work + 7/Pom: Rest"))
+  :bind (("C-c t" . helm-chronos-add-timer)))
+
+(require 'alarm-clock)
 
 (require 'org-tempo)
 
@@ -613,6 +643,8 @@
      "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)))
+
+(setq org-descriptive-links t)
 
 (use-package org-chef
   :ensure t)
