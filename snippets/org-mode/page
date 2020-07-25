@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: page
+# key: <page
+# --
+#+TITLE: $1
+#+CATEGORY: $2
+#+TAGS: $3 $4
+
+$0

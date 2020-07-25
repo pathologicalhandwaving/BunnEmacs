@@ -1,19 +1,19 @@
 
 ;; ----- smex-history -----
 (
- all-the-icons-install-fonts
  package-install
- package-delete
- org-set-property
  load-theme
- org-toggle-latex-fragment
- org-insert-link
+ neotree-toggle
+ pdf-tools-enable-minor-modes
+ doc-view-toggle-display
+ neotree-find
+ neotree-enter
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 24)
- (load-theme . 34)
+ (package-install . 31)
+ (load-theme . 35)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
@@ -25,4 +25,12 @@
  (org-insert-link . 1)
  (org-toggle-latex-fragment . 1)
  (all-the-icons-install-fonts . 1)
+ (neotree-change-root . 1)
+ (neotree-dir . 1)
+ (neotree-refresh . 1)
+ (neotree-enter . 1)
+ (neotree-find . 1)
+ (doc-view-toggle-display . 1)
+ (pdf-tools-enable-minor-modes . 1)
+ (neotree-toggle . 1)
 )

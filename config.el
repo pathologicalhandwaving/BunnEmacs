@@ -6,6 +6,19 @@
   (when (file-exists-p secret.el)
     (load secret.el)))
 
+(defun bun-set-initial-frame ()
+  (let* ((base-factor 0.70)
+         (a-width (* (display-pixel-width) base-factor))
+         (a-height (* (display-pixel-height) base-factor))
+         (a-left (truncate (/ (- (display-pixel-width) a-width) 2)))
+         (a-top (truncate (/ (- (display-pixel-height) a-height) 2))))
+    (set-frame-position (selected-frame) a-left a-top)
+    (set-frame-size (selected-frame) (truncate a-width) (truncate a-height) t)))
+(setq frame-resize-pixelwise t)
+(bun-set-initial-frame)
+
+
+
 (setq inhibit-startup-message t)
 
 (setq-default initial-scratch-message "")
@@ -346,6 +359,10 @@
   :config
   (define-key org-mode-map (kbd "M-r") 'helm-org-rifle-current-buffer))
 
+(require 'helm-ls-git)
+(global-set-key (kbd "C-x C-d") 'helm-browse-project)
+(global-set-key (kbd "C-x r p") 'helm-projects-history)
+
 (use-package yasnippet
   :ensure t
   :init
@@ -408,6 +425,18 @@
 (use-package define-word)
 
 (use-package google-translate)
+
+(require 'git-gutter)
+(global-git-gutter-mode +1)
+(global-set-key (kbd "C-x C-g") 'git-gutter)
+(global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
+(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
+(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
+(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
+(add-to-list 'git-gutter:update-hooks 'focus-in-hook)
+
+(setq browse-url-browser-function 'eww-browse-url)
 
 (use-package pdf-tools
   :pin manual
@@ -568,6 +597,12 @@
 (setq org-startup-folded t)
 
 (setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
+
+(defun bun-create-notes-file ()
+"Create an org file in ~/OrgDB/Notes."
+  (interactive)
+  (let ((name (read-string "File Name: ")))
+    (expand-file-name (format "%s.org" name) "~/OrgDB/Notes/")))
 
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
