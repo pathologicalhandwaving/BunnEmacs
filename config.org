@@ -795,7 +795,7 @@ Enable global minor mode
 
 #+begin_src emacs-lisp
 (require 'git-gutter)
-(global-git-gutter-mode t)
+(global-git-gutter-mode +1)
 (global-set-key (kbd "C-x C-g") 'git-gutter)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
 (global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
