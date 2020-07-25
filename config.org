@@ -493,8 +493,6 @@ Package dependencies providing modern APIs for working with lisp structures
 
 * Theme
 
-
-
 ** Default Theme
 #+BEGIN_SRC emacs-lisp
 (use-package doom-themes
@@ -512,7 +510,6 @@ Package dependencies providing modern APIs for working with lisp structures
 #+BEGIN_SRC emacs-lisp
 (load-theme 'doom-outrun-electric t)
 #+END_SRC
-
 
 ** Neotree
 #+BEGIN_SRC emacs-lisp
@@ -553,12 +550,26 @@ Package dependencies providing modern APIs for working with lisp structures
   (nyan-start-animation))
 #+END_SRC
 
-
 ** Parens
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters)
 #+END_SRC
 
+** Modeline
+#+begin_src emacs-lisp
+(use-package minions
+  :config (minions-mode 1)
+  (setq minions-mode-line-delimiters (cons "" ""))
+  (setq minions-mode-line-lighter "⚙"))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+#+end_src
 
 * Keybinds
 
