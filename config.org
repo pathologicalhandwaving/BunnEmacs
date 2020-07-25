@@ -102,7 +102,6 @@ Startup in center of current screen
       scroll-preserve-screen-position 1)
 #+END_SRC
 
-
 ** Highlight Current Line
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook 'global-hl-line-mode)
@@ -135,7 +134,6 @@ Startup in center of current screen
 (set-selection-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
 #+END_SRC
-
 
 ** Exec Path From Shell
 #+BEGIN_SRC emacs-lisp
@@ -180,17 +178,6 @@ Startup in center of current screen
 #+end_src
 
 ** Server
-
-** Quelpa
-#+begin_src emacs-lisp
-(use-package quelpa-use-package
-  :ensure t)
-
-** Bitwarden
-(use-package bitwarden
-  :ensure nil
-  :quelpa (bitwarden :fetcher github :repo "seanfarley/emacs-bitwarden"))
-#+end_src
 
 ** Lisp APIs
 Package dependencies providing modern APIs for working with lisp structures
