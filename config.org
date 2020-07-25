@@ -1003,6 +1003,11 @@ Temporarily highlight changes to buffer after pasting
 #+end_src
 
 ** Alarm Clock
+#+begin_src emacs-lisp
+(use-package alarm-clock
+  :ensure nil
+  :quelpa (alarm-clock :fetcher github :repo "wlemuel/alarm-clock"))
+#+end_src
 
 ** Structure Templates
 #+BEGIN_SRC emacs-lisp
