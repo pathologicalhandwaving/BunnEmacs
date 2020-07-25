@@ -976,6 +976,21 @@ Temporarily highlight changes to buffer after pasting
   (volatile-highlights-mode t))
 #+END_SRC
 
+** Timers
+#+begin_src emacs-lisp
+(require 'chronos)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package helm-chronos
+  :ensure t
+  :init (setq helm-chronos-standard-timers
+              '("       5/Coffee"
+                "       30/Shower"
+                "       25/Email"
+                "       27/Pom: Work + 7/Pom: Rest"))
+  :bind (("C-c t" . helm-chronos-add-timer)))
+#+end_src
 
 ** Structure Templates
 #+BEGIN_SRC emacs-lisp
