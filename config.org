@@ -814,6 +814,12 @@ Enable global minor mode
 #+RESULTS:
 : git-gutter-fringe
 
+** git-autocommit-mode
+#+begin_src emacs-lisp
+(require 'git-auto-commit-mode)
+(setq-default gac-automatically-push-p t)
+#+end_src
+
 ** Ewww
 #+BEGIN_SRC emacs-lisp
 (setq browse-url-browser-function 'eww-browse-url)
@@ -888,7 +894,6 @@ Enable global minor mode
   (global-set-key [remap mark-sexp] 'easy-mark)
 #+END_SRC
 
-
 ** Clipboard
 Save current system clipboard to kill-ring
 #+BEGIN_SRC emacs-lisp
@@ -903,7 +908,6 @@ Save current system clipboard to kill-ring
   :init
   (setq wttrin-default-cities '("Durham,NC")))
 #+END_SRC
-
 
 ** AutoSave
 #+begin_src emacs-lisp
