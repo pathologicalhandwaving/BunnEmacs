@@ -1312,6 +1312,11 @@ Notes file
  #+END_SRC
 
 *** Reference
+**** org-books
+#+begin_src emacs-lisp
+(require 'org-books)
+#+end_src
+
 **** org-ref
 #+begin_src emacs-lisp
 (require 'org-ref)
