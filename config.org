@@ -1354,10 +1354,24 @@ You can check if a url for the PDF can be found like this:
 #+end_src
 
 *** pdf-tools
+If =(pdf-tools-install)= does not find libffi on macOS, try:
+#+begin_verse
+(setenv "PKG_CONFIG_PATH"
+        (f-join
+         (file-name-as-directory
+          (nth 0
+               (split-string
+                (shell-command-to-string "brew --prefix"))))
+         "Cellar" "libffi" "3.2.1" "lib" "pkgconfig"))
+#+end_verse
+I set my pkgconfig path in my =.bash_profile= and had no issues with this version of Emacs, however =pdf-tools= was broken for me in the stable version.
+
 
 #+BEGIN_SRC emacs-lisp
 (use-package pdf-tools
   :pin manual
+  :ensure t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
   :config
   (pdf-tools-install)
   (setq-default pdf-view-display-size 'fit-page)
@@ -1396,6 +1410,7 @@ You can check if a url for the PDF can be found like this:
           (lambda ()
             (when (eq major-mode 'pdf-view-mode) (pdf-tools-org-export-to-org))))
 #+end_src
+
 
 ** Python
 #+BEGIN_SRC emacs-lisp
