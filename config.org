@@ -1429,8 +1429,8 @@ I set my pkgconfig path in my =.bash_profile= and had no issues with this versio
 **** org-noter
 #+begin_src emacs-lisp
 (use-package org-noter
-  :after org
   :ensure t
+  :after org
   (setq org-noter-default-notes-file-names '("~/Librarian/Annotations/annotations.org")
         org-noter-notes-search-path '("~/Librarian/Annotations"))
   (setq org-noter-separate-notes-from-heading t))
