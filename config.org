@@ -1388,6 +1388,15 @@ You can check if a url for the PDF can be found like this:
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 #+END_SRC
 
+*** pdf-tools-org
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/vendor/pdf-tools-org.el")
+(require 'pdf-tools-org)
+(add-hook 'after-save-hook
+          (lambda ()
+            (when (eq major-mode 'pdf-view-mode) (pdf-tools-org-export-to-org))))
+#+end_src
+
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package python
