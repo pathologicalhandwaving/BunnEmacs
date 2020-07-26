@@ -464,6 +464,14 @@ Package dependencies providing modern APIs for working with lisp structures
 "ADHD log file-name")
 #+end_src
 
+** Golden Ratio
+#+begin_src emacs-lisp
+(use-package golden-ratio
+  :config
+  (golden-ratio-mode 1)
+  (setq golden-ratio-auto-scale t)
+  (setq golden-ratio-max-width 72))
+#+end_src
 
 * MacOS UI
 #+BEGIN_SRC emacs-lisp
@@ -1418,6 +1426,34 @@ I set my pkgconfig path in my =.bash_profile= and had no issues with this versio
             (when (eq major-mode 'pdf-view-mode) (pdf-tools-org-export-to-org))))
 #+end_src
 
+**** org-noter
+#+begin_src emacs-lisp
+(use-package org-noter
+  :after org
+  :ensure t
+  (setq org-noter-default-notes-file-names '("~/Librarian/Annotations/annotations.org")
+        org-noter-notes-search-path '("~/Librarian/Annotations"))
+  (setq org-noter-separate-notes-from-heading t))
+#+end_src
+
+***** org-noter and org-ref
+Add reference from org-ref cite-link interface =C-c j= and then open with pdf-tools package.
+For files with multiple refs jump to notes using the following funtion:
+#+begin_src emacs-lisp
+(defun org-ref-note-at-point ()
+  "Open odf for citekey under point if exists."
+  (interactive)
+  (let* ((results (org-ref-get-bibtex-key-and-file))
+         (key (car results))
+         (pdf-file (funcall org-ref-get-pdf-filename-function key)))
+    (if (file-exists-p pdf-file)
+        (progn
+          (find-file-other-window pdf-file)
+          (org-noter))
+      (message "No pdf found for %s" key))))
+(add-to-list 'org-ref-helm-user-candidates
+             '("Annotations" . org-ref-note-at-point))
+#+end_src
 
 ** Python
 #+BEGIN_SRC emacs-lisp
