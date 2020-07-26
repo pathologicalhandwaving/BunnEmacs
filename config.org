@@ -1145,7 +1145,6 @@ HTML mode is defined in =sgml-mode.el=
  =(setq org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2018.3/libexec/plantuml.jar")=
 
 *** Capture
-
 #+begin_src emacs-lisp
 (defun bun-create-notes-file ()
 "Create an org file in ~/OrgDB/Notes."
@@ -1315,6 +1314,7 @@ Notes file
 (use-package org-noter
   :ensure t
   :after org
+  :config
   (setq org-noter-default-notes-file-names '("~/Librarian/Annotations/annotations.org")
         org-noter-notes-search-path '("~/Librarian/Annotations"))
   (setq org-noter-separate-notes-from-heading t))
