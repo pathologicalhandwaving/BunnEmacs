@@ -1,4 +1,3 @@
-
 #+TITLE: BunnEmacs
 #+AUTHOR: PathologicalHandwaving
 #+CATEGORY: Config
@@ -467,6 +466,7 @@ Package dependencies providing modern APIs for working with lisp structures
 ** Golden Ratio
 #+begin_src emacs-lisp
 (use-package golden-ratio
+  :ensure t
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-auto-scale t)
