@@ -1014,6 +1014,12 @@ Temporarily highlight changes to buffer after pasting
 
 
 
+** hypothesis
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/vendor/hypothesis/hypothesis.el")
+(setq hypothesis-username "kmshort")
+(setq hypothesis-token "6879-9dGOKdgnYcGUyl0y_ljTPEAzJmlzATFxy7sOA-oyoq8")
+#+end_src
 
 * Languages
   
