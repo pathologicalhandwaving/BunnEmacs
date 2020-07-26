@@ -24,9 +24,9 @@
  (position . 286))
 ("org-capture-last-stored"
  (filename . "~/OrgDB/Inbox/todos.org")
- (front-context-string . "** TODO Add dash")
- (rear-context-string . "lm-github-stars\n")
- (position . 526))
+ (front-context-string . "** TODO Setup An")
+ (rear-context-string . " annotate epub \n")
+ (position . 689))
 ("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")

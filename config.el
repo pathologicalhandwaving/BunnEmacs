@@ -555,6 +555,10 @@
 
 (require 'org-tempo)
 
+(add-to-list 'load-path "~/.emacs.d/vendor/hypothesis/hypothesis.el")
+(setq hypothesis-username "kmshort")
+(setq hypothesis-token "6879-9dGOKdgnYcGUyl0y_ljTPEAzJmlzATFxy7sOA-oyoq8")
+
 (use-package css-mode
   :ensure nil
   :custom (css-indent-offset 2))

@@ -1,23 +1,23 @@
 
 ;; ----- smex-history -----
 (
- quelpa
- package-install
  bookmark-jump
- load-theme
- helm-github-stars-fetch
- bookmark-set
- org-todo-list
+ hypothesis-to-archive
+ hypothesis-to-org
+ package-install-from-buffer
+ package-install
+ org-noter
+ package-reinstall
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 44)
+ (package-install . 51)
  (load-theme . 39)
  (check-parens . 1)
- (org-mode . 2)
- (ebuku . 4)
- (package-delete . 3)
+ (org-mode . 3)
+ (ebuku . 5)
+ (package-delete . 5)
  (org-set-property . 6)
  (org-dashboard-display . 6)
  (org-chef-insert-recipe . 1)
@@ -27,7 +27,7 @@
  (all-the-icons-install-fonts . 1)
  (neotree-change-root . 1)
  (neotree-dir . 1)
- (neotree-refresh . 1)
+ (neotree-refresh . 2)
  (neotree-enter . 1)
  (neotree-find . 1)
  (doc-view-toggle-display . 1)
@@ -38,7 +38,7 @@
  (undo-redo . 1)
  (undo-only . 23)
  (package-refresh-contents . 1)
- (quelpa . 3)
+ (quelpa . 4)
  (alarm-clock-set . 1)
  (fireplace . 4)
  (fireplace-toggle-smoke . 2)
@@ -52,5 +52,14 @@
  (org-todo-list . 1)
  (bookmark-set . 2)
  (helm-github-stars-fetch . 1)
- (bookmark-jump . 1)
+ (bookmark-jump . 2)
+ (ebuku-mode . 1)
+ (ebuku-show-all . 1)
+ (neotree-hidden-file-toggle . 1)
+ (package-install-from-buffer . 4)
+ (package-install-file . 1)
+ (hypothesis-to-archive . 3)
+ (hypothesis-to-org . 5)
+ (package-reinstall . 1)
+ (org-noter . 1)
 )
