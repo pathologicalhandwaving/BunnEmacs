@@ -1353,17 +1353,7 @@ You can check if a url for the PDF can be found like this:
 #+end_src
 
 **** pdf-tools
-If =(pdf-tools-install)= does not find libffi on macOS, try:
-#+begin_verse
-(setenv "PKG_CONFIG_PATH"
-        (f-join
-         (file-name-as-directory
-          (nth 0
-               (split-string
-                (shell-command-to-string "brew --prefix"))))
-         "Cellar" "libffi" "3.2.1" "lib" "pkgconfig"))
-#+end_verse
-I set my pkgconfig path in my =.bash_profile= and had no issues with this version of Emacs, however =pdf-tools= was broken for me in the stable version.
+Favorite pdf annotation tool
 
 #+begin_src emacs-lisp
 (defun bun-save-buffer-no-args ()
@@ -1391,6 +1381,19 @@ I set my pkgconfig path in my =.bash_profile= and had no issues with this versio
     (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<S-return>") 'newline)
     (advice-add 'pdf-annot-edit-contents-commit :after 'bun-save-buffer-no-args)))
 #+END_SRC
+
+***** Troubleshooting PDF-Tools
+If =(pdf-tools-install)= does not find libffi on macOS, try:
+#+begin_verse
+(setenv "PKG_CONFIG_PATH"
+        (f-join
+         (file-name-as-directory
+          (nth 0
+               (split-string
+                (shell-command-to-string "brew --prefix"))))
+         "Cellar" "libffi" "3.2.1" "lib" "pkgconfig"))
+#+end_verse
+I set my pkgconfig path in my =.bash_profile= and had no issues with this version of Emacs, however =pdf-tools= was broken for me in the stable version.
 
 **** org-pdf-tools
 #+BEGIN_SRC emacs-lisp
