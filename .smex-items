@@ -1,19 +1,19 @@
 
 ;; ----- smex-history -----
 (
- helm-github-stars-fetch
+ quelpa
+ package-install
+ bookmark-jump
  load-theme
+ helm-github-stars-fetch
  bookmark-set
  org-todo-list
- org-dashboard-display
- org-agenda-file-to-front
- org-agenda-list
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 43)
- (load-theme . 38)
+ (package-install . 44)
+ (load-theme . 39)
  (check-parens . 1)
  (org-mode . 2)
  (ebuku . 4)
@@ -38,7 +38,7 @@
  (undo-redo . 1)
  (undo-only . 23)
  (package-refresh-contents . 1)
- (quelpa . 2)
+ (quelpa . 3)
  (alarm-clock-set . 1)
  (fireplace . 4)
  (fireplace-toggle-smoke . 2)
@@ -52,4 +52,5 @@
  (org-todo-list . 1)
  (bookmark-set . 2)
  (helm-github-stars-fetch . 1)
+ (bookmark-jump . 1)
 )

@@ -330,6 +330,9 @@
   :config
   (global-eldoc-mode -1))
 
+(require 'dash-docs)
+(setq dash-docs-browser-func 'eww)
+
 (use-package helm
   :diminish
   :init (helm-mode t)

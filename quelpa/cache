@@ -1,1 +1,1 @@
-((alarm-clock :fetcher github :repo "wlemuel/alarm-clock" :files (:defaults "*.mp3")) (helm-bibtex :fetcher github :repo "tmalsburg/helm-bibtex" :files ("helm-bibtex.el")))
+((alarm-clock :fetcher github :repo "wlemuel/alarm-clock" :files (:defaults "*.mp3")) (dash-docs :repo "dash-docs-el/dash-docs" :fetcher github) (helm-bibtex :fetcher github :repo "tmalsburg/helm-bibtex" :files ("helm-bibtex.el")))
