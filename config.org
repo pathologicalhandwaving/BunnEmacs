@@ -653,7 +653,6 @@ Package dependencies providing modern APIs for working with lisp structures
   (helm-autoresize-mode 1))
 #+end_src
 
-
 *** Helm-Org
 #+begin_src emacs-lisp
 (use-package helm-org
@@ -661,7 +660,6 @@ Package dependencies providing modern APIs for working with lisp structures
   (add-to-list 'helm-completing-read-handlers-alist '(org-capture . helm-org-completing-read-tags))
   (add-to-list 'helm-completing-read-handlers-alist '(org-set-tags . helm-org-completing-read-tags)))
 #+end_src
-
 
 *** Helm-Themes
 #+begin_src emacs-lisp
@@ -691,7 +689,6 @@ Package dependencies providing modern APIs for working with lisp structures
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 (global-set-key (kbd "C-x r p") 'helm-projects-history)
 #+end_src
-*** helm-bibtex
 
 ** YaSnippets
 #+BEGIN_SRC emacs-lisp
@@ -847,40 +844,6 @@ Enable global minor mode
         rfc-mode-index-path (concat rfc-mode-directory "rfc-index.org")))
 #+end_src
 
-** pdf-tools
-#+BEGIN_SRC emacs-lisp
-(use-package pdf-tools
-  :pin manual
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-annot-activate-created-annotations t)
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
-  (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
-  (setq pdf-view-resize-factor 1.1)
-  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
-  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
-  (with-eval-after-load "pdf-annot"
-    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<return>") 'pdf-annot-edit-contents-commit)
-    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<S-return>") 'newline)
-    (advice-add 'pdf-annot-edit-contents-commit :after 'emd/save-buffer-no-args)))
-#+END_SRC
-
-** org-pdf-tools
-#+BEGIN_SRC emacs-lisp
-(use-package org-pdftools
-  :hook (org-load . org-pdftools-setup-link))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package org-noter-pdftools
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
-#+END_SRC
-
 ** Bookmarks
 #+BEGIN_SRC emacs-lisp
 (use-package ebuku)
@@ -1015,13 +978,13 @@ Temporarily highlight changes to buffer after pasting
 #+END_SRC
 
 
-
 ** hypothesis
 #+begin_src emacs-lisp
 (add-to-list 'load-path "~/.emacs.d/vendor/hypothesis/hypothesis.el")
 (setq hypothesis-username "kmshort")
 (setq hypothesis-token "6879-9dGOKdgnYcGUyl0y_ljTPEAzJmlzATFxy7sOA-oyoq8")
 #+end_src
+
 
 * Languages
   
@@ -1332,18 +1295,99 @@ Notes file
 
 *** org-ref
 #+begin_src emacs-lisp
-(use-package org-ref
-    :config
-    (setq
-         org-ref-completion-library 'org-ref-ivy-cite
-         org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
-         org-ref-default-bibliography (list "~/Librarian/Bibliography/default.bib")
-         org-ref-bibliography-notes "~/Librarian/Annotations/annotations.org"
-         org-ref-note-title-format "* NOTES %y - %t\n :PROPERTIES:\n  :CITEKEY: %k\n  :NOTES_DOCUMENT: %F\n :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
-         org-ref-notes-directory "~/Librarian/Annotations"
-         org-ref-notes-function 'orb-edit-notes
-    ))
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+(setq org-ref-bibliography-notes "~/Librarian/Annotations/annotations.org")
+(setq org-ref-default-bibliography "~/Librarian/Bibliography/default.bib")
+(setq org-ref-pdf-directory "~/Librarian/PDFs")
 #+end_src
+
+*** helm-bibtex
+#+begin_src emacs-lisp
+(require 'helm-bibtex)
+(setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib")
+(setq bibtex-completion-library-path "~/Librarian/PDFs")
+(setq bibtex-completion-notes-path "~/Librarian/Annotations")
+#+end_src
+
+*** INPROGRESS Citekey Format
+The format I prefer for my citekeys is =[LastYear]=
+Where =Last= is the surname of the author, and =Year= is the four digit year of the publication. 
+If the author has more than one publication in a year then the letters =a, b, c= are added to each successive cited publication. For example, =[Harvey2001]=
+=[Harvey2001a]=
+=[Harvey2001b]=
+Are the publications by Harvey that I have listed in my bibliography for the year of 2001.
+
+
+*** doi-utils
+The following text is from the org-ref documentation for =doi-utils=
+
+Provides two commands:
+
+- =doi-utils-add-bibtex-entry-from-doi=
+This will prompt you for a DOI, and a bibtex file, and then try to get the bibtex entry, and pdf of the article.
+
+- =doi-utils-add-entry-from-crossref-query=
+This will prompt you for a query string, which is usually the title of an article, or a free-form text citation of an article. 
+Then you will get a helm buffer of matching items, which you can choose from to insert a new bibtex entry into a bibtex file.
+
+This library also redefines the org-mode doi link. Now, when you click on this link you will get a menu of options, e.g. to open a bibtex entry or a pdf if you have it, or to search the doi in some scientific search engines. 
+
+**** Troubleshooting doi-utils
+Occasionally weird things happen with a DOI. 
+
+The first thing you should check is if the json data for the DOI can be retrieved. You can do that at the command line, or in a sh block like this:
+
+=curl -LH "Accept: application/citeproc+json" "http://doi.org/10.1021/jp511426q"=
+
+If you do not get json data, doi-utils will not be able to generate the bibtex entry.
+
+*Not all PDFs can be retrieved.* doi-utils uses a set of functions to attempt this.
+
+=doi-utils-pdf-url-functions=
+
+You can check if a url for the PDF can be found like this:
+=(doi-utils-get-pdf-url "10.1021/jp511426q")=
+
+#+begin_src emacs-lisp
+(require 'doi-utils)
+#+end_src
+
+*** pdf-tools
+
+#+BEGIN_SRC emacs-lisp
+(use-package pdf-tools
+  :pin manual
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-created-annotations t)
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
+  (setq pdf-view-resize-factor 1.1)
+  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
+  (with-eval-after-load "pdf-annot"
+    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<return>") 'pdf-annot-edit-contents-commit)
+    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<S-return>") 'newline)
+    (advice-add 'pdf-annot-edit-contents-commit :after 'emd/save-buffer-no-args)))
+#+END_SRC
+
+*** org-pdf-tools
+#+BEGIN_SRC emacs-lisp
+(use-package org-pdftools
+  :hook (org-load . org-pdftools-setup-link))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+#+END_SRC
+
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package python
