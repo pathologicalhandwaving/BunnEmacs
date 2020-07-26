@@ -691,6 +691,8 @@ Package dependencies providing modern APIs for working with lisp structures
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)
 (global-set-key (kbd "C-x r p") 'helm-projects-history)
 #+end_src
+*** helm-bibtex
+
 ** YaSnippets
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
@@ -1328,7 +1330,20 @@ Notes file
  #+END_SRC
 
 
-
+*** org-ref
+#+begin_src emacs-lisp
+(use-package org-ref
+    :config
+    (setq
+         org-ref-completion-library 'org-ref-ivy-cite
+         org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
+         org-ref-default-bibliography (list "~/Librarian/Bibliography/default.bib")
+         org-ref-bibliography-notes "~/Librarian/Annotations/annotations.org"
+         org-ref-note-title-format "* NOTES %y - %t\n :PROPERTIES:\n  :CITEKEY: %k\n  :NOTES_DOCUMENT: %F\n :AUTHOR: %9a\n  :JOURNAL: %j\n  :YEAR: %y\n  :VOLUME: %v\n  :PAGES: %p\n  :DOI: %D\n  :URL: %U\n :END:\n\n"
+         org-ref-notes-directory "~/Librarian/Annotations"
+         org-ref-notes-function 'orb-edit-notes
+    ))
+#+end_src
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package python
