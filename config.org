@@ -665,18 +665,7 @@ Package dependencies providing modern APIs for working with lisp structures
 (require 'helm-config)
 #+end_src
 
-*** helm-posframe
-#+begin_src emacs-lisp
-(use-package helm-posframe
-  :after helm
-  :demand t
-  :config
-  (setq helm-posframe-poshandler 'posframe-poshandler-frame-center)
-  (setq helm-posframe-height 20)
-  (setq helm-posframe-width (round (* (frame-width) 0.49)))
-  (setq helm-posframe-parameters '((internal-border-width . 10)))
-  (helm-posframe-enable))
-#+end_src
+*** helm-
 
 *** helm-icons
 #+begin_src emacs-lisp
