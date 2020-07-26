@@ -1313,8 +1313,31 @@ Notes file
 
 *** Reference
 **** org-books
+
+#+begin_verse
+(setq org-capture-templates
+      '(("b" "Book" entry (file "some-file.org")
+         "* %^{TITLE}\n:PROPERTIES:\n:ADDED: %<[%Y-%02m-%02d]>\n:END:%^{AUTHOR}p\n%?" :empty-lines 1)))
+#+end_verse
+
+#+begin_verse
+(setq org-capture-templates
+      '(("b" "Book" entry (file "some-file.org")
+         "%(let* ((url (substring-no-properties (current-kill 0)))
+                  (details (org-books-get-details url)))
+             (when details (apply #'org-books-format 1 details)))")))
+#+end_verse
+
+
+- To add books manually, use =org-books-add-book function=.
+- To add from urls, call =org-books-add-url= (or use =org-books-cliplink= if url is in clipboard).
+- To give ratings, go to the entry and call =org-books-rate-book=.
+- While filing a book, =org-books-file-depth= tells which headings are to be considered as a category (like fiction or something).
+- =org-books-add-to-top= (default t) tells whether to add the book at the top or bottom under the selected heading.
+
 #+begin_src emacs-lisp
 (require 'org-books)
+(setq org-books-file "~/Librarian/index.org")
 #+end_src
 
 **** org-ref
