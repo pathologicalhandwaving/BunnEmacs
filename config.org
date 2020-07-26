@@ -666,6 +666,12 @@ Package dependencies providing modern APIs for working with lisp structures
 (helm-posframe-enable)
 #+end_src
 
+*** helm-icons
+#+begin_src emacs-lisp
+(require 'helm-icons)
+(helm-icons-enable)
+#+end_src
+
 *** Helm-Org
 #+begin_src emacs-lisp
 (use-package helm-org
