@@ -244,6 +244,13 @@
 (bunny-org-file-name "ADHD/log.org")
 "ADHD log file-name")
 
+(use-package golden-ratio
+  :ensure t
+  :config
+  (golden-ratio-mode 1)
+  (setq golden-ratio-auto-scale t)
+  (setq golden-ratio-max-width 72))
+
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 
 (modify-frame-parameters (selected-frame) '((alpha . 75)))
@@ -347,6 +354,11 @@
 	     ("C-c R" . helm-register))
   :config
   (helm-autoresize-mode 1))
+
+(require 'helm-config)
+
+(require 'helm-icons)
+(helm-icons-enable)
 
 (use-package helm-org
   :config
@@ -457,32 +469,6 @@
   :init
   (setq rfc-mode-directory (expand-file-name "~/Librarian/Dictionary/RFCs/")
         rfc-mode-index-path (concat rfc-mode-directory "rfc-index.org")))
-
-(use-package pdf-tools
-  :pin manual
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-annot-activate-created-annotations t)
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
-  (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
-  (setq pdf-view-resize-factor 1.1)
-  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
-  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
-  (with-eval-after-load "pdf-annot"
-    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<return>") 'pdf-annot-edit-contents-commit)
-    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<S-return>") 'newline)
-    (advice-add 'pdf-annot-edit-contents-commit :after 'emd/save-buffer-no-args)))
-
-(use-package org-pdftools
-  :hook (org-load . org-pdftools-setup-link))
-
-(use-package org-noter-pdftools
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 (use-package ebuku)
 
@@ -643,13 +629,19 @@
 
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
-     "** TODO %?\n")
+     "** TODO %?\n" :empty-lines 1)
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
-     "** APPOINTMENT %?\n %a")
+     "** APPOINTMENT %?\n" :empty-lines 1)
     ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
-     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n")
+     "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n" :empty-lines 1)
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
-     "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)))
+     "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
+    ("d" "ADHD Log" entry (file+datetree "~/OrgDB/ADHD/log.org")
+    "* %U : %^{Description}\n - %?")
+    ("h" "Hyperfocus Log" entry (file+datetree "~/OrgDB/ADHD/hyperfocus-log.org")
+     "* %U: \n - Behavior: %^{What did hyperfocus behavior look like?}\n - What: %^{What did I focus on?}\n - Duration: %^{How long did it last?}\n - Where: %^{Location occured?}\n - Known: %^{During the episode was I aware I was hyperfocused?}\n - Breaks: %^{Did I take any breaks?}\n - Thoughts: %^{What thoughts did I have after?}\n - Physical: %^{Physical symptoms after?}\n - Satisfaction: %^{From 1-10 how satisfied am I with what I did?}")
+    ("e" "Census Log" entry (file+datetree "~/OrgDB/Work/Census/2020/log.org")
+     "* %U: %^{Action}\n - %?")))
 
 (setq org-descriptive-links t)
 
@@ -712,6 +704,82 @@
 
 (use-package poporg
   :bind (("C-c /" . poporg-dwim)))
+
+(require 'org-books)
+(setq org-books-file "~/Librarian/index.org")
+
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+(setq org-ref-bibliography-notes "~/Librarian/Annotations/annotations.org")
+(setq org-ref-default-bibliography "~/Librarian/Bibliography/default.bib")
+(setq org-ref-pdf-directory "~/Librarian/PDFs")
+
+(use-package org-noter
+  :ensure t
+  :after org
+  :config
+  (setq org-noter-default-notes-file-names '("~/Librarian/Annotations/annotations.org")
+        org-noter-notes-search-path '("~/Librarian/Annotations"))
+  (setq org-noter-separate-notes-from-heading t))
+
+(defun org-ref-note-at-point ()
+  "Open odf for citekey under point if exists."
+  (interactive)
+  (let* ((results (org-ref-get-bibtex-key-and-file))
+         (key (car results))
+         (pdf-file (funcall org-ref-get-pdf-filename-function key)))
+    (if (file-exists-p pdf-file)
+        (progn
+          (find-file-other-window pdf-file)
+          (org-noter))
+      (message "No pdf found for %s" key))))
+(add-to-list 'org-ref-helm-user-candidates
+             '("Annotations" . org-ref-note-at-point))
+
+(require 'helm-bibtex)
+(setq bibtex-completion-bibliography "~/Librarian/Bibliography/default.bib")
+(setq bibtex-completion-library-path "~/Librarian/PDFs")
+(setq bibtex-completion-notes-path "~/Librarian/Annotations")
+
+(require 'doi-utils)
+
+(defun bun-save-buffer-no-args ()
+  "Save buffer ignoring arguments."
+  (save-buffer))
+
+(use-package pdf-tools
+  :pin manual
+  :ensure t
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-created-annotations t)
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
+  (setq pdf-view-resize-factor 1.1)
+  (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
+  (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+  (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
+  (with-eval-after-load "pdf-annot"
+    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<return>") 'pdf-annot-edit-contents-commit)
+    (define-key pdf-annot-edit-contents-minor-mode-map (kbd "<S-return>") 'newline)
+    (advice-add 'pdf-annot-edit-contents-commit :after 'bun-save-buffer-no-args)))
+
+(use-package org-pdftools
+  :hook (org-load . org-pdftools-setup-link))
+
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
+(add-to-list 'load-path "~/.emacs.d/vendor/pdf-tools-org.el")
+(require 'pdf-tools-org)
+(add-hook 'after-save-hook
+          (lambda ()
+            (when (eq major-mode 'pdf-view-mode) (pdf-tools-org-export-to-org))))
 
 (use-package python
   :ensure nil

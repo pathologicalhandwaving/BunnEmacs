@@ -1,19 +1,19 @@
 
 ;; ----- smex-history -----
 (
- bookmark-jump
- hypothesis-to-archive
- hypothesis-to-org
- package-install-from-buffer
+ load-theme
  package-install
- org-noter
- package-reinstall
+ bookmark-jump
+ org-agenda-file-to-front
+ nyan-start-animation
+ nyan-toggle-wavy-trail
+ nyan-mode
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 51)
- (load-theme . 39)
+ (package-install . 67)
+ (load-theme . 48)
  (check-parens . 1)
  (org-mode . 3)
  (ebuku . 5)
@@ -31,8 +31,8 @@
  (neotree-enter . 1)
  (neotree-find . 1)
  (doc-view-toggle-display . 1)
- (pdf-tools-enable-minor-modes . 1)
- (neotree-toggle . 2)
+ (pdf-tools-enable-minor-modes . 2)
+ (neotree-toggle . 3)
  (rfc-mode . 1)
  (undo . 7)
  (undo-redo . 1)
@@ -48,18 +48,27 @@
  (fireplace-up . 1)
  (org-agenda . 1)
  (org-agenda-list . 1)
- (org-agenda-file-to-front . 3)
+ (org-agenda-file-to-front . 4)
  (org-todo-list . 1)
  (bookmark-set . 2)
  (helm-github-stars-fetch . 1)
- (bookmark-jump . 2)
+ (bookmark-jump . 5)
  (ebuku-mode . 1)
  (ebuku-show-all . 1)
  (neotree-hidden-file-toggle . 1)
- (package-install-from-buffer . 4)
+ (package-install-from-buffer . 5)
  (package-install-file . 1)
  (hypothesis-to-archive . 3)
  (hypothesis-to-org . 5)
  (package-reinstall . 1)
- (org-noter . 1)
+ (org-noter . 2)
+ (pdf-view-midnight-minor-mode . 1)
+ (pdf-view-fit-width-to-window . 1)
+ (org-noter-notes-mode . 1)
+ (helm-world-time . 1)
+ (helm-themes . 1)
+ (customize . 1)
+ (nyan-mode . 2)
+ (nyan-toggle-wavy-trail . 1)
+ (nyan-start-animation . 1)
 )
