@@ -1177,7 +1177,9 @@ HTML mode is defined in =sgml-mode.el=
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
     ("d" "ADHD Log" entry (file+datetree "~/OrgDB/ADHD/log.org")
-    "* %U : %^{Description}\n - %?" :empty-lines 1)))
+    "* %U : %^{Description}\n - %?" :empty-lines 1)
+    ("e" "Census Log" entry (file+datetree "~/OrgDB/Work/Census/2020/log.org")
+     "* %U: %^{Action}\n - %?" :empty-lines 1)))
 #+end_src
 
 *** Links
