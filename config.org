@@ -1169,7 +1169,7 @@ HTML mode is defined in =sgml-mode.el=
 #+begin_src emacs-lisp
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
-     "** TODO %?\n" :empty-lines 1)
+     "** TODO %?\n")
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
      "** APPOINTMENT %?\n" :empty-lines 1)
     ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
