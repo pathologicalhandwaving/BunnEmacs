@@ -1177,9 +1177,11 @@ HTML mode is defined in =sgml-mode.el=
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
     ("d" "ADHD Log" entry (file+datetree "~/OrgDB/ADHD/log.org")
-    "* %U : %^{Description}\n - %?" :empty-lines 1)
+    "* %U : %^{Description}\n - %?")
+    ("h" "Hyperfocus Log" entry (file+datetree "~/OrgDB/ADHD/hyperfocus-log.org")
+     "* %U: \n - Behavior: %^{What did hyperfocus behavior look like?}\n - What: %^{What did I focus on?}\n - Duration: %^{How long did it last?}\n - Where: %^{Location occured?}\n - Known: %^{During the episode was I aware I was hyperfocused?}\n - Breaks: %^{Did I take any breaks?}\n - Thoughts: %^{What thoughts did I have after?}\n - Physical: %^{Physical symptoms after?}\n - Satisfaction: %^{From 1-10 how satisfied am I with what I did?}")
     ("e" "Census Log" entry (file+datetree "~/OrgDB/Work/Census/2020/log.org")
-     "* %U: %^{Action}\n - %?" :empty-lines 1)))
+     "* %U: %^{Action}\n - %?")))
 #+end_src
 
 *** Links
