@@ -1302,6 +1302,37 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-default-priority ?A)
  #+END_SRC
 
+*** Logs
+Do I really need a package for this?
+#+begin_src emacs-lisp
+(require 'org-journal)
+(setq org-journal-dir "~/OrgDB/Logs")
+(setq org-journal-date-format "%Y-%m-%d %A")
+(setq org-journal-enable-agenda-integration t)
+#+end_src
+
+#+begin_src emacs-lisp
+(defun org-journal-file-header-func (time)
+  "Function to create journal header"
+  (concat
+   (pcase org-journal-file-type
+     ('daily "#+TITLE: Daily Log\n#+CATEGORY: Logs\n#+STARTUP: showeverything")
+     ('weekly "#+TITLE: Weekly Log\n#+CATEGORY: Logs\n#+STARTUP: folded")
+     ('monthly "#+TITLE: Monthly Log\n#+CATEGORY: Logs\n#+STARTUP: folded")
+     ('yearly "#+TITLE: Yearly Log\n#+CATEGORY: Logs\n#+STARTUP: folded"))))
+(setq org-journal-file-header 'org-journal-file-header-func)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package org-journal-list
+        :ensure t
+        :config
+        (setq org-journal-list-default-directory "~/OrgDB/Logs/"))
+#+end_src
+
+#+begin_src emacs-lisp
+(setq org-journal-list-default-suffix ".org")
+#+end_src
 *** Org Files
 
 default org directory
@@ -1338,6 +1369,8 @@ Notes file
  #+END_SRC
 
 *** Reference
+I store my books, papers, and reference files in =~/Librarian=
+ 
 **** org-books
 #+begin_src emacs-lisp
 (require 'org-books)
@@ -1548,6 +1581,7 @@ I set my pkgconfig path in my =.bash_profile= and had no issues with this versio
   :ensure nil
   :hook (python-mode . turn-on-prettify-symbols-mode))
 #+END_SRC
+
 
 
 ** YAML
