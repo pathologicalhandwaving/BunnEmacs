@@ -1197,7 +1197,7 @@ Archives are stored in =~/OrgDB/Archive=
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
     ("i" "Dictionary" entry (file+headline "Dictionary")
-     "*** %^{Term} :: \n    :PROPERTIES:\n    :CATEGORY: %^{Index Letter}\n    :END:\n    %^{Description}" :empty-lines 1)
+     "*** <<<%^{Term}>>> :: \n    :PROPERTIES:\n    :CATEGORY: %^{Index Letter}\n    :TAGS: %g\n    :END:\n    %^{Description}" :empty-lines 1)
     ("l" "Log" entry (file+datetree "~/OrgDB/Logs/log.org")
      "* %U: %^{Task Completed} %^g")
     ("d" "ADHD Log" entry (file+datetree "~/OrgDB/ADHD/log.org")
