@@ -1147,6 +1147,25 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-startup-folded t)
 #+end_src
 
+*** Bullets
+#+begin_src emacs-lisp
+(setq org-hide-emphasis-markers t)
+#+end_src
+
+**** List Markers
+#+begin_src emacs-lisp
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+#+end_src
+
+**** org-bullets
+#+begin_src emacs-lisp
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+
 *** Archives
 #+begin_src emacs-lisp
 (setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
