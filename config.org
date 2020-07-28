@@ -1167,6 +1167,7 @@ HTML mode is defined in =sgml-mode.el=
 #+end_src
 
 *** Archives
+Archives are stored in =~/OrgDB/Archive=
 #+begin_src emacs-lisp
 (setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
 #+end_src
@@ -1210,6 +1211,7 @@ HTML mode is defined in =sgml-mode.el=
 
 *** Refile
 *** Org-Chef
+Recipes are stored in =~/OrgDB/Chef=
 #+begin_src emacs-lisp
 (use-package org-chef
   :ensure t)
@@ -1280,6 +1282,8 @@ HTML mode is defined in =sgml-mode.el=
 #+end_src
 
 *** Agenda
+Agenda is stored in =~/OrgDB/Inbox=
+
 **** Warn if deadline within next 7 days
 #+BEGIN_SRC emacs-lisp
 (setq org-deadline-warning-days 7)
@@ -1303,6 +1307,7 @@ HTML mode is defined in =sgml-mode.el=
  #+END_SRC
 
 *** Logs
+Logs are stored in =~/OrgDB/Logs=
 
 *** Org Files
 
