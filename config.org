@@ -1384,7 +1384,7 @@ HTML mode is defined in =sgml-mode.el=
 #+end_src
 
   #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   #+END_SRC
 **** Indented
    #+begin_src emacs-lisp
