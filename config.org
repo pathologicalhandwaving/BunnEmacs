@@ -1570,19 +1570,19 @@ Logs are stored in =~/OrgDB/Logs=
 
 default org directory
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "/Users/emd/OrgDB")
+(setq org-directory '("/Users/emd/OrgDB"))
 #+END_SRC
 
 Agenda file
 
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files "~/OrgDB/Inbox/todos.org" "~/OrgDB/Inbox/agenda.org" "~/OrgDB/Inbox/inbox.org")
+(setq org-agenda-files '("~/OrgDB/Inbox/todos.org" "~/OrgDB/Inbox/agenda.org" "~/OrgDB/Inbox/inbox.org"))
 #+END_SRC
 
 Notes file
 
 #+BEGIN_SRC emacs-lisp
-(setq org-default-notes-file "~/OrgDB/Notes/notes.org")
+(setq org-default-notes-file '("~/OrgDB/Notes/notes.org"))
 #+END_SRC
 
 *** Refile
@@ -1612,7 +1612,7 @@ I store my books, papers, and reference files in =~/Librarian=
 **** org-books
 #+begin_src emacs-lisp
 (require 'org-books)
-(setq org-books-file "~/Librarian/index.org")
+(setq org-books-file '("~/Librarian/index.org"))
 #+end_src
 
 ***** Adding new source
@@ -1661,9 +1661,9 @@ As of now there are the following sources:
 #+begin_src emacs-lisp
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
-(setq org-ref-bibliography-notes "~/Librarian/Annotations/annotations.org")
-(setq org-ref-default-bibliography "~/Librarian/Bibliography/default.bib")
-(setq org-ref-pdf-directory "~/Librarian/PDFs")
+(setq org-ref-bibliography-notes '("~/Librarian/Annotations/annotations.org"))
+(setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+(setq org-ref-pdf-directory '("~/Librarian/PDFs"))
 #+end_src
 
 **** org-noter
