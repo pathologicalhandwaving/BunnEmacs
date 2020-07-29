@@ -1472,7 +1472,7 @@ Notes file
 (require 'org-ql)
 #+end_src
 
-Display sidebar
+Display agenda sidebar
 #+begin_src emacs-lisp
 (defun bun-agenda-sidebar ()
   "Display agenda sidebar"
@@ -1488,6 +1488,8 @@ Display sidebar
                        :action element-with-markers))))
 
 #+end_src
+
+
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
  
