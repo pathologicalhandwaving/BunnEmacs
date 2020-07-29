@@ -2,7 +2,7 @@
 #+AUTHOR: PathologicalHandwaving
 #+CATEGORY: Config
 #+DATE_CREATED: [2020-07-06]
-#+DATE_MODIFIED: [2020-07-26]
+#+DATE_MODIFIED: [2020-07-28]
 
 *BunnEmacs* is an opinionated, MacOS centric emacs configuration.
 Developed under MacOS Catalina 10.15.6 using *Emacs* 28 HEAD (see README for installation steps).
