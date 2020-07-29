@@ -813,6 +813,48 @@ Package dependencies providing modern APIs for working with lisp structures
 
 
 * Utilities
+** engine-mode
+#+begin_src emacs-lisp
+(require 'engine-mode)
+(engine-mode t)
+(setq engine/browser-function 'eww-browse-url)
+(engine/set-keymap-prefix (kbd "C-c s"))
+#+end_src
+
+#+begin_src emacs-lisp
+(defengine github
+  "https://github.com/search?ref=simplesearch&q=%s")
+(defengine ctan
+  "http://www.ctan.org/search/?x=1&PORTAL=on&phrase=%s"
+  :docstring "Search the Comprehensive TeX Archive Network (ctan.org)")
+(defengine google
+  "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+  :keybinding "g")
+(defengine google-images
+  "http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s")
+(defengine google-maps
+  "http://maps.google.com/maps?q=%s"
+  :docstring "Mapssss")
+(defengine project-gutenberg
+  "http://www.gutenberg.org/ebooks/search/?query=%s")
+(defengine project-gutenberg
+  "http://www.gutenberg.org/ebooks/search/?query=%s")
+(defengine rfcs
+  "http://pretty-rfc.herokuapp.com/search?q=%s")
+(defengine stack-overflow
+  "https://stackoverflow.com/search?q=%s")
+(defengine twitter
+  "https://twitter.com/search?q=%s")
+(defengine wikipedia
+  "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+  :keybinding "w")
+(defengine wiktionary
+  "https://www.wikipedia.org/search-redirect.php?family=wiktionary&language=en&go=Go&search=%s")
+(defengine wolfram-alpha
+  "http://www.wolframalpha.com/input/?i=%s")
+(defengine youtube
+  "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+#+end_src
 
 ** gitignore-templates
 #+begin_src emacs-lisp
