@@ -1083,7 +1083,7 @@ Enable global minor mode
 
 *** Helm-bookmarks
 #+begin_src emacs-lisp
-(with-eval-after-load 'helm
+(with-eval-after-load 'helm)
 (require 'helm-bookmark)
 (global-set-key (kbd "C-x C-b") 'helm-bookmark)
 #+end_src
