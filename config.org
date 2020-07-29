@@ -755,15 +755,15 @@ Package dependencies providing modern APIs for working with lisp structures
 #+END_SRC
 
 
-;#+BEGIN_SRC emacs-lisp
-;(use-package smex
-;  :bind
-;  ("M-x" . 'smex)
-;  ("M-X" . 'smex-major-mode-commands)
-;  :config
-;  (setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
-;  (smex-initialize))
-;#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package smex
+  :bind
+  ("M-x" . 'smex)
+  ("M-X" . 'smex-major-mode-commands)
+  :config
+  (setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
+  (smex-initialize))
+#+END_SRC
 
 ** Crux
 #+BEGIN_SRC emacs-lisp
@@ -1093,6 +1093,7 @@ Enable global minor mode
 (setq ebuku-buku-path "/usr/local/bin/buku")
 (setq ebuku-database-path "/Users/emd/.local/share/buku/bookmarks.db")
 #+end_src
+
 ** Kill
 #+BEGIN_SRC emacs-lisp
 (use-package easy-kill)
