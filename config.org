@@ -1124,6 +1124,10 @@ Temporarily highlight changes to buffer after pasting
 (setq hypothesis-token "6879-9dGOKdgnYcGUyl0y_ljTPEAzJmlzATFxy7sOA-oyoq8")
 #+end_src
 
+** outline-toc
+#+begin_src emacs-lisp
+(require 'outline-toc)
+#+end_src
 
 * Languages
   
