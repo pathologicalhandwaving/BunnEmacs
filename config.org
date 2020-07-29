@@ -755,15 +755,15 @@ Package dependencies providing modern APIs for working with lisp structures
 #+END_SRC
 
 
-#+BEGIN_SRC emacs-lisp
-(use-package smex
-  :bind
-  ("M-x" . 'smex)
-  ("M-X" . 'smex-major-mode-commands)
-  :config
-  (setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
-  (smex-initialize))
-#+END_SRC
+;#+BEGIN_SRC emacs-lisp
+;(use-package smex
+;  :bind
+;  ("M-x" . 'smex)
+;  ("M-X" . 'smex-major-mode-commands)
+;  :config
+;  (setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
+;  (smex-initialize))
+;#+END_SRC
 
 ** Crux
 #+BEGIN_SRC emacs-lisp
@@ -836,7 +836,7 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "C-c D" :description "Delete file and buffer")
                       '(:key "C-c i" :description "iMenu"))
 (cheatsheet-add-group 'neotree
-                      '(:key "F8" :description "Neotree toggle")
+                      '(:key "F8" :description "Neotree toggle"))
 (cheatsheet-add-group 'bookmarks
                       '(:key "C-x C-b" :description "helm bookmark")
                       '(:key "C-f2" :description "marks toggle")
