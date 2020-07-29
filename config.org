@@ -837,8 +837,6 @@ Package dependencies providing modern APIs for working with lisp structures
   :docstring "Mapssss")
 (defengine project-gutenberg
   "http://www.gutenberg.org/ebooks/search/?query=%s")
-(defengine project-gutenberg
-  "http://www.gutenberg.org/ebooks/search/?query=%s")
 (defengine rfcs
   "http://pretty-rfc.herokuapp.com/search?q=%s")
 (defengine stack-overflow
