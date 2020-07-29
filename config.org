@@ -67,9 +67,6 @@ Startup in center of current screen
 #+end_src
 
 ** Startup Buffer
-#+begin_src emacs-lisp
-
-#+end_src
 
 ** Startup message
 #+BEGIN_SRC emacs-lisp
