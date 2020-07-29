@@ -1240,7 +1240,7 @@ HTML mode is defined in =sgml-mode.el=
 #+END_SRC
 
 
-** OrgMode
+** OrgMode                                                         :orgmode:
 *** Startup
 #+begin_src emacs-lisp
 (setq org-directory "~/OrgDB")
@@ -1466,6 +1466,28 @@ Notes file
   :bind (("C-c /" . poporg-dwim)))
  #+END_SRC
 
+**** sidebar
+#+begin_src emacs-lisp
+(require 'org-sidebar)
+(require 'org-ql)
+#+end_src
+
+Display sidebar
+#+begin_src emacs-lisp
+(defun bun-agenda-sidebar ()
+  "Display agenda sidebar"
+  (interactive)
+  (org-sidebar
+   :sidebars (make-org-sidebar
+              :name "Agenda Sidebar"
+              :description "agenda sidebar"
+              :items (org-ql (org-agenda-files)
+                       (and (not (done))
+                            (or (deadline auto)
+                                (scheduled :on today)))
+                       :action element-with-markers))))
+
+#+end_src
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
  
