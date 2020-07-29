@@ -1391,6 +1391,7 @@ HTML mode is defined in =sgml-mode.el=
    (require 'org-indent)
    (setq org-startup-indented t)
    #+end_src
+
 **** Truncated
 #+begin_src emacs-lisp
 (setq org-startup-truncated nil)
@@ -1402,23 +1403,6 @@ HTML mode is defined in =sgml-mode.el=
 #+end_src
 
 *** Bullets
-#+begin_src emacs-lisp
-(setq org-hide-emphasis-markers t)
-#+end_src
-
-**** List Markers
-#+begin_src emacs-lisp
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-#+end_src
-
-**** org-bullets
-#+begin_src emacs-lisp
-(use-package org-bullets
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+end_src
 
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
@@ -1485,6 +1469,21 @@ Recipes are stored in =~/OrgDB/Chef=
  #+END_SRC
 
 *** Layout
+
+**** List Markers
+#+begin_src emacs-lisp
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+#+end_src
+
+**** org-bullets
+#+begin_src emacs-lisp
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+
 **** Modify demote bullets
  #+BEGIN_SRC emacs-lisp
 (setq org-list-demote-modify-bullet '(("-" . "+")
@@ -1501,7 +1500,7 @@ Recipes are stored in =~/OrgDB/Chef=
  #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 0)
+(setq org-edit-src-content-indentation 2)
 (setq org-src-preserve-indentation t)
  #+END_SRC
 
@@ -1571,19 +1570,19 @@ Logs are stored in =~/OrgDB/Logs=
 
 default org directory
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "/Users/emd/OrgDB/")
+(setq org-directory "/Users/emd/OrgDB")
 #+END_SRC
 
 Agenda file
 
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-files (list org-directory))
+(setq org-agenda-files "~/OrgDB/Inbox/todos.org" "~/OrgDB/Inbox/agenda.org" "~/OrgDB/Inbox/inbox.org")
 #+END_SRC
 
 Notes file
 
 #+BEGIN_SRC emacs-lisp
-(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
+(setq org-default-notes-file "~/OrgDB/Notes/notes.org")
 #+END_SRC
 
 *** Refile
