@@ -998,6 +998,10 @@ Temporarily highlight changes to buffer after pasting
 (require 'org-tempo)
 #+END_SRC
 
+** zen-mode
+#+begin_src emacs-lisp
+(require 'zen-mode)
+#+end_src
 
 ** hypothesis
 #+begin_src emacs-lisp
