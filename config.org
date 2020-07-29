@@ -852,6 +852,20 @@ Package dependencies providing modern APIs for working with lisp structures
   "http://www.wolframalpha.com/input/?i=%s")
 (defengine youtube
   "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+(defengine seasoned-advice
+  "https://cooking.stackexchange.com/search?q=%s")
+(defengine mathematics
+  "https://math.stackexchange.com/search?q=%s")
+(defengine englang
+  "https://english.stackexchange.com/search?q=%s")
+(defengine linux
+  "https://unix.stackexchange.com/search?q=%s")
+(defengine infosec
+  "https://security.stackexchange.com/search?q=%s")
+(defengine cryptography
+  "https://crypto.stackexchange.com/search?q=%s")
+(defengine history
+  "https://history.stackexchange.com/search?q=%s")
 #+end_src
 
 ** gitignore-templates
