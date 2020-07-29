@@ -1,27 +1,27 @@
 
 ;; ----- smex-history -----
 (
- load-theme
+ check-parens
  package-install
- bookmark-jump
  org-agenda-file-to-front
- nyan-start-animation
- nyan-toggle-wavy-trail
- nyan-mode
+ bookmark-jump
+ org-agenda-list
+ recover-this-file
+ customize
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 67)
- (load-theme . 48)
- (check-parens . 1)
+ (package-install . 78)
+ (load-theme . 80)
+ (check-parens . 2)
  (org-mode . 3)
  (ebuku . 5)
  (package-delete . 5)
  (org-set-property . 6)
  (org-dashboard-display . 6)
  (org-chef-insert-recipe . 1)
- (recover-this-file . 1)
+ (recover-this-file . 4)
  (org-insert-link . 1)
  (org-toggle-latex-fragment . 1)
  (all-the-icons-install-fonts . 1)
@@ -31,13 +31,13 @@
  (neotree-enter . 1)
  (neotree-find . 1)
  (doc-view-toggle-display . 1)
- (pdf-tools-enable-minor-modes . 2)
+ (pdf-tools-enable-minor-modes . 4)
  (neotree-toggle . 3)
  (rfc-mode . 1)
- (undo . 7)
+ (undo . 11)
  (undo-redo . 1)
- (undo-only . 23)
- (package-refresh-contents . 1)
+ (undo-only . 25)
+ (package-refresh-contents . 2)
  (quelpa . 4)
  (alarm-clock-set . 1)
  (fireplace . 4)
@@ -47,12 +47,12 @@
  (fireplace-mode . 3)
  (fireplace-up . 1)
  (org-agenda . 1)
- (org-agenda-list . 1)
- (org-agenda-file-to-front . 4)
+ (org-agenda-list . 3)
+ (org-agenda-file-to-front . 13)
  (org-todo-list . 1)
- (bookmark-set . 2)
+ (bookmark-set . 5)
  (helm-github-stars-fetch . 1)
- (bookmark-jump . 5)
+ (bookmark-jump . 24)
  (ebuku-mode . 1)
  (ebuku-show-all . 1)
  (neotree-hidden-file-toggle . 1)
@@ -61,14 +61,25 @@
  (hypothesis-to-archive . 3)
  (hypothesis-to-org . 5)
  (package-reinstall . 1)
- (org-noter . 2)
+ (org-noter . 3)
  (pdf-view-midnight-minor-mode . 1)
- (pdf-view-fit-width-to-window . 1)
+ (pdf-view-fit-width-to-window . 4)
  (org-noter-notes-mode . 1)
  (helm-world-time . 1)
  (helm-themes . 1)
- (customize . 1)
+ (customize . 4)
  (nyan-mode . 2)
  (nyan-toggle-wavy-trail . 1)
  (nyan-start-animation . 1)
+ (backward-page . 1)
+ (pdf-view-fit-page-to-window . 3)
+ (pdf-view-scale-reset . 1)
+ (pdf-view-shrink . 1)
+ (pdf-view-mode . 1)
+ (org-noter-set-notes-window-location . 2)
+ (org-noter-create-skeleton . 1)
+ (org-noter-insert-note . 4)
+ (package-show-package-list . 1)
+ (org-sidebar . 1)
+ (org-sidebar-toggle . 1)
 )

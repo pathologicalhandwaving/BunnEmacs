@@ -275,7 +275,6 @@
 (load-theme 'doom-outrun-electric t)
 
 (use-package neotree
-  :bind ("C-x n" . neotree-toggle)
   :config
   (neotree-dir "~/.emacs.d"))
 
@@ -445,6 +444,204 @@
 
 (use-package google-translate)
 
+(cheatsheet-add-group 'cheats
+                      '(:key "C-x C-h" :description "Show Cheatsheet")
+                      '(:key "C-q" :description "Close Cheatsheet"))
+(cheatsheet-add-group 'windows
+                      '(:key "C-x o" :description "Goto other window")
+                      '(:key "C-x w" :description "Delete Frame")
+                      '(:key "C-x 5 2" :description "New Frame")
+                      '(:key "C-x 3" :description "New window right")
+                      '(:key "C-x 2" :description "New window below")
+                      '(:key "C-x 1" :description "Close all but current window"))
+(cheatsheet-add-group 'buffers
+                      '(:key "C-x b" :description "Switch to buffer")
+                      '(:key "C-x b named" :description "Create named buffer")
+                      '(:key "C-x 4 b name" :description "Create in other window")
+                      '(:key "C-x b" :description "Buffer menu")
+                      '(:key "C-x k" :description "Kill buffer")
+                      '(:key "C-c r" :description "Rename file and buffer")
+                      '(:key "C-c D" :description "Delete file and buffer")
+                      '(:key "C-c i" :description "iMenu"))
+(cheatsheet-add-group 'neotree
+                      '(:key "F8" :description "Neotree toggle"))
+(cheatsheet-add-group 'bookmarks
+                      '(:key "C-x C-b" :description "helm bookmark")
+                      '(:key "C-f2" :description "marks toggle")
+                      '(:key "f2" :description "marks next")
+                      '(:key "S-f2" :description "marks previous"))
+(cheatsheet-add-group 'moves
+                      '(:key "C-f" :description "Forward Character")
+                      '(:key "C-b" :description "Back Character")
+                      '(:key "M-f" :description "Forward Word")
+                      '(:key "M-b" :description "Back Word")
+                      '(:key "M-a" :description "Forward Sentence")
+                      '(:key "M-e" :description "Back Sentence")
+                      '(:key "C-n" :description "Next Line")
+                      '(:key "C-p" :description "Previous Line")
+                      '(:key "C-a" :description "Beginning of Line")
+                      '(:key "C-e" :description "End of Line")
+                      '(:key "M-v" :description "Move by Screen")
+                      '(:key "C-x ]" :description "Top of Buffer")
+                      '(:key "C-x [" :description "Bottom of Buffer")
+                      '(:key "C-x l" :description "Center Screen Here")
+                      '(:key "C-c o" :description "Occur"))
+(cheatsheet-add-group 'transform
+                      '(:key "C-c i" :description "ispell word then abbrev")
+                      '(:key "C-x C-u" :description "Uppercase")
+                      '(:key "C-x C-l" :description "Lowercase")
+                      '(:key "C-c M-3" :description "insert section symbol")
+                      '(:key "C-c M-4" :description "insert contra symbol"))
+(cheatsheet-add-group 'files
+                      '(:key "C-x C-f" :description "Find File")
+                      '(:key "C-x C-s" :description "Save File")
+                      '(:key "C-x C-r" :description "Recent Files")
+                      '(:key "C-x i" :description "Insert File")
+                      '(:key "C-c u" :description "View url")
+                      '(:key "C-c R" :description "Register"))
+(cheatsheet-add-group 'edits 
+                      '(:key "M-y" :description "Show kill ring")
+                      '(:key "C-y" :description "Yank (Paste)")
+                      '(:key "M-w" :description "Copy")
+                      '(:key "C-w" :description "Cut")
+                      '(:key "C-k" :description "Kill line")
+                      '(:key "C-_" :description "Undo")
+                      '(:key "M-_" :description "Redo"))
+(cheatsheet-add-group 'git
+                      '(:key "C-x C-d" :description "Browse project")
+                      '(:key "C-x r p" :description "Projects history"))
+(cheatsheet-add-group 'pdftools
+                      '(:key "h" :description "highlight")
+                      '(:key "t" :description "text")
+                      '(:key "D" :description "delete")
+                      '(:key "<return>" :description "edit annotation")
+                      '(:key "<S-return>" :description "newline")
+                      '(:key "C-s" :description "search forward"))
+(cheatsheet-add-group 'orgmode
+                      '(:key "C-c c" :description "Org Capture Menu")
+                      '(:key "C-c a" :description "Org Agenda Menu")
+                      '(:key "C-c l" :description "Org Store Link")
+                      '(:key "C-c $" :description "Archive to file")
+                      '(:key "M-r" :description "org-rifle"))
+(cheatsheet-add-group 'utils
+                      '(:key "C-c s" :description "Engine Mode Prefix")
+                      '(:key "M-x n" :description "Side notes toggle")
+                      '(:key "C-c /" :description "poporg")
+                      '(:key "M-return" :description "Comment"))
+
+(require 'engine-mode)
+(engine-mode t)
+(setq engine/browser-function 'eww-browse-url)
+(engine/set-keymap-prefix (kbd "C-c s"))
+
+(defengine github
+  "https://github.com/search?ref=simplesearch&q=%s")
+(defengine ctan
+  "http://www.ctan.org/search/?x=1&PORTAL=on&phrase=%s"
+  :docstring "Search the Comprehensive TeX Archive Network (ctan.org)")
+(defengine google
+  "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+  :keybinding "g")
+(defengine google-images
+  "http://www.google.com/images?hl=en&source=hp&biw=1440&bih=795&gbv=2&aq=f&aqi=&aql=&oq=&q=%s")
+(defengine google-maps
+  "http://maps.google.com/maps?q=%s"
+  :docstring "Mapssss")
+(defengine project-gutenberg
+  "http://www.gutenberg.org/ebooks/search/?query=%s")
+(defengine rfcs
+  "http://pretty-rfc.herokuapp.com/search?q=%s")
+(defengine stack-overflow
+  "https://stackoverflow.com/search?q=%s")
+(defengine twitter
+  "https://twitter.com/search?q=%s")
+(defengine wikipedia
+  "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
+  :keybinding "w")
+(defengine wiktionary
+  "https://www.wikipedia.org/search-redirect.php?family=wiktionary&language=en&go=Go&search=%s")
+(defengine wolfram-alpha
+  "http://www.wolframalpha.com/input/?i=%s")
+(defengine youtube
+  "http://www.youtube.com/results?aq=f&oq=&search_query=%s")
+(defengine seasoned-advice
+  "https://cooking.stackexchange.com/search?q=%s")
+(defengine mathematics
+  "https://math.stackexchange.com/search?q=%s")
+(defengine englang
+  "https://english.stackexchange.com/search?q=%s")
+(defengine linux
+  "https://unix.stackexchange.com/search?q=%s")
+(defengine infosec
+  "https://security.stackexchange.com/search?q=%s")
+(defengine cryptography
+  "https://crypto.stackexchange.com/search?q=%s")
+(defengine history
+  "https://history.stackexchange.com/search?q=%s")
+(defengine mathoverflow
+  "https://mathoverflow.net/search?q=%s")
+(defengine emacs
+  "https://emacs.stackexchange.com/search?q=%s")
+(defengine law
+  "https://law.stackexchange.com/search?q=%s")
+(defengine politics
+  "https://politics.stackexchange.com/search?q=%s")
+(defengine tcs
+  "https://cstheory.stackexchange.com/search?q=%s")
+(defengine merck
+  "https://www.merckmanuals.com/professional/SearchResults?query=%s")
+(defengine rosettacode
+  "http://rosettacode.org/mw/index.php?title=Special%3ASearch&search=%s")
+(defengine arxiv
+  "https://arxiv.org/search/?query=%s")
+(defengine citeseerx
+  "https://citeseerx.ist.psu.edu/search?q=%s")
+(defengine dblp
+  "https://dblp.org/search?q=%s")
+(defengine semanticscholar
+  "https://www.semanticscholar.org/search?q=%s")
+(defengine worldcat
+  "https://www.worldcat.org/search?q=%s")
+(defengine scholarpedia
+  "http://www.scholarpedia.org/w/index.php?search=%s")
+(defengine mathency
+  "https://encyclopediaofmath.org/index.php?title=Special%3ASearch&search=%s")
+(defengine mathworld
+  "https://mathworld.wolfram.com/search/?query=%s")
+(defengine oeis
+  "https://oeis.org/search?q=%s")
+(defengine nlab
+  "https://www.google.com/search?as_q=%s&as_sitesearch=https%3A%2F%2Fncatlab.org%2Fnlab%2F")
+(defengine sep
+  "https://plato.stanford.edu/search/searcher.py?query=%s")
+(defengine ballotpedia
+  "https://ballotpedia.org/wiki/index.php?search=%s")
+(defengine foldoc
+  "https://foldoc.org/%s")
+(defengine etymolonline
+  "https://www.etymonline.com/search?q=%s")
+(defengine jurispedia
+  "http://www.jurispedia.org/index2.php?cof=FORID%3A11&ie=UTF-8&q=%s")
+(defengine wikibooks
+  "https://en.wikibooks.org/wiki/Special:Search?search=%s")
+(defengine wikidata
+  "https://www.wikidata.org/w/index.php?search=sseech&search=%s")
+(defengine wikicommons
+  "https://commons.wikimedia.org/w/index.php?search=%s")
+(defengine wikinews
+  "https://en.wikinews.org/wiki/Special:Search?search=%s")
+(defengine wikiquote
+  "https://en.wikiquote.org/wiki/Special:Search?search=%s")
+(defengine wikisource
+  "https://wikisource.org/w/index.php?search=%s")
+(defengine wikiversity
+  "https://en.wikiversity.org/wiki/Special:Search?search=%s")
+(defengine wikitionary
+  "https://en.wiktionary.org/wiki/Special:Search?search=%s")
+
+(require 'gitignore-templates)
+(setq gitignore-templates-api 'github)
+
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 (global-set-key (kbd "C-x C-g") 'git-gutter)
@@ -475,11 +672,11 @@
 (use-package bm
   :bind (("<C-f2>" . bm-toggle)
          ("<f2>" . bm-next)
-	 ("<S-f2>" . bm-previous)))
+	       ("<S-f2>" . bm-previous)))
 
-(with-eval-after-load 'helm
+(with-eval-after-load 'helm)
 (require 'helm-bookmark)
-(global-set-key (kbd "C-x C-b") 'helm-bookmark))
+(global-set-key (kbd "C-x C-b") 'helm-bookmark)
 
 (setq ebuku-buku-path "/usr/local/bin/buku")
 (setq ebuku-database-path "/Users/emd/.local/share/buku/bookmarks.db")
@@ -541,9 +738,16 @@
 
 (require 'org-tempo)
 
+(require 'zen-mode)
+
 (add-to-list 'load-path "~/.emacs.d/vendor/hypothesis/hypothesis.el")
 (setq hypothesis-username "kmshort")
 (setq hypothesis-token "6879-9dGOKdgnYcGUyl0y_ljTPEAzJmlzATFxy7sOA-oyoq8")
+
+(require 'outline-toc)
+
+(require 'side-notes)
+(define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
 
 (use-package css-mode
   :ensure nil
@@ -619,6 +823,16 @@
 
 (setq org-startup-folded t)
 
+(setq org-hide-emphasis-markers t)
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
 
 (defun bun-create-notes-file ()
@@ -629,13 +843,17 @@
 
 (setq org-capture-templates
   '(("t" "ToDo" entry (file+headline "~/OrgDB/Inbox/todos.org" "ToDos")
-     "** TODO %?\n" :empty-lines 1)
+     "** TODO %?\n")
     ("a" "Appointment" entry (file+headline "~/OrgDB/Inbox/agenda.org" "Appointments")
      "** APPOINTMENT %?\n" :empty-lines 1)
     ("c" "Cookbook" entry (file "~/OrgDB/Chef/cookbook.org")
      "** %^{Recipe Title: }\n   :PROPERTIES:\n   :URL:\n   :SERVINGS:\n   :PREP_TIME:\n   :COOK_TIME:\n  :END:\n*** Ingredients\n    %?\n*** Directions\n\n" :empty-lines 1)
     ("n" "Note" entry (file+headline "~/OrgDB/Notes/notes.org" "Notes")
      "** NOTE %x\n   :PROPERTIES:\n   :DATE: %U\n   :END:\n" :empty-lines 1)
+    ("i" "Dictionary" entry (file+headline "Dictionary")
+     "*** <<<%^{Term}>>> :: \n    :PROPERTIES:\n    :CATEGORY: %^{Index Letter}\n    :TAGS: %g\n    :END:\n    %^{Description}" :empty-lines 1)
+    ("l" "Log" entry (file+datetree "~/OrgDB/Logs/log.org")
+     "* %U: %^{Task Completed} %^g")
     ("d" "ADHD Log" entry (file+datetree "~/OrgDB/ADHD/log.org")
     "* %U : %^{Description}\n - %?")
     ("h" "Hyperfocus Log" entry (file+datetree "~/OrgDB/ADHD/hyperfocus-log.org")
@@ -697,13 +915,14 @@
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 
 (setq org-refile-allow-creating-parent-nodes 'confirm)
-(setq org-refile-targets '((nil :maxlevel . 9)
-			         (org-agenda-files :maxlevel . 9)))
 (setq org-outline-path-complete-in-steps nil)
 (setq org-refile-use-outline-path '(file))
 
 (use-package poporg
   :bind (("C-c /" . poporg-dwim)))
+
+(require 'org-sidebar)
+(require 'org-ql)
 
 (require 'org-books)
 (setq org-books-file "~/Librarian/index.org")

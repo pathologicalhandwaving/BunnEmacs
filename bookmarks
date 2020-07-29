@@ -2,7 +2,22 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Agenda"
+(("Log"
+ (filename . "~/OrgDB/Logs/log.org")
+ (front-context-string . "** 2020-07 July\n")
+ (rear-context-string . " daily\n\n\n* 2020\n")
+ (position . 64))
+("Census Log"
+ (filename . "~/OrgDB/Work/Census/2020/log.org")
+ (front-context-string . "#+TITLE: Log\n#+C")
+ (rear-context-string)
+ (position . 1))
+("Hyperfocus"
+ (filename . "~/OrgDB/ADHD/hyperfocus-log.org")
+ (front-context-string)
+ (rear-context-string . "Satisfaction: 4\n")
+ (position . 817))
+("Agenda"
  (filename . "~/OrgDB/Inbox/agenda.org")
  (front-context-string . "#+TITLE: Agenda\n")
  (rear-context-string)
@@ -23,10 +38,10 @@
  (rear-context-string . " CANCELED(c!)\n\n\n")
  (position . 286))
 ("org-capture-last-stored"
- (filename . "~/OrgDB/ADHD/hyperfocus-log.org")
- (front-context-string . "**** [2020-07-27")
- (rear-context-string . "20-07-27 Monday\n")
- (position . 151))
+ (filename . "~/OrgDB/Inbox/todos.org")
+ (front-context-string . "** TODO Setup ch")
+ (rear-context-string . "te brew formula\n")
+ (position . 798))
 ("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")
