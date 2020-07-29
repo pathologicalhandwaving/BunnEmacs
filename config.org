@@ -819,6 +819,9 @@ Package dependencies providing modern APIs for working with lisp structures
 (cheatsheet-add-group 'cheats
                       '(:key "C-x C-h" :description "Show Cheatsheet")
                       '(:key "C-q" :description "Close Cheatsheet"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'windows
                       '(:key "C-x o" :description "Goto other window")
                       '(:key "C-x w" :description "Delete Frame")
@@ -826,6 +829,9 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "C-x 3" :description "New window right")
                       '(:key "C-x 2" :description "New window below")
                       '(:key "C-x 1" :description "Close all but current window"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'buffers
                       '(:key "C-x b" :description "Switch to buffer")
                       '(:key "C-x b named" :description "Create named buffer")
@@ -835,13 +841,22 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "C-c r" :description "Rename file and buffer")
                       '(:key "C-c D" :description "Delete file and buffer")
                       '(:key "C-c i" :description "iMenu"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'neotree
                       '(:key "F8" :description "Neotree toggle"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'bookmarks
                       '(:key "C-x C-b" :description "helm bookmark")
                       '(:key "C-f2" :description "marks toggle")
                       '(:key "f2" :description "marks next")
                       '(:key "S-f2" :description "marks previous"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'moves
                       '(:key "C-f" :description "Forward Character")
                       '(:key "C-b" :description "Back Character")
@@ -858,12 +873,18 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "C-x [" :description "Bottom of Buffer")
                       '(:key "C-x l" :description "Center Screen Here")
                       '(:key "C-c o" :description "Occur"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'transform
                       '(:key "C-c i" :description "ispell word then abbrev")
                       '(:key "C-x C-u" :description "Uppercase")
                       '(:key "C-x C-l" :description "Lowercase")
                       '(:key "C-c M-3" :description "insert section symbol")
                       '(:key "C-c M-4" :description "insert contra symbol"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'files
                       '(:key "C-x C-f" :description "Find File")
                       '(:key "C-x C-s" :description "Save File")
@@ -871,6 +892,9 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "C-x i" :description "Insert File")
                       '(:key "C-c u" :description "View url")
                       '(:key "C-c R" :description "Register"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'edits 
                       '(:key "M-y" :description "Show kill ring")
                       '(:key "C-y" :description "Yank (Paste)")
@@ -879,9 +903,15 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "C-k" :description "Kill line")
                       '(:key "C-_" :description "Undo")
                       '(:key "M-_" :description "Redo"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'git
                       '(:key "C-x C-d" :description "Browse project")
                       '(:key "C-x r p" :description "Projects history"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'pdftools
                       '(:key "h" :description "highlight")
                       '(:key "t" :description "text")
@@ -889,12 +919,18 @@ Package dependencies providing modern APIs for working with lisp structures
                       '(:key "<return>" :description "edit annotation")
                       '(:key "<S-return>" :description "newline")
                       '(:key "C-s" :description "search forward"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'orgmode
                       '(:key "C-c c" :description "Org Capture Menu")
                       '(:key "C-c a" :description "Org Agenda Menu")
                       '(:key "C-c l" :description "Org Store Link")
                       '(:key "C-c $" :description "Archive to file")
                       '(:key "M-r" :description "org-rifle"))
+#+end_src
+
+#+begin_src emacs-lisp
 (cheatsheet-add-group 'utils
                       '(:key "C-c s" :description "Engine Mode Prefix")
                       '(:key "M-x n" :description "Side notes toggle")
@@ -1222,7 +1258,7 @@ Temporarily highlight changes to buffer after pasting
 ** side-notes
 #+begin_src emacs-lisp
 (require 'side-notes)
-(define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
+(global-set-key (kbd "M-s n") #'side-notes-toggle-notes)
 #+end_src
 
 
