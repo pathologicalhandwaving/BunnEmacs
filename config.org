@@ -1078,14 +1078,14 @@ Enable global minor mode
 (use-package bm
   :bind (("<C-f2>" . bm-toggle)
          ("<f2>" . bm-next)
-	 ("<S-f2>" . bm-previous)))
+	       ("<S-f2>" . bm-previous)))
 #+END_SRC
 
 *** Helm-bookmarks
 #+begin_src emacs-lisp
 (with-eval-after-load 'helm
 (require 'helm-bookmark)
-(global-set-key (kbd "C-x C-b") 'helm-bookmark))
+(global-set-key (kbd "C-x C-b") 'helm-bookmark)
 #+end_src
 
 *** eBuku
