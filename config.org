@@ -1472,23 +1472,6 @@ Notes file
 (require 'org-ql)
 #+end_src
 
-Display agenda sidebar
-#+begin_src emacs-lisp
-(defun bun-agenda-sidebar ()
-  "Display agenda sidebar"
-  (interactive)
-  (org-sidebar
-   :sidebars (make-org-sidebar
-              :name "Agenda Sidebar"
-              :description "agenda sidebar"
-              :items (org-ql (org-agenda-files)
-                       (and (not (done))
-                            (or (deadline auto)
-                                (scheduled :on today)))
-                       :action element-with-markers))))
-
-#+end_src
-
 
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
