@@ -17,8 +17,6 @@
 (setq frame-resize-pixelwise t)
 (bun-set-initial-frame)
 
-
-
 (setq inhibit-startup-message t)
 
 (setq-default initial-scratch-message "")
@@ -78,171 +76,6 @@
 (use-package s :demand t)        ; strings
 (use-package a :demand t)        ; association lists
 (use-package anaphora :demand t) ; enables temp variables
-
-(defvar bunny-home-dir (expand-file-name "~/"))
-(defvar bunny-emacs-dir (concat bunny-home-dir ".emacs.d/"))
-(defvar bunny-librarian (concat bunny-home-dir "Librarian/"))
-(defvar bunny-pictures-dir (concat bunny-home-dir "Pictures/"))
-(defvar bunny-movies-dir (concat bunny-home-dir "Movies/"))
-(defvar bunny-music-dir (concat bunny-home-dir "Music/"))
-(defvar bunny-progz-dir (concat bunny-home-dir "Progz/"))
-(defvar bunny-repos-dir (concat bunny-home-dir "Repos/"))
-(defvar bunny-sites-dir (concat bunny-home-dir "Sites/"))
-(defvar bunny-torrents-dir (concat bunny-home-dir "Torrents/"))
-(defvar bunny-org-dir (concat bunny-home-dir "OrgDB/"))
-
-(defvar bunny-adhd-dir (concat bunny-org-dir "ADHD/"))
-(defvar bunny-archive-dir (concat bunny-org-dir "Archive/"))
-(defvar bunny-code-dir (concat bunny-org-dir "Code/"))
-(defvar bunny-dmp-dir (concat bunny-org-dir "DMP/"))
-(defvar bunny-invest-dir (concat bunny-org-dir "Investigations/"))
-(defvar bunny-inbox-dir (concat bunny-org-dir "Inbox/"))
-(defvar bunny-lldb-dir (concat bunny-org-dir "LLDB/"))
-(defvar bunny-lists-dir (concat bunny-org-dir "Lists/"))
-(defvar bunny-logs-dir (concat bunny-org-dir "Logs/"))
-(defvar bunny-notes-dir (concat bunny-org-dir "Notes/"))
-(defvar bunny-paperless-dir (concat bunny-org-dir "Paperless/"))
-(defvar bunny-projects-dir (concat bunny-org-dir "Projects/"))
-(defvar bunny-tmp-dir (concat bunny-org-dir "TMP/"))
-(defvar bunny-templates-dir (concat bunny-org-dir "Templates/"))
-(defvar bunny-work-dir (concat bunny-org-dir "Work/"))
-
-(defvar bunny-articles-dir (concat bunny-librarian "Articles/"))
-(defvar bunny-bib-dir (concat bunny-librarian "Bibliography/"))
-(defvar bunny-data-dir (concat bunny-librarian "Data/"))
-(defvar bunny-dictionary-dir (concat bunny-librarian "Dictionary/"))
-(defvar bunny-legis-dir (concat bunny-librarian "Legis/"))
-(defvar bunny-pdfs-dir (concat bunny-librarian "PDFs/"))
-(defvar bunny-quotes-dir (concat bunny-librarian "Quotes/"))
-(defvar bunny-text-dir (concat bunny-librarian "Text/"))
-(defvar bunny-webarchives-dir (concat bunny-librarian "WebArchives/"))
-(defvar bunny-epubs-dir (concat bunny-librarian "ePubs/"))
-
-(defvar bunny-films-dir (concat bunny-movies-dir "Films/"))
-(defvar bunny-lectures-dir (concat bunny-movies-dir "Lectures/"))
-(defvar bunny-tv-dir (concat bunny-movies-dir "TV/"))
-(defvar bunny-talks-dir (concat bunny-movies-dir "Talks/"))
-
-(defvar bunny-audiobooks-dir (concat bunny-music-dir "AudioBooks/"))
-(defvar bunny-songs-dir (concat bunny-music-dir "Music/"))
-(defvar bunny-sounds-dir (concat bunny-music-dir "Sounds/"))
-
-(defvar bunny-content-dir (concat bunny-sites-dir "Content/"))
-(defvar bunny-devl-dir (concat bunny-sites-dir "Devl/"))
-(defvar bunny-drafts-dir (concat bunny-sites-dir "Drafts/"))
-(defvar bunny-production-dir (concat bunny-sites-dir "Production/"))
-
-(defun bunny-org-file-name (file-name)
-"Create file-name relative to bunny-org-dir"
-(concat bunny-org-dir file-name))
-
-(defun bunny-librarian-file-name (file-name)
-"Create file-name relative to bunny-librarian directory"
-(concat bunny-librarian file-name))
-
-(defvar bunny-notes-file
-(bunny-org-file-name "Notes/notes.org")
-"Notes catcher file-name")
-
-(defvar bunny-inbox-file
-(bunny-org-file-name "Inbox/inbox.org")
-"Inbox catcher file-name")
-
-(defvar bunny-agenda-file
-(bunny-org-file-name "Inbox/agenda.org")
-"Agenda catcher file-name")
-
-(defvar bunny-ideas-file
-(bunny-org-file-name "Inbox/ideas.org")
-"Ideas catcher file-name")
-
-(defvar bunny-todos-file
-(bunny-org-file-name "Inbox/todos.org")
-"Todos catcher file-name")
-
-(defvar bunny-recipes-file
-(bunny-org-file-name "Inbox/recipes.org")
-"Recipes file-name")
-
-(defvar bunny-remember-file
-(bunny-org-file-name "Inbox/remember.org")
-"remember file-name")
-
-(defvar bunny-routine-file
-(bunny-org-file-name "Inbox/routine.org")
-"routine file-name")
-
-(defvar bunny-holidays-file
-(bunny-org-file-name "Inbox/holidays.org")
-"Holidays file-name")
-
-(defvar bunny-log-file
-(bunny-org-file-name "Logs/log.org")
-"Log catcher file-name")
-
-(defvar bunny-invest-file
-(bunny-org-file-name "Investigations/investigations.org")
-"Investigations list file-name")
-
-(defvar bunny-lldb-file
-(bunny-org-file-name "LLDB/lldb.org")
-"LLDB file-name")
-
-(defvar bunny-lists-index-file
-(bunny-org-file-name "Lists/index.org")
-"Lists index file-name")
-
-(defvar bunny-project-list-file
-(bunny-org-file-name "Projects/projects.org")
-"Projects list file-name")
-
-(defvar bunny-templates-index-file
-(bunny-org-file-name "Templates/index.org")
-"Templates index file-name")
-
-(defvar bunny-observations-file
-(bunny-org-file-name "Logs/observations.org")
-"observations file-name")
-
-(defvar bunny-pdfs-index-file
-(bunny-librarian-file-name "PDFs/index.org")
-"PDFs Index file-name")
-
-(defvar bunny-articles-index-file
-(bunny-librarian-file-name "Articles/index.org")
-"Articles Index file-name")
-
-(defvar bunny-data-index-file
-(bunny-librarian-file-name "Data/index.org")
-"Data Index file-name")
-
-(defvar bunny-dictionary-index-file
-(bunny-librarian-file-name "Dictionary/index.org")
-"Dictionary Index file-name")
-
-(defvar bunny-legis-index-file
-(bunny-librarian-file-name "Legis/index.org")
-"Legis Index file-name")
-
-(defvar bunny-quotes-index-file
-(bunny-librarian-file-name "Quotes/index.org")
-"Quotes Index file-name")
-
-(defvar bunny-text-index-file
-(bunny-librarian-file-name "Text/index.org")
-"Text Index file-name")
-
-(defvar bunny-epubs-index-file
-(bunny-librarian-file-name "ePubs/index.org")
-"ePubs Index file-name")
-
-(defvar bunny-elfeed-org-files
-(bunny-librarian-file-name "feeds.org")
-"feeds.org file-name")
-
-(defvar bunny-adhd-log-file 
-(bunny-org-file-name "ADHD/log.org")
-"ADHD log file-name")
 
 (use-package golden-ratio
   :ensure t
@@ -447,6 +280,7 @@
 (cheatsheet-add-group 'cheats
                       '(:key "C-x C-h" :description "Show Cheatsheet")
                       '(:key "C-q" :description "Close Cheatsheet"))
+
 (cheatsheet-add-group 'windows
                       '(:key "C-x o" :description "Goto other window")
                       '(:key "C-x w" :description "Delete Frame")
@@ -454,6 +288,7 @@
                       '(:key "C-x 3" :description "New window right")
                       '(:key "C-x 2" :description "New window below")
                       '(:key "C-x 1" :description "Close all but current window"))
+
 (cheatsheet-add-group 'buffers
                       '(:key "C-x b" :description "Switch to buffer")
                       '(:key "C-x b named" :description "Create named buffer")
@@ -463,13 +298,16 @@
                       '(:key "C-c r" :description "Rename file and buffer")
                       '(:key "C-c D" :description "Delete file and buffer")
                       '(:key "C-c i" :description "iMenu"))
+
 (cheatsheet-add-group 'neotree
                       '(:key "F8" :description "Neotree toggle"))
+
 (cheatsheet-add-group 'bookmarks
                       '(:key "C-x C-b" :description "helm bookmark")
                       '(:key "C-f2" :description "marks toggle")
                       '(:key "f2" :description "marks next")
                       '(:key "S-f2" :description "marks previous"))
+
 (cheatsheet-add-group 'moves
                       '(:key "C-f" :description "Forward Character")
                       '(:key "C-b" :description "Back Character")
@@ -486,12 +324,14 @@
                       '(:key "C-x [" :description "Bottom of Buffer")
                       '(:key "C-x l" :description "Center Screen Here")
                       '(:key "C-c o" :description "Occur"))
+
 (cheatsheet-add-group 'transform
                       '(:key "C-c i" :description "ispell word then abbrev")
                       '(:key "C-x C-u" :description "Uppercase")
                       '(:key "C-x C-l" :description "Lowercase")
                       '(:key "C-c M-3" :description "insert section symbol")
                       '(:key "C-c M-4" :description "insert contra symbol"))
+
 (cheatsheet-add-group 'files
                       '(:key "C-x C-f" :description "Find File")
                       '(:key "C-x C-s" :description "Save File")
@@ -499,6 +339,7 @@
                       '(:key "C-x i" :description "Insert File")
                       '(:key "C-c u" :description "View url")
                       '(:key "C-c R" :description "Register"))
+
 (cheatsheet-add-group 'edits 
                       '(:key "M-y" :description "Show kill ring")
                       '(:key "C-y" :description "Yank (Paste)")
@@ -507,9 +348,11 @@
                       '(:key "C-k" :description "Kill line")
                       '(:key "C-_" :description "Undo")
                       '(:key "M-_" :description "Redo"))
+
 (cheatsheet-add-group 'git
                       '(:key "C-x C-d" :description "Browse project")
                       '(:key "C-x r p" :description "Projects history"))
+
 (cheatsheet-add-group 'pdftools
                       '(:key "h" :description "highlight")
                       '(:key "t" :description "text")
@@ -517,12 +360,14 @@
                       '(:key "<return>" :description "edit annotation")
                       '(:key "<S-return>" :description "newline")
                       '(:key "C-s" :description "search forward"))
+
 (cheatsheet-add-group 'orgmode
                       '(:key "C-c c" :description "Org Capture Menu")
                       '(:key "C-c a" :description "Org Agenda Menu")
                       '(:key "C-c l" :description "Org Store Link")
                       '(:key "C-c $" :description "Archive to file")
                       '(:key "M-r" :description "org-rifle"))
+
 (cheatsheet-add-group 'utils
                       '(:key "C-c s" :description "Engine Mode Prefix")
                       '(:key "M-x n" :description "Side notes toggle")
@@ -747,7 +592,7 @@
 (require 'outline-toc)
 
 (require 'side-notes)
-(define-key (current-global-map) (kbd "M-s n") #'side-notes-toggle-notes)
+(global-set-key (kbd "M-s n") #'side-notes-toggle-notes)
 
 (use-package css-mode
   :ensure nil
@@ -814,7 +659,7 @@
 (setq org-directory "~/OrgDB")
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 (require 'org-indent)
 (setq org-startup-indented t)
@@ -822,16 +667,6 @@
 (setq org-startup-truncated nil)
 
 (setq org-startup-folded t)
-
-(setq org-hide-emphasis-markers t)
-
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-(use-package org-bullets
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
 
@@ -870,6 +705,14 @@
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
 
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (setq org-list-demote-modify-bullet '(("-" . "+")
                                       ("+" . "*")
 				      ("*" . "-")))
@@ -878,7 +721,7 @@
 
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 0)
+(setq org-edit-src-content-indentation 2)
 (setq org-src-preserve-indentation t)
 
 (setq org-fontify-whole-headline t)
@@ -908,11 +751,11 @@
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
 
-(setq org-directory "/Users/emd/OrgDB/")
+(setq org-directory '("/Users/emd/OrgDB"))
 
-(setq org-agenda-files (list org-directory))
+(setq org-agenda-files '("~/OrgDB/Inbox/todos.org" "~/OrgDB/Inbox/agenda.org" "~/OrgDB/Inbox/inbox.org"))
 
-(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
+(setq org-default-notes-file '("~/OrgDB/Notes/notes.org"))
 
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 (setq org-outline-path-complete-in-steps nil)
@@ -924,14 +767,17 @@
 (require 'org-sidebar)
 (require 'org-ql)
 
+(require 'org-download)
+(setq-default org-download-image-dir "~/OrgDB/Notes")
+
 (require 'org-books)
-(setq org-books-file "~/Librarian/index.org")
+(setq org-books-file '("~/Librarian/index.org"))
 
 (require 'org-ref)
 (setq reftex-default-bibliography '("~/Librarian/Bibliography/default.bib"))
-(setq org-ref-bibliography-notes "~/Librarian/Annotations/annotations.org")
-(setq org-ref-default-bibliography "~/Librarian/Bibliography/default.bib")
-(setq org-ref-pdf-directory "~/Librarian/PDFs")
+(setq org-ref-bibliography-notes '("~/Librarian/Annotations/annotations.org"))
+(setq org-ref-default-bibliography '("~/Librarian/Bibliography/default.bib"))
+(setq org-ref-pdf-directory '("~/Librarian/PDFs"))
 
 (use-package org-noter
   :ensure t

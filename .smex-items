@@ -1,18 +1,18 @@
 
 ;; ----- smex-history -----
 (
- check-parens
+ org-insert-item
+ org-toggle-inline-images
+ org-download-yank
+ quelpa
+ org-insert-link
  package-install
- org-agenda-file-to-front
- bookmark-jump
- org-agenda-list
  recover-this-file
- customize
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 78)
+ (package-install . 81)
  (load-theme . 80)
  (check-parens . 2)
  (org-mode . 3)
@@ -21,8 +21,8 @@
  (org-set-property . 6)
  (org-dashboard-display . 6)
  (org-chef-insert-recipe . 1)
- (recover-this-file . 4)
- (org-insert-link . 1)
+ (recover-this-file . 5)
+ (org-insert-link . 2)
  (org-toggle-latex-fragment . 1)
  (all-the-icons-install-fonts . 1)
  (neotree-change-root . 1)
@@ -37,8 +37,8 @@
  (undo . 11)
  (undo-redo . 1)
  (undo-only . 25)
- (package-refresh-contents . 2)
- (quelpa . 4)
+ (package-refresh-contents . 3)
+ (quelpa . 5)
  (alarm-clock-set . 1)
  (fireplace . 4)
  (fireplace-toggle-smoke . 2)
@@ -82,4 +82,8 @@
  (package-show-package-list . 1)
  (org-sidebar . 1)
  (org-sidebar-toggle . 1)
+ (ediff-revision . 2)
+ (org-download-yank . 1)
+ (org-toggle-inline-images . 3)
+ (org-insert-item . 1)
 )
