@@ -1333,6 +1333,11 @@ Notes file
 (require 'org-ql)
 #+end_src
 
+**** org-download
+#+begin_src emacs-lisp
+(require 'org-download)
+(setq-default org-download-image-dir "~/OrgDB/Notes")
+#+end_src
 
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
