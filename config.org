@@ -990,10 +990,11 @@ Temporarily highlight changes to buffer after pasting
 #+end_src
 
 ** reddit
-#+begin_src emacs-lisp
-(custom-set-variables '(gnus-select-method (quote (nnreddit ""))))
-#+end_src
 
+#+begin_src emacs-lisp
+(require 'm4rd)
+(add-hook 'md4rd-mode-hook 'md4rd-indent-all-the-lines)
+#+end_src
 * Languages
   
 ** BibTeX
