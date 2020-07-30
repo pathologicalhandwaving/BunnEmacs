@@ -992,7 +992,7 @@ Temporarily highlight changes to buffer after pasting
 ** reddit
 
 #+begin_src emacs-lisp
-(require 'mdss4rd)
+(require 'md4rd)
 (add-hook 'md4rd-mode-hook 'md4rd-indent-all-the-lines)
 #+end_src
 
