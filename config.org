@@ -989,6 +989,10 @@ Temporarily highlight changes to buffer after pasting
 (global-set-key (kbd "M-s n") #'side-notes-toggle-notes)
 #+end_src
 
+** reddit
+#+begin_src emacs-lisp
+(custom-set-variables '(gnus-select-method (quote (nnreddit ""))))
+#+end_src
 
 * Languages
   
