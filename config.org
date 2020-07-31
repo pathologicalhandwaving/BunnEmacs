@@ -441,6 +441,7 @@ Package dependencies providing modern APIs for working with lisp structures
 (require 'org)
 (require 'seq)
 (require 'company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 #+end_src
 
 #+begin_src emacs-lisp
