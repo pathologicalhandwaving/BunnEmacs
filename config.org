@@ -440,6 +440,7 @@ Package dependencies providing modern APIs for working with lisp structures
 (require 'map)
 (require 'org)
 (require 'seq)
+(require 'company-mode)
 #+end_src
 
 #+begin_src emacs-lisp
