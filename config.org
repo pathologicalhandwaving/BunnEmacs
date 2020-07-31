@@ -802,9 +802,6 @@ Enable global minor mode
 (add-to-list 'git-gutter:update-hooks 'focus-in-hook)
 #+end_src
 
-#+RESULTS:
-: git-gutter-fringe
-
 ** git-autocommit-mode
 #+begin_src emacs-lisp
 (require 'git-auto-commit-mode)
@@ -952,8 +949,7 @@ Temporarily highlight changes to buffer after pasting
               '("       5/Coffee"
                 "       30/Shower"
                 "       25/Email"
-                "       27/Pom: Work + 7/Pom: Rest"))
-  :bind (("C-c t" . helm-chronos-add-timer)))
+                "       27/Pom: Work + 7/Pom: Rest")))
 #+end_src
 
 ** Alarm Clock
@@ -1117,14 +1113,15 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+end_src
 
-  #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-  #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+#+END_SRC
+
 **** Indented
-   #+begin_src emacs-lisp
-   (require 'org-indent)
-   (setq org-startup-indented t)
-   #+end_src
+#+begin_src emacs-lisp
+(require 'org-indent)
+(setq org-startup-indented t)
+#+end_src
 
 **** Truncated
 #+begin_src emacs-lisp
