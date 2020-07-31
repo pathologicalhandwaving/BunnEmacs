@@ -38,10 +38,10 @@
  (rear-context-string . " CANCELED(c!)\n\n\n")
  (position . 286))
 ("org-capture-last-stored"
- (filename . "~/OrgDB/Inbox/todos.org")
- (front-context-string . "** TODO Setup ch")
- (rear-context-string . "te brew formula\n")
- (position . 798))
+ (filename . "~/OrgDB/Work/Census/2020/log.org")
+ (front-context-string . "**** [2020-07-31")
+ (rear-context-string . "90 Stat. 2465.)\n")
+ (position . 17757))
 ("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")

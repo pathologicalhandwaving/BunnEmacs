@@ -1,19 +1,19 @@
 
 ;; ----- smex-history -----
 (
- org-insert-item
- org-toggle-inline-images
- org-download-yank
- quelpa
- org-insert-link
- package-install
+ load-theme
  recover-this-file
+ bookmark-jump
+ org-lint
+ package-reinstall
+ wttrin
+ md4rd
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 81)
- (load-theme . 80)
+ (package-install . 84)
+ (load-theme . 85)
  (check-parens . 2)
  (org-mode . 3)
  (ebuku . 5)
@@ -21,7 +21,7 @@
  (org-set-property . 6)
  (org-dashboard-display . 6)
  (org-chef-insert-recipe . 1)
- (recover-this-file . 5)
+ (recover-this-file . 6)
  (org-insert-link . 2)
  (org-toggle-latex-fragment . 1)
  (all-the-icons-install-fonts . 1)
@@ -37,8 +37,8 @@
  (undo . 11)
  (undo-redo . 1)
  (undo-only . 25)
- (package-refresh-contents . 3)
- (quelpa . 5)
+ (package-refresh-contents . 4)
+ (quelpa . 6)
  (alarm-clock-set . 1)
  (fireplace . 4)
  (fireplace-toggle-smoke . 2)
@@ -52,7 +52,7 @@
  (org-todo-list . 1)
  (bookmark-set . 5)
  (helm-github-stars-fetch . 1)
- (bookmark-jump . 24)
+ (bookmark-jump . 33)
  (ebuku-mode . 1)
  (ebuku-show-all . 1)
  (neotree-hidden-file-toggle . 1)
@@ -60,7 +60,7 @@
  (package-install-file . 1)
  (hypothesis-to-archive . 3)
  (hypothesis-to-org . 5)
- (package-reinstall . 1)
+ (package-reinstall . 2)
  (org-noter . 3)
  (pdf-view-midnight-minor-mode . 1)
  (pdf-view-fit-width-to-window . 4)
@@ -86,4 +86,8 @@
  (org-download-yank . 1)
  (org-toggle-inline-images . 3)
  (org-insert-item . 1)
+ (md4rd-login . 1)
+ (md4rd . 1)
+ (wttrin . 2)
+ (org-lint . 3)
 )

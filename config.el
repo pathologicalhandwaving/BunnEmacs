@@ -105,7 +105,7 @@
   (setq doom-neotree-enable-type-colors t)
   (doom-themes-org-config))
 
-(load-theme 'doom-outrun-electric t)
+(load-theme 'doom-nord t)
 
 (use-package neotree
   :config
@@ -276,6 +276,13 @@
 (use-package define-word)
 
 (use-package google-translate)
+
+(use-package google-this
+  :config
+  (google-this-mode 1))
+
+(require 'cheatsheet)
+(global-set-key (kbd "C-x C-h") 'cheatsheet-show)
 
 (cheatsheet-add-group 'cheats
                       '(:key "C-x C-h" :description "Show Cheatsheet")
@@ -576,8 +583,7 @@
               '("       5/Coffee"
                 "       30/Shower"
                 "       25/Email"
-                "       27/Pom: Work + 7/Pom: Rest"))
-  :bind (("C-c t" . helm-chronos-add-timer)))
+                "       27/Pom: Work + 7/Pom: Rest")))
 
 (require 'alarm-clock)
 
@@ -593,6 +599,9 @@
 
 (require 'side-notes)
 (global-set-key (kbd "M-s n") #'side-notes-toggle-notes)
+
+(require 'md4rd)
+(add-hook 'md4rd-mode-hook 'md4rd-indent-all-the-lines)
 
 (use-package css-mode
   :ensure nil
