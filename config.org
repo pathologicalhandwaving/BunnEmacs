@@ -485,7 +485,7 @@ Package dependencies providing modern APIs for working with lisp structures
                 template))
 #+end_src
 
-#+begin_src 
+#+begin_src emacs-lisp
 (defun company-org-block--expand (insertion)
   "Replace INSERTION with actual source block."
   (delete-region (point) (- (point) (1+ ;; Include "<" in length.
