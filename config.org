@@ -241,7 +241,7 @@ Package dependencies providing modern APIs for working with lisp structures
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(load-theme 'doom-outrun-electric t)
+(load-theme 'doom-nord t)
 #+END_SRC
 
 ** Neotree
