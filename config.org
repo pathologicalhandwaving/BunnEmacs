@@ -1437,6 +1437,17 @@ Notes file
 (setq-default org-download-image-dir "~/OrgDB/Notes")
 #+end_src
 
+**** org-crypt
+#+begin_src emacs-lisp
+(require 'epa-file)
+(epa-file-enable)
+#+end_src
+
+#+begin_src emacs-lisp
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+#+end_src
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
  
