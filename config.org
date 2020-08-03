@@ -38,7 +38,11 @@ loaded, if existing.
 
 
 ** Load =.secrets.el=
-
+To encrypt a whole file using gnupg make the first line in the file:
+#+begin_verse
+# -\*- mode:org; epa-file-encrypt-to: ("me@mydomain.com") -*-
+#+end_verse
+without the "\" before the first star
 
 #+BEGIN_SRC emacs-lisp
 (let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
@@ -1438,16 +1442,7 @@ Notes file
 #+end_src
 
 **** org-crypt
-#+begin_src emacs-lisp
-(require 'epa-file)
-(epa-file-enable)
-#+end_src
 
-#+begin_src emacs-lisp
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-#+end_src
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
  
