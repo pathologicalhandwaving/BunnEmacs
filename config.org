@@ -1304,7 +1304,10 @@ Recipes are stored in =~/OrgDB/Chef=
  #+END_SRC
 
 *** Layout
-
+**** Margins
+#+begin_src emacs-lisp
+(setq-default left-margin-width 1 right-margin-width 1)
+#+end_src
 **** List Markers
 #+begin_src emacs-lisp
 (font-lock-add-keywords 'org-mode
