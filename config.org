@@ -1382,6 +1382,25 @@ HTML Export
 (setq org-fontify-done-headline t)
  #+END_SRC
 
+**** org-done face
+#+begin_src emacs-lisp
+(set-face-attribute 'org-done nil
+                    :foreground "#6C7B8B"
+                    :strike-through t)
+(set-face-attribute 'org-headline-done nil
+                    :foreground "#6C7B8B"
+                    :strike-through t)
+#+end_src
+
+#+begin_src emacs-lisp
+(defun my/modify-org-done-face ()
+  (set-face-attribute 'org-done nil :strike-through t)
+  (set-face-attribute 'org-headline-done nil
+                      :strike-through t
+                      :foreground "#6c7b8b"))
+(eval-after-load "org"
+  (add-hook 'org-add-hook 'my/modify-org-done-face))
+#+end_src
 **** fontify quote and verse blocks
  #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
