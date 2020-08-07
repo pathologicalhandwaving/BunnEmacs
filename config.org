@@ -1355,14 +1355,15 @@ HTML Export
  #+END_SRC
 
 **** org emphasis markers
+
 #+begin_src emacs-lisp
-(setq org-emphasis-alist
-  '(("*" bold :foreground "red" :weight bold )
-    ("/" italic :foreground "cyan" :slant italic)
-    ("_" underline :foreground "yellow" :weight bold (:underline t :color "yellow"))
-    ("=" org-verbatim "<code>" "</code>" :foreground "green" verbatim)
-    ("~" org-code "<code>" "</code>" :foreground "orange" verbatim)
-    ("+" strikethrough :foreground "blue" (:strike-through t :color "blue"))))
+(add-to-list 'org-emphasis-alist
+             '("*" (:foreground "firebrick" :weight bold)
+               "+" (:foreground "SlateGray4" :weight regular (:strike-through t))
+               "_" (:foreground "DeepPink2" :weight regular (:underline t))
+               "=" (:foreground "MediumSeaGreen" :weight regular (org-code verbatim))
+               "~" (:foreground "DarkOrange" :weight regular (org-verbatim verbatim))
+               "/" (:background "gray26" :weight regular :slant italic)))
 #+end_src
 
 **** org-src block fontify
