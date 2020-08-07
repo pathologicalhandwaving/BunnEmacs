@@ -1358,12 +1358,12 @@ HTML Export
 
 #+begin_src emacs-lisp
 (add-to-list 'org-emphasis-alist
-             '("*" (:foreground "firebrick" :weight bold)
-               "+" (:foreground "SlateGray4" :weight regular (:strike-through t))
-               "_" (:foreground "DeepPink2" :weight regular (:underline t))
-               "=" (:foreground "MediumSeaGreen" :weight regular (org-code verbatim))
-               "~" (:foreground "DarkOrange" :weight regular (org-verbatim verbatim))
-               "/" (:background "gray26" :weight regular :slant italic)))
+             '("*" (:foreground "#BF616A" :weight bold)
+               "+" (:foreground "#81A1C1" :weight regular (:strike-through t))
+               "_" (:foreground "#D08770" :weight regular (:underline t))
+               "=" (:foreground "#A3BE8C" :weight regular (org-code verbatim))
+               "~" (:foreground "#EBCB8B" :weight regular (org-verbatim verbatim))
+               "/" (:foreground "#B48EAD" :weight regular :slant italic)))
 #+end_src
 
 **** org-src block fontify
