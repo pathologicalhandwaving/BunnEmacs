@@ -1354,6 +1354,17 @@ HTML Export
 (setq org-hide-emphasis-markers t)
  #+END_SRC
 
+**** org emphasis markers
+#+begin_src emacs-lisp
+(setq org-emphasis-alist
+  '(("*" bold :foreground "red" :weight bold )
+    ("/" italic :foreground "cyan" :slant italic)
+    ("_" underline :foreground "orange" :weight bold (:underline t :color "orange"))
+    ("=" org-verbatim "<code>" "</code>" :foreground "green" verbatim)
+    ("~" org-code "<code>" "</code>" :foreground "blue" verbatim)
+    ("+" strikethrough :foreground "MidnightBlue" (:strike-through t :color "MidnightBlue"))))
+#+end_src
+
 **** org-src block fontify
  #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
