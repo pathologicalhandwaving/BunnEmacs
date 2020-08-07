@@ -1359,10 +1359,10 @@ HTML Export
 (setq org-emphasis-alist
   '(("*" bold :foreground "red" :weight bold )
     ("/" italic :foreground "cyan" :slant italic)
-    ("_" underline :foreground "orange" :weight bold (:underline t :color "orange"))
+    ("_" underline :foreground "yellow" :weight bold (:underline t :color "yellow"))
     ("=" org-verbatim "<code>" "</code>" :foreground "green" verbatim)
-    ("~" org-code "<code>" "</code>" :foreground "blue" verbatim)
-    ("+" strikethrough :foreground "MidnightBlue" (:strike-through t :color "MidnightBlue"))))
+    ("~" org-code "<code>" "</code>" :foreground "orange" verbatim)
+    ("+" strikethrough :foreground "blue" (:strike-through t :color "blue"))))
 #+end_src
 
 **** org-src block fontify
