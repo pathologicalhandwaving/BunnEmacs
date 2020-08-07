@@ -904,7 +904,10 @@ Enable global minor mode
 ** git-autocommit-mode
 #+begin_src emacs-lisp
 (require 'git-auto-commit-mode)
-(setq-default gac-automatically-push-p t)
+(setq gac-automatically-push-p 't)
+(setq gac-automatically-add-new-files-p 't)
+(setq gac-debounce-interval 120)
+
 #+end_src
 
 ** org-attach-git
