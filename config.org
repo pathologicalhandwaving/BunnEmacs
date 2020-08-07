@@ -1232,6 +1232,7 @@ HTML mode is defined in =sgml-mode.el=
 **** inline images
 #+begin_src emacs-lisp
 (setq org-startup-with-inline-images t)
+(setq org-image-actual-width '(320))
 (add-hook
  'org-babel-after-execute-hook
  (lambda ()
@@ -1386,22 +1387,34 @@ HTML Export
 **** org-done face
 #+begin_src emacs-lisp
 (set-face-attribute 'org-done nil
-                    :foreground "#6C7B8B"
-                    :strike-through t)
+                    :foreground "#B48EAD"
+                    :strike-through t
+                    :weight light
+                    :slant italic)
 (set-face-attribute 'org-headline-done nil
-                    :foreground "#6C7B8B"
-                    :strike-through t)
+                    :foreground "#B48EAD"
+                    :strike-through t
+                    :weight light
+                    :slant italic)
 #+end_src
 
 #+begin_src emacs-lisp
 (defun my/modify-org-done-face ()
-  (set-face-attribute 'org-done nil :strike-through t)
+  (set-face-attribute 'org-done nil 
+                      :foreground "B48EAD" 
+                      :strike-through t 
+                      :weight light 
+                      :slant italic)
   (set-face-attribute 'org-headline-done nil
                       :strike-through t
-                      :foreground "#6c7b8b"))
+                      :foreground "#B48EAD"
+                      :strike-through t
+                      :weight light
+                      :slant italic))
 (eval-after-load "org"
   (add-hook 'org-add-hook 'my/modify-org-done-face))
 #+end_src
+
 **** fontify quote and verse blocks
  #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
@@ -1415,6 +1428,12 @@ HTML Export
 **** Checkbox Stats
 #+begin_src emacs-lisp
 (setq org-checkbox-hierarchical-statistics nil)
+#+end_src
+
+**** Links
+Don't hexify URL when creating a link.
+#+begin_src emacs-lisp
+(setq org-url-hexify-p nil)
 #+end_src
 
 *** Keywords
