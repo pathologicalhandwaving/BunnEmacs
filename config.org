@@ -1227,8 +1227,6 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-startup-folded t)
 #+end_src
 
-*** Bullets
-
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
 #+begin_src emacs-lisp
