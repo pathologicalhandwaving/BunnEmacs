@@ -907,7 +907,6 @@ Enable global minor mode
 (setq gac-automatically-push-p 't)
 (setq gac-automatically-add-new-files-p 't)
 (setq gac-debounce-interval 120)
-
 #+end_src
 
 ** org-attach-git
