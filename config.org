@@ -1398,7 +1398,7 @@ Recipes are stored in =~/OrgDB/Chef=
   (set-face-attribute 'org-headline-done nil
                       :strike-through "#B48EAD"
                       :foreground "#B48EAD"
-                      :slant italic)
+                      :slant italic))
 (eval-after-load "org"
   (add-hook 'org-add-hook 'my/modify-org-done-face))
 #+end_src
