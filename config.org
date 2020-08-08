@@ -1655,7 +1655,13 @@ Example of habit logging
     parent-taks)))
 #+end_src
 
-**** 
+**** =bun-clock-in=
+#+begin_src emacs-lisp
+(defun bun-clock-in (arg)
+ "Start continuous clocking and set the default task to the selected task.
+  If no task is selected set the Organization task as the default task."
+  (interactive "p")
+#+end_src
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
 
