@@ -1329,6 +1329,7 @@ Recipes are stored in =~/OrgDB/Chef=
 
 HTML Export
 #+begin_src emacs-lisp
+(defvar org-export-filter-plain-text-functions)
 (defun my-html-mark-tag (text backend info)
   "Transcode :blah: into <mark>blah</mark> in body text."
   (when (org-export-derived-backend-p backend 'html)
