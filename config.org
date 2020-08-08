@@ -1678,6 +1678,15 @@ Example of habit logging
           (bun-clock-in-organization-task-as-default)))))
 #+end_src
 
+**** =bun-clock-out=
+#+begin_src emacs-lisp
+(defun bun-clock-out ()
+  (interactive)
+  (setq bun-keep-clock-running nil)
+  (when (org-clock-is-active)
+    (org-clock-out))
+  (org-agenda-remove-restriction-lock))
+#+end_src
 
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
