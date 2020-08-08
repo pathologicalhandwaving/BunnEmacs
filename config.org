@@ -1773,6 +1773,20 @@ Example of habit logging
     (org-clock-in nil))))
 #+end_src
 
+**** Discrete clocking intervals
+#+begin_src emacs-lisp
+(setq org-time-stamp-rounding-minutes (quote (1 1)))
+#+end_src
+
+**** One minute clocking gaps
+#+begin_src emacs-lisp
+(setq org-agenda-clock-consistency-checks
+  (quote (:max-duration "04:00"
+          :min-duration 0
+          :max-gap 0
+          :gap-ok-around ("04:00"))))
+#+end_src
+
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
 
