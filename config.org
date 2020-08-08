@@ -1317,6 +1317,14 @@ Recipes are stored in =~/OrgDB/Chef=
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
 
+
+***** Modify demote plain list bullets
+#+BEGIN_SRC emacs-lisp
+(setq org-list-demote-modify-bullet '(("-" . "+")
+                                      ("+" . "*")
+			 	        ("*" . "-")))
+#+END_SRC
+
 ***** Fontify *DONE* Plain Lists
 When a checklist box =[X]= then it will be grayed out
 #+begin_src emacs-lisp
@@ -1331,19 +1339,17 @@ When a checklist box =[X]= then it will be grayed out
 (setq org-cycle-include-plain-lists t)
 #+end_src
 
-**** =org-bullets=
+***** Checkbox Stats
+#+begin_src emacs-lisp
+(setq org-checkbox-hierarchical-statistics nil)
+#+end_src
+
+**** Bullets
 #+begin_src emacs-lisp
 (use-package org-bullets
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
-
-**** Modify demote bullets
-#+BEGIN_SRC emacs-lisp
-(setq org-list-demote-modify-bullet '(("-" . "+")
-                                      ("+" . "*")
-				      ("*" . "-")))
-#+END_SRC
 
 **** Hide emphasis markers
  #+BEGIN_SRC emacs-lisp
@@ -1391,10 +1397,6 @@ When a checklist box =[X]= then it will be grayed out
 (setq org-list-description-max-indent 5)
  #+END_SRC
 
-**** Checkbox Stats
-#+begin_src emacs-lisp
-(setq org-checkbox-hierarchical-statistics nil)
-#+end_src
 
 **** Links
 Don't hexify URL when creating a link.
