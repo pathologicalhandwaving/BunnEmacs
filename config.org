@@ -1372,10 +1372,6 @@ Recipes are stored in =~/OrgDB/Chef=
 (setq org-fontify-whole-headline t)
  #+END_SRC
 
- #+BEGIN_SRC emacs-lisp
-(setq org-fontify-done-headline t)
- #+END_SRC
-
 **** org-done face
 
 #+begin_src emacs-lisp
