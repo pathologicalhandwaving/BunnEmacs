@@ -1334,7 +1334,7 @@ HTML Export
   (when (org-export-derived-backend-p backend 'html)
     (let ((text (replace-regexp-in-string "[^\\w]\\(:\\)[^\n\t\r]+\\(:\\)[^\\w]" "<mark>"  text nil nil 1 nil)))
       (replace-regexp-in-string "[^\\w]\\(<mark>\\)[^\n\t\r]+\\(:\\)[^\\w]" "</mark>" text nil nil 2 nil))))
-(add-to-list 'org-export-filter-plain-text-fucntions 'my-html-mark-tag)
+(add-to-list 'org-export-filter-plain-text-functions 'my-html-mark-tag)
 #+end_src
 **** org-bullets
 #+begin_src emacs-lisp
