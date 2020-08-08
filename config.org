@@ -1204,17 +1204,17 @@ HTML mode is defined in =sgml-mode.el=
 
 ** OrgMode                                                         :orgmode:
 *** Startup
-
 **** Org Directory
 #+begin_src emacs-lisp
 (setq org-directory "~/OrgDB")
 #+end_src
 
+**** Default Notes File
 #+begin_src emacs-lisp
 (setq org-default-notes-file "~/OrgDB/Notes/notes.org")
 #+end_src
 
-
+**** =auto-mode-alist=
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 #+END_SRC
@@ -1246,9 +1246,9 @@ HTML mode is defined in =sgml-mode.el=
      (org-redisplay-inline-images))))
 #+end_src
 
-
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
+
 #+begin_src emacs-lisp
 (setq org-archive-location "~/OrgDB/Archive/agenda.org_archive::datetree/* Completed Tasks")
 #+end_src
@@ -1292,6 +1292,11 @@ Archives are stored in =~/OrgDB/Archive=
 *** Links
 #+begin_src emacs-lisp
 (setq org-descriptive-links t)
+#+end_src
+
+Don't hexify URL when creating a link.
+#+begin_src emacs-lisp
+(setq org-url-hexify-p nil)
 #+end_src
 
 *** Refile
@@ -1417,12 +1422,6 @@ When a checklist box =[X]= then it will be grayed out
 #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
 #+END_SRC
-
-**** Links
-Don't hexify URL when creating a link.
-#+begin_src emacs-lisp
-(setq org-url-hexify-p nil)
-#+end_src
 
 *** Keywords
 #+begin_src emacs-lisp
