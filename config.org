@@ -1445,23 +1445,64 @@ When a checklist box =[X]= then it will be grayed out
         (sequence "MOVE" "|" "MOVED")))
 #+end_src
 
+*** Properties
+
+**** Project and Task Estimates
+Times Used:
+- 5 min
+- 15 min
+- 25 min
+- 35 min
+- 45 min
+- 90 min
+- 2 hours
+- 3 hours
+- 5 hours
+- 7 hours
+- 9 hours
+Stored in column mode in global property =EFFORT_ALL= 
+#+begin_src emacs-lisp
+(setq org-global-properties (quote (("EFFORT_ALL" . "00:05 00:15 00:25 00:35 00:45 00:90 02:00 03:00 05:00 07:00 09:00 00:00")
+                                    ("STYLE_ALL" . "habit"))))
+#+end_src
+
+To create an estimate start column mode with =C-c C-x C-c= and collapse tree with =c=.
+This shows a table overlay on top of the headlines with task name, effort estimate and clocked time in columns.
+
+Place cursor in =Effort= column for a task to set the estimated effort value with keys 1 - 9.
+Exit column mode with =q=
+
+Entering =C-c C-x i RET= inserts a clock table report with your estimated values and any clocked time to date.
+
+Quick summaary of clocked time in current org buffer =C-c C-x C-d=
+
 *** Tags
 **** Tag Face
 #+begin_src emacs-lisp
 (setq org-tag-faces '((:weight regular :height 70)))
 #+end_src
 
+**** Tag searches ignore tasks with scheduled and deadline dates
+#+begin_src emacs-lisp
+(setq org-agenda-tags-todo-honor-ignore-options t)
+#+end_src
+
 *** Agenda
 Agenda is stored in =~/OrgDB/Inbox=
+
+**** Agenda log mode items to display closed and state changes by default
+#+begin_src emacs-lisp
+(setq org-agenda-log-mode-items '(closed state))
+#+end_src
 
 **** Warn if deadline within next 7 days
 #+BEGIN_SRC emacs-lisp
 (setq org-deadline-warning-days 7)
 #+END_SRC
 
-**** Show all tasks due in next 7 days
+**** Show Only Today
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-span 7)
+(setq org-agenda-span 'day)
 #+END_SRC
 
 **** Dont show tasks as scheduled if they are categorized with a deadline
@@ -1516,6 +1557,105 @@ Example of habit logging
 
 *** Timestamps
 
+*** Clock
+
+**** Resume clocking task when Emacs is restarted
+#+begin_src emacs-lisp
+(org-clock-persistence-insinuate)
+#+end_src
+
+**** Show lot of clocking history
+#+begin_src emacs-lisp
+(setq org-clock-history-length 23)
+#+end_src
+
+**** Resume clocking task on clock-in if the clock is open
+#+begin_src emacs-lisp
+(setq org-clock-in-resume t)
+#+end_src
+
+**** Change tasks to NEXT when clocking in
+#+begin_src emacs-lisp
+(setq org-clock-in-switch-to-state 'bun-clock-into-next)
+#+end_src
+***** TODO =bun-clock-into-next= function
+
+**** Separate drawers for clocking and logs
+#+begin_src emacs-lisp
+(setq org-drawers '(("PROPERTIES" "LOGBOOK")))
+#+end_src
+
+**** Save clock data and state changes and notes to LOGBOOK drawer 
+#+begin_src emacs-lisp
+(setq org-clock-into-drawer t)
+#+end_src
+
+**** Clock out when task moves to DONE state
+#+begin_src emacs-lisp
+(setq org-clock-out-when-done t)
+#+end_src
+
+**** Remove zero time clocks
+#+begin_src emacs-lisp
+(setq org-clock-out-remove-zero-time-clocks t)
+#+end_src
+
+**** Save running clock and all clock history when exiting Emacs, load on startup
+#+begin_src emacs-lisp
+(setq org-clock-persist t)
+#+end_src
+
+**** Do Not prompt to resume active clock
+#+begin_src emacs-lisp
+(setq org-clock-persist-query-resume nil)
+#+end_src
+
+**** Enable auto clock resolution for finding open clocks
+#+begin_src emacs-lisp
+(setq org-clock-auto-clock-resolution '(when-no-clock-is-running))
+#+end_src
+
+**** Include current clocking task in clock reports
+#+begin_src emacs-lisp
+(setq org-clock-report-include-clocking-task t)
+#+end_src
+
+**** Clock report summarize time spent
+#+begin_src emacs-lisp
+(setq org-agenda-clockreport-parameter-plist '((:link t :maxlevel 5 :fileskip0 t :compact t :narrow 80)))
+#+end_src
+
+**** =bun-clock-into-next=
+#+begin_src emacs-lisp
+(defun bun-clock-into-next (kw)
+ "Switch a task from TODO to NEXT when clocking in.
+  Skips capture tasks, projects, and subprojects.
+  Switch project and subprojects from NEXT back to TODO."
+  (when (not (and (boundp 'org-capture-mode) org-capture-mode))
+    (cond
+     ((and (member (org-get-todo-state) (list "TODO"))
+           (bun-is-task-p))
+       "NEXT")
+     ((and (member (org-get-todo-state) (list "NEXT"))
+           (bun-is-project-p))
+       "TODO"))))
+#+end_src
+
+**** =bun-find-project-task=
+#+begin_src emacs-lisp
+(defun bun-find-project-task ()
+ "Move point to the parent (project) task if any."
+ (save-restriction
+  (widen)
+  (let ((parent-task (save-excursion (org-back-to-heading 'invisible-ok) (point))))
+    (while (org-up-heading-safe)
+      (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+        (setq parent-task (point))))
+    (goto-char parent-task)
+    parent-taks)))
+#+end_src
+
+**** 
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
 
@@ -1547,6 +1687,7 @@ Notes file
 #+begin_src emacs-lisp
 (setq org-id-method (quote uuidgen))
 #+end_src
+
 *** Utilities
 **** PopOrg
  #+BEGIN_SRC emacs-lisp
