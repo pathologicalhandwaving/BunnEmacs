@@ -1379,10 +1379,10 @@ Recipes are stored in =~/OrgDB/Chef=
 **** org-done face
 #+begin_src emacs-lisp
 (set-face-attribute 'org-done t 
-                    (:inherit org-headline-done
-                     :foreground "#B48EAD"
-                     :strike-through "#B48EAD"
-                     :slant italic))
+                    :inherit org-headline-done
+                    :foreground "#B48EAD"
+                    :strike-through "#B48EAD"
+                    :slant italic)
 (set-face-attribute 'org-headline-done t 
                     (:foreground "#B48EAD"
                      :strike-through "#B48EAD"
