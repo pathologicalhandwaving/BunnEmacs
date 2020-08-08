@@ -1378,6 +1378,24 @@ Recipes are stored in =~/OrgDB/Chef=
 
 **** org-done face
 
+#+begin_src emacs-lisp
+(defun bun-modify-org-done-face ()
+  (setq org-fontify-done-headline t)
+  (set-face-attribute 'org-done nil
+                      :strike-through "#D8DEE9"
+                      :foreground "#D8DEE9"
+                      :slant italic
+                      :weight light)
+  (set-face-attribute 'org-headline-done nil
+                      :strike-through "#D8DEE9"
+                      :foreground "#D8DEE9"
+                      :slant italic
+                      :weight light))
+(add-hook 'org-mode-hook 'bun-modify-org-done-face)
+(setq org-fontify-done-headline t)
+(set-face-attribute 'org-done nil :strike-through t)
+(set-face-attribute 'org-headline-done nil :strike-through t)
+#+end_src
 
 **** fontify quote and verse blocks
  #+BEGIN_SRC emacs-lisp
