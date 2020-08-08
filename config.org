@@ -1399,6 +1399,11 @@ Don't hexify URL when creating a link.
         (sequence "MOVE" "|" "MOVED")))
 #+end_src
 
+*** Tags
+#+begin_src emacs-lisp
+(setq org-tag-faces '((:weight regular :height 70)))
+#+end_src
+
 *** Agenda
 Agenda is stored in =~/OrgDB/Inbox=
 
