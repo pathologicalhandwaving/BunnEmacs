@@ -1661,7 +1661,24 @@ Example of habit logging
  "Start continuous clocking and set the default task to the selected task.
   If no task is selected set the Organization task as the default task."
   (interactive "p")
+  (setq bun-keep-clock-running t)
+  (if (equal major-mode 'org-agenda-mode)
+      ;; we are in the agenda
+      (let* ((marker (org-get-at-bol 'org-hd-marker))
+             (tags (org-with-point-at marker (org-get-tags-at))))
+        (if (and (eq arg 4) tags)
+            (org-agenda-clock-in '(16))
+          (bun-clock-in-organization-task-as-default)))
+      ;; we are NOT in agenda
+      (save-restriction
+        (widen)
+        ;; find tags on current task
+        (if (and (equal major-mode 'org-mode) (not (org-before-first-heading-p)) (eq arg 4))
+            (org-clock-in '(16))
+          (bun-clock-in-organization-task-as-default)))))
 #+end_src
+
+
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
 
