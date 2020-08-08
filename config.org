@@ -1204,32 +1204,38 @@ HTML mode is defined in =sgml-mode.el=
 
 ** OrgMode                                                         :orgmode:
 *** Startup
+
+**** Org Directory
 #+begin_src emacs-lisp
 (setq org-directory "~/OrgDB")
-(setq org-default-notes-file (concat org-directory "/Notes/notes.org"))
 #+end_src
+
+#+begin_src emacs-lisp
+(setq org-default-notes-file "~/OrgDB/Notes/notes.org")
+#+end_src
+
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 #+END_SRC
 
-**** Indented
+**** Startup Indented
 #+begin_src emacs-lisp
 (require 'org-indent)
 (setq org-startup-indented t)
 #+end_src
 
-**** Truncated
+**** Startup Truncated
 #+begin_src emacs-lisp
 (setq org-startup-truncated nil)
 #+end_src
 
-**** Folded
+**** Startup Folded
 #+begin_src emacs-lisp
 (setq org-startup-folded t)
 #+end_src
 
-**** inline images
+**** Startup with Inline Images
 #+begin_src emacs-lisp
 (setq org-startup-with-inline-images t)
 (setq org-image-actual-width '(320))
@@ -1239,6 +1245,7 @@ HTML mode is defined in =sgml-mode.el=
    (when org-inline-image-overlays
      (org-redisplay-inline-images))))
 #+end_src
+
 
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
@@ -1317,7 +1324,6 @@ Recipes are stored in =~/OrgDB/Chef=
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
 
-
 ***** Modify demote plain list bullets
 #+BEGIN_SRC emacs-lisp
 (setq org-list-demote-modify-bullet '(("-" . "+")
@@ -1344,19 +1350,33 @@ When a checklist box =[X]= then it will be grayed out
 (setq org-checkbox-hierarchical-statistics nil)
 #+end_src
 
-**** Bullets
+***** Maximize description list indent
+ #+BEGIN_SRC emacs-lisp
+(setq org-list-description-max-indent 5)
+ #+END_SRC
+
+**** Headlines 
+***** Bullets
 #+begin_src emacs-lisp
 (use-package org-bullets
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
 
-**** Hide emphasis markers
+***** Fontify headlines
+ #+BEGIN_SRC emacs-lisp
+(setq org-fontify-whole-headline t)
+ #+END_SRC
+
+***** TODO Done Headings
+
+**** Emphasis Markers
+***** Hide emphasis markers
  #+BEGIN_SRC emacs-lisp
 (setq org-hide-emphasis-markers t)
  #+END_SRC
 
-**** Org emphasis markers
+***** Org emphasis markers
 
 #+begin_src emacs-lisp
 (add-to-list 'org-emphasis-alist
@@ -1368,35 +1388,35 @@ When a checklist box =[X]= then it will be grayed out
                "/" (:foreground "#88C0D0" :slant italic)))
 #+end_src
 
-**** Fontify emphasized text
+***** Fontify emphasized text
 #+begin_src emacs-lisp
 (setq org-fontify-emphasized-text t)
 #+end_src
 
-**** org-src block fontify
- #+BEGIN_SRC emacs-lisp
+**** Source Blocks
+***** Show source block syntax highlighting
+#+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
+#+END_SRC
+
+***** Indentation in Source Blocks
+#+BEGIN_SRC emacs-lisp
 (setq org-src-tab-acts-natively t)
-(setq org-edit-src-content-indentation 2)
-(setq org-src-preserve-indentation t)
- #+END_SRC
+#+END_SRC
 
-**** fontify headlines
- #+BEGIN_SRC emacs-lisp
-(setq org-fontify-whole-headline t)
- #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq org-edit-src-content-indentation 0)
+#+END_SRC
 
-**** TODO org-done face
-**** fontify quote and verse blocks
- #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
+(setq org-src-preserve-indentation nil)
+#+END_SRC
+
+**** Quote and Verse Blocks
+***** Fontify quote and verse blocks
+#+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
- #+END_SRC
-
-**** Maximize description list indent
- #+BEGIN_SRC emacs-lisp
-(setq org-list-description-max-indent 5)
- #+END_SRC
-
+#+END_SRC
 
 **** Links
 Don't hexify URL when creating a link.
@@ -1415,6 +1435,7 @@ Don't hexify URL when creating a link.
 #+end_src
 
 *** Tags
+**** Tag Face
 #+begin_src emacs-lisp
 (setq org-tag-faces '((:weight regular :height 70)))
 #+end_src
@@ -1427,7 +1448,7 @@ Agenda is stored in =~/OrgDB/Inbox=
 (setq org-deadline-warning-days 7)
 #+END_SRC
 
-**** Show all tasks due in next two weeks
+**** Show all tasks due in next 7 days
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-span 7)
 #+END_SRC
@@ -1437,7 +1458,7 @@ Agenda is stored in =~/OrgDB/Inbox=
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 #+END_SRC
 
-**** Priority 
+**** Priority
  #+BEGIN_SRC emacs-lisp
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
