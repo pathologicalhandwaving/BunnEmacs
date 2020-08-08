@@ -1309,15 +1309,15 @@ Recipes are stored in =~/OrgDB/Chef=
 #+begin_src emacs-lisp
 (setq-default left-margin-width 1 right-margin-width 1)
 #+end_src
-**** List Markers
-Plain lists have bullet shaped bullets
+**** Plain Lists
+***** Plain lists have bullet shaped bullets
 #+begin_src emacs-lisp
 (font-lock-add-keywords 'org-mode
                         '(("^ *\\([-]\\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
 
-Fontify *DONE* Plain Lists
+***** Fontify *DONE* Plain Lists
 When a checklist box =[X]= then it will be grayed out
 #+begin_src emacs-lisp
 (font-lock-add-keywords
@@ -1325,6 +1325,12 @@ When a checklist box =[X]= then it will be grayed out
  '(("^[ \t]*\\(?:[-+*]\\|[0-9]+[).]\\)[ \t]+\\(\\(?:\\[@\\(?:start:\\)?[0-9]+\\][ \t]*\\)?\\[\\(?:X\\|\\([0-9]+\\)/\\2\\)\\][^\n]*\n\\)" 1 'org-headline-done prepend))
  'append)
 #+end_src
+
+***** Cycle will include plain lists
+#+begin_src emacs-lisp
+(setq org-cycle-include-plain-lists t)
+#+end_src
+
 **** =org-bullets=
 #+begin_src emacs-lisp
 (use-package org-bullets
