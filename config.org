@@ -1341,11 +1341,11 @@ Recipes are stored in =~/OrgDB/Chef=
 #+begin_src emacs-lisp
 (add-to-list 'org-emphasis-alist
              '("*" (:foreground "#BF616A" :weight bold)
-               "+" (:foreground "#ECEFF4" :weight regular (:strike-through t))
-               "_" (:foreground "#D08770" :weight regular (:underline t))
-               "=" (:foreground "#A3BE8C" :weight regular (org-code verbatim))
-               "~" (:foreground "#B48EAD" :weight regular (org-verbatim verbatim))
-               "/" (:foreground "#88C0D0" :weight regular :slant italic)))
+               "+" (:foreground "#ECEFF4" (:strike-through t))
+               "_" (:foreground "#D08770" (:underline t) :weight bold)
+               "=" (:foreground "#A3BE8C" (org-code verbatim))
+               "~" (:foreground "#B48EAD" (org-verbatim verbatim))
+               "/" (:foreground "#88C0D0" :slant italic)))
 #+end_src
 
 #+begin_src emacs-lisp
