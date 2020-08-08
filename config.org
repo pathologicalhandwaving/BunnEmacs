@@ -1688,6 +1688,59 @@ Example of habit logging
   (org-agenda-remove-restriction-lock))
 #+end_src
 
+**** =bun-clock-in-default-task=
+#+begin_src emacs-lisp
+(defun bun-clock-in-default-task ()
+  (save-excursion
+    (org-with-point-at org-clock-default-task
+      (org-clock-in))))
+#+end_src
+
+**** =bun-clock-in-parent-task=
+#+begin_src emacs-lisp
+(defun bun-clock-in-parent-task ()
+ "Move point to the parent (project) task if any and clock in"
+  (let ((parent-task))
+    (save-excursion
+      (save-restriction
+        (widen)
+        (while (and (not parent-task) (org-up-heading-safe))
+          (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+            (setq parent-task (point))))
+        (if parent-task
+          (org-with-point-at parent-task
+            (org-clock-in))
+          (when bun-keep-clock-running
+            (bun-clock-in-default-task)))))))
+#+end_src
+
+**** TODO ID
+#+begin_src emacs-lisp
+(defvar bun-organization-task-id "")
+#+end_src
+
+**** =bun-clock-in-organization-task-as-default=
+#+begin_src emacs-lisp
+(defun bun-clock-in-organization-task-as-default ()
+  (interactive)
+  (org-with-point-at (org-id-find bun-organization-task-id 'marker)
+    (org-clock-in '(16))))
+#+end_src
+
+**** =bun-clock-out-maybe=
+#+begin_src emacs-lisp
+(defun bun-clock-out-maybe ()
+  (when (and bun-keep-clock-running
+             (not org-clock-clocking-in)
+             (marker-buffer org-clock-default-task)
+             (not org-clock-resolving-clocks-due-to-idleness))
+     (bun-clock-in-parent-taks)))
+#+end_src
+
+#+begin_src emacs-lisp
+(add-hook 'org-clock-out-hook 'bun-clock-out-maybe 'append)
+#+end_src
+
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
 
