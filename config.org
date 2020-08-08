@@ -1362,7 +1362,7 @@ When a checklist box =[X]= then it will be grayed out
                "/" (:foreground "#88C0D0" :slant italic)))
 #+end_src
 
-Fontify emphasized text
+**** Fontify emphasized text
 #+begin_src emacs-lisp
 (setq org-fontify-emphasized-text t)
 #+end_src
@@ -1381,7 +1381,6 @@ Fontify emphasized text
  #+END_SRC
 
 **** TODO org-done face
-
 **** fontify quote and verse blocks
  #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
@@ -1447,20 +1446,17 @@ Agenda is stored in =~/OrgDB/Inbox=
 Logs are stored in =~/OrgDB/Logs=
 
 *** Org Files
-
 default org directory
 #+BEGIN_SRC emacs-lisp
 (setq org-directory '("/Users/emd/OrgDB"))
 #+END_SRC
 
 Agenda file
-
 #+BEGIN_SRC emacs-lisp
 (setq org-agenda-files '("~/OrgDB/Inbox/todos.org" "~/OrgDB/Inbox/agenda.org" "~/OrgDB/Inbox/inbox.org"))
 #+END_SRC
 
 Notes file
-
 #+BEGIN_SRC emacs-lisp
 (setq org-default-notes-file '("~/OrgDB/Notes/notes.org"))
 #+END_SRC
@@ -1491,7 +1487,6 @@ Notes file
 (setq-default org-download-image-dir "~/OrgDB/Notes")
 #+end_src
 
-**** org-crypt
 
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
