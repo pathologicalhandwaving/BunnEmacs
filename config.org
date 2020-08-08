@@ -1316,17 +1316,6 @@ Recipes are stored in =~/OrgDB/Chef=
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
 
-**** highlight markup
-
-#+begin_src emacs-lisp
-(defun org-add-my-extra-markup ()
-  "Add highlight emphasis."
-  (add-to-list 'org-font-lock-extra-keywords
-               '("[^\\w]\\(:\\[^\n\r\t]+:\\)[^\\w]"
-                 (1 '(face highlight invisible nil)))))
-(add-hook 'org-font-lock-set-keywords-hook #'org-add-my-extra-markup)
-#+end_src
-
 
 **** org-bullets
 #+begin_src emacs-lisp
