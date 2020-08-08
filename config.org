@@ -1322,6 +1322,11 @@ Recipes are stored in =~/OrgDB/Chef=
 (setq-default left-margin-width 1 right-margin-width 1)
 #+end_src
 **** Plain Lists
+***** Allow Alphabetical Lists
+#+begin_src emacs-lisp
+(setq org-alphabetical-lists t)
+#+end_src
+
 ***** Plain lists have bullet shaped bullets
 #+begin_src emacs-lisp
 (font-lock-add-keywords 'org-mode
