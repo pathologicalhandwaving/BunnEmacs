@@ -1754,6 +1754,25 @@ Example of habit logging
    (org-clock-in nil)))
 #+end_src
 
+**** =bun-clock-in-last-task=
+#+begin_src emacs-lisp
+(defun bun-clock-in-last-task (arg)
+ "Clock in the interrupted task if there is one. Skip the default task and get the next one. A prefix arg forces clock in of the default task."
+  (interactive "p")
+  (let ((clock-in-to-task
+        (cond
+         ((eq arg 4) org-clock-default-task)
+         ((and (org-clock-is-active)
+               (equal org-clock-default-task (cadr org-clock-history)))
+          (cadr org-clock-history))
+         ((org-clock-is-active) (cadr org-clock-history))
+         ((equal org-clock-default-task (car org-clock-history)) (cadr org-clock-history))
+         (t (car org-clock-history)))))
+  (widen)
+  (org-with-point-at clock-in-to-task
+    (org-clock-in nil))))
+#+end_src
+
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
 
