@@ -1347,6 +1347,11 @@ Recipes are stored in =~/OrgDB/Chef=
                "~" (:foreground "#B48EAD" :weight regular (org-verbatim verbatim))
                "/" (:foreground "#88C0D0" :weight regular :slant italic)))
 #+end_src
+
+#+begin_src emacs-lisp
+(setq org-fontify-emphasized-text t)
+#+end_src
+
 **** org-src block fontify
  #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
