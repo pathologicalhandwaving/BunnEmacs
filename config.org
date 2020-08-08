@@ -1381,12 +1381,10 @@ Recipes are stored in =~/OrgDB/Chef=
 (set-face-attribute 'org-done nil
                     :foreground "#B48EAD"
                     :strike-through t
-                    :weight normal
                     :slant italic)
 (set-face-attribute 'org-headline-done nil
                     :foreground "#B48EAD"
                     :strike-through t
-                    :weight normal
                     :slant italic)
 #+end_src
 
@@ -1395,13 +1393,11 @@ Recipes are stored in =~/OrgDB/Chef=
   (set-face-attribute 'org-done nil 
                       :foreground "B48EAD" 
                       :strike-through t 
-                      :weight normal
                       :slant italic)
   (set-face-attribute 'org-headline-done nil
                       :strike-through t
                       :foreground "#B48EAD"
                       :strike-through t
-                      :weight normal
                       :slant italic))
 (eval-after-load "org"
   (add-hook 'org-add-hook 'my/modify-org-done-face))
