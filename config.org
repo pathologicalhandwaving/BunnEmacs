@@ -1246,6 +1246,12 @@ HTML mode is defined in =sgml-mode.el=
      (org-redisplay-inline-images))))
 #+end_src
 
+*** IDs
+
+**** Delete IDs when cloning
+#+begin_src emacs-lisp
+(setq org-clone-delete-id t)
+#+end_src
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
 
