@@ -1336,11 +1336,11 @@ Recipes are stored in =~/OrgDB/Chef=
 #+end_src
 
 **** Modify demote bullets
- #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (setq org-list-demote-modify-bullet '(("-" . "+")
                                       ("+" . "*")
 				      ("*" . "-")))
- #+END_SRC
+#+END_SRC
 
 **** hide emphasis markers
  #+BEGIN_SRC emacs-lisp
@@ -1352,13 +1352,12 @@ Recipes are stored in =~/OrgDB/Chef=
 #+begin_src emacs-lisp
 (add-to-list 'org-emphasis-alist
              '("*" (:foreground "#BF616A" :weight bold)
-               "+" (:foreground "#81A1C1" :weight regular (:strike-through t))
+               "+" (:foreground "#ECEFF4" :weight regular (:strike-through t))
                "_" (:foreground "#D08770" :weight regular (:underline t))
                "=" (:foreground "#A3BE8C" :weight regular (org-code verbatim))
-               "~" (:foreground "#EBCB8B" :weight regular (org-verbatim verbatim))
-               "/" (:foreground "#B48EAD" :weight regular :slant italic)))
+               "~" (:foreground "#B48EAD" :weight regular (org-verbatim verbatim))
+               "/" (:background "#88C0D0" :weight regular :slant italic)))
 #+end_src
-
 **** org-src block fontify
  #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
@@ -1374,24 +1373,6 @@ Recipes are stored in =~/OrgDB/Chef=
 
 **** org-done face
 
-#+begin_src emacs-lisp
-(defun bun-modify-org-done-face ()
-  (setq org-fontify-done-headline t)
-  (set-face-attribute 'org-done nil
-                      :strike-through "#D8DEE9"
-                      :foreground "#D8DEE9"
-                      :slant italic
-                      :weight light)
-  (set-face-attribute 'org-headline-done nil
-                      :strike-through "#D8DEE9"
-                      :foreground "#D8DEE9"
-                      :slant italic
-                      :weight light))
-(add-hook 'org-mode-hook 'bun-modify-org-done-face)
-(setq org-fontify-done-headline t)
-(set-face-attribute 'org-done nil :strike-through t)
-(set-face-attribute 'org-headline-done nil :strike-through t)
-#+end_src
 
 **** fontify quote and verse blocks
  #+BEGIN_SRC emacs-lisp
