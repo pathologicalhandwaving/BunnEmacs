@@ -1252,6 +1252,7 @@ HTML mode is defined in =sgml-mode.el=
 #+begin_src emacs-lisp
 (setq org-clone-delete-id t)
 #+end_src
+
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
 
@@ -1468,12 +1469,52 @@ Agenda is stored in =~/OrgDB/Inbox=
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 #+END_SRC
 
-**** Priority
+*** Priorities
  #+BEGIN_SRC emacs-lisp
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?A)
  #+END_SRC
+
+*** Habits
+Habit is regular task with special property setting it as repeated
+#+begin_example
+ * TODO Take vitamins
+   - SCHEDULED: <2020-08-08 .+7d/30d>
+   :PROPERTIES:
+   :STYLE: habit
+   :END:
+#+end_example
+
+#+begin_src emacs-lisp
+(require 'org-habits)
+#+end_src
+
+**** Habit Column
+#+begin_src emacs-lisp
+(setq org-habit-graph-column 50)
+#+end_src
+
+**** Redisplay habits in agenda each day
+#+begin_src emacs-lisp
+(run-at-time "06:00" 86400 '(lambda () (setq org-habit-show-habits t)))
+#+end_src
+
+**** Logging Habits
+Logging only logs changes to DONE state
+Allows cancelling habit without recording a timestamp as this messes up the habit graph.
+Cancelling a habit to remove it from agenda because it is not possible today should not mark the habit as done.
+
+Example of habit logging
+#+begin_example
+ * Habits
+   :PROPERTIES:
+   :LOGGING: DONE
+   :ARCHIVE: %s_archive::* Habits
+   :END:
+#+end_example
+
+*** Timestamps
 
 *** Logs
 Logs are stored in =~/OrgDB/Logs=
@@ -1501,6 +1542,11 @@ Notes file
 (setq org-refile-use-outline-path '(file))
 #+end_src
 
+*** Attachments
+
+#+begin_src emacs-lisp
+(setq org-id-method (quote uuidgen))
+#+end_src
 *** Utilities
 **** PopOrg
  #+BEGIN_SRC emacs-lisp
