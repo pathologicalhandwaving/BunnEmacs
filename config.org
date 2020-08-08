@@ -1714,7 +1714,7 @@ Example of habit logging
             (bun-clock-in-default-task)))))))
 #+end_src
 
-**** TODO ID
+**** TODO =bun-organization-task-id=
 #+begin_src emacs-lisp
 (defvar bun-organization-task-id "")
 #+end_src
@@ -1739,6 +1739,19 @@ Example of habit logging
 
 #+begin_src emacs-lisp
 (add-hook 'org-clock-out-hook 'bun-clock-out-maybe 'append)
+#+end_src
+
+**** Clock in using ID
+#+begin_src emacs-lisp
+(require 'org-id)
+#+end_src
+
+**** =bun-clock-in-task-by-id=
+#+begin_src emacs-lisp
+(defun bun-clock-in-task-by-id (id)
+ "Clock in task by ID"
+ (org-with-point-at (org-id-find id 'marker)
+   (org-clock-in nil)))
 #+end_src
 
 *** Logs
