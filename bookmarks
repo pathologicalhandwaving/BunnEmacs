@@ -2,7 +2,17 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Log"
+(("Mobile"
+ (filename . "~/OrgDB/Inbox/mobile.org")
+ (front-context-string . " TODO Put away l")
+ (rear-context-string . "guage tutorial\n*")
+ (position . 177))
+("Notes TMP"
+ (filename . "~/OrgDB/Notes/notes.org")
+ (front-context-string . "#+TITLE: Unsorte")
+ (rear-context-string)
+ (position . 1))
+("Log"
  (filename . "~/OrgDB/Logs/log.org")
  (front-context-string . "** 2020-07 July\n")
  (rear-context-string . " daily\n\n\n* 2020\n")
@@ -39,9 +49,9 @@
  (position . 286))
 ("org-capture-last-stored"
  (filename . "~/OrgDB/Work/Census/2020/log.org")
- (front-context-string . "**** [2020-07-31")
- (rear-context-string . "90 Stat. 2465.)\n")
- (position . 17757))
+ (front-context-string . "**** [2020-08-10")
+ (rear-context-string . " Ms Parks again\n")
+ (position . 24798))
 ("Config"
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "#+TITLE: BunnEma")

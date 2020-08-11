@@ -1,22 +1,22 @@
 
 ;; ----- smex-history -----
 (
- load-theme
- recover-this-file
+ org-agenda-file-to-front
+ bookmark-set
  bookmark-jump
+ load-theme
  org-lint
- package-reinstall
- wttrin
- md4rd
+ eval-buffer
+ undo-only
 )
 
 ;; ----- smex-data -----
 (
- (package-install . 84)
- (load-theme . 85)
- (check-parens . 2)
- (org-mode . 3)
- (ebuku . 5)
+ (package-install . 88)
+ (load-theme . 96)
+ (check-parens . 3)
+ (org-mode . 4)
+ (ebuku . 6)
  (package-delete . 5)
  (org-set-property . 6)
  (org-dashboard-display . 6)
@@ -29,14 +29,14 @@
  (neotree-dir . 1)
  (neotree-refresh . 2)
  (neotree-enter . 1)
- (neotree-find . 1)
+ (neotree-find . 6)
  (doc-view-toggle-display . 1)
  (pdf-tools-enable-minor-modes . 4)
  (neotree-toggle . 3)
  (rfc-mode . 1)
  (undo . 11)
  (undo-redo . 1)
- (undo-only . 25)
+ (undo-only . 69)
  (package-refresh-contents . 4)
  (quelpa . 6)
  (alarm-clock-set . 1)
@@ -48,11 +48,11 @@
  (fireplace-up . 1)
  (org-agenda . 1)
  (org-agenda-list . 3)
- (org-agenda-file-to-front . 13)
+ (org-agenda-file-to-front . 15)
  (org-todo-list . 1)
- (bookmark-set . 5)
+ (bookmark-set . 7)
  (helm-github-stars-fetch . 1)
- (bookmark-jump . 33)
+ (bookmark-jump . 65)
  (ebuku-mode . 1)
  (ebuku-show-all . 1)
  (neotree-hidden-file-toggle . 1)
@@ -89,5 +89,24 @@
  (md4rd-login . 1)
  (md4rd . 1)
  (wttrin . 2)
- (org-lint . 3)
+ (org-lint . 6)
+ (org-refile . 5)
+ (windmove-left . 2)
+ (load-file . 1)
+ (eval-buffer . 22)
+ (emacs-lisp-compilation-mode . 1)
+ (toggle-read-only . 1)
+ (emacs-lisp-mode . 1)
+ (multiply-by-seven . 2)
+ (org-reload . 1)
+ (epa-encrypt-file . 6)
+ (load-library . 2)
+ (epa-import-keys . 1)
+ (setenv . 1)
+ (clean-buffer-list . 1)
+ (xdb . 1)
+ (isearch-occur . 1)
+ (search-forward . 1)
+ (search-backward . 1)
+ (crux-downcase-region . 1)
 )

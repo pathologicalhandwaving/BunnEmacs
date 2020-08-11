@@ -904,9 +904,7 @@ Enable global minor mode
 ** git-autocommit-mode
 #+begin_src emacs-lisp
 (require 'git-auto-commit-mode)
-(setq gac-automatically-push-p 't)
-(setq gac-automatically-add-new-files-p 't)
-(setq gac-debounce-interval 120)
+(setq-default gac-automatically-push-p t)
 #+end_src
 
 ** org-attach-git
@@ -1229,16 +1227,7 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-startup-folded t)
 #+end_src
 
-**** inline images
-#+begin_src emacs-lisp
-(setq org-startup-with-inline-images t)
-(setq org-image-actual-width '(320))
-(add-hook
- 'org-babel-after-execute-hook
- (lambda ()
-   (when org-inline-image-overlays
-     (org-redisplay-inline-images))))
-#+end_src
+*** Bullets
 
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
@@ -1305,18 +1294,13 @@ Recipes are stored in =~/OrgDB/Chef=
  #+END_SRC
 
 *** Layout
-**** Margins
-#+begin_src emacs-lisp
-(setq-default left-margin-width 1 right-margin-width 1)
-#+end_src
+
 **** List Markers
 #+begin_src emacs-lisp
 (font-lock-add-keywords 'org-mode
                         '(("^ *\\([-]\\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
-
-**** highlight markup
 
 **** org-bullets
 #+begin_src emacs-lisp
@@ -1337,18 +1321,6 @@ Recipes are stored in =~/OrgDB/Chef=
 (setq org-hide-emphasis-markers t)
  #+END_SRC
 
-**** org emphasis markers
-
-#+begin_src emacs-lisp
-(add-to-list 'org-emphasis-alist
-             '("*" (:foreground "#BF616A" :weight bold)
-               "+" (:foreground "#81A1C1" :weight regular (:strike-through t))
-               "_" (:foreground "#D08770" :weight regular (:underline t))
-               "=" (:foreground "#A3BE8C" :weight regular (org-code verbatim))
-               "~" (:foreground "#EBCB8B" :weight regular (org-verbatim verbatim))
-               "/" (:foreground "#B48EAD" :weight regular :slant italic)))
-#+end_src
-
 **** org-src block fontify
  #+BEGIN_SRC emacs-lisp
 (setq org-src-fontify-natively t)
@@ -1366,37 +1338,6 @@ Recipes are stored in =~/OrgDB/Chef=
 (setq org-fontify-done-headline t)
  #+END_SRC
 
-**** org-done face
-#+begin_src emacs-lisp
-(set-face-attribute 'org-done nil
-                    :foreground "#B48EAD"
-                    :strike-through t
-                    :weight light
-                    :slant italic)
-(set-face-attribute 'org-headline-done nil
-                    :foreground "#B48EAD"
-                    :strike-through t
-                    :weight light
-                    :slant italic)
-#+end_src
-
-#+begin_src emacs-lisp
-(defun my/modify-org-done-face ()
-  (set-face-attribute 'org-done nil 
-                      :foreground "B48EAD" 
-                      :strike-through t 
-                      :weight light 
-                      :slant italic)
-  (set-face-attribute 'org-headline-done nil
-                      :strike-through t
-                      :foreground "#B48EAD"
-                      :strike-through t
-                      :weight light
-                      :slant italic))
-(eval-after-load "org"
-  (add-hook 'org-add-hook 'my/modify-org-done-face))
-#+end_src
-
 **** fontify quote and verse blocks
  #+BEGIN_SRC emacs-lisp
 (setq org-fontify-quote-and-verse-blocks t)
@@ -1410,12 +1351,6 @@ Recipes are stored in =~/OrgDB/Chef=
 **** Checkbox Stats
 #+begin_src emacs-lisp
 (setq org-checkbox-hierarchical-statistics nil)
-#+end_src
-
-**** Links
-Don't hexify URL when creating a link.
-#+begin_src emacs-lisp
-(setq org-url-hexify-p nil)
 #+end_src
 
 *** Keywords
