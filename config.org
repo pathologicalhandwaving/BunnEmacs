@@ -1438,6 +1438,11 @@ Notes file
 
 **** org-crypt
 
+**** org-web-tools
+#+begin_src emacs-lisp
+(require 'org-web-tools)
+#+end_src
+
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
  
