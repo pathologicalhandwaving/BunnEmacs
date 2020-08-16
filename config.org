@@ -1443,6 +1443,11 @@ Notes file
 (require 'org-web-tools)
 #+end_src
 
+**** org-kanban
+#+begin_src emacs-lisp
+(require 'org-kanban)
+#+end_src
+
 *** Reference
 I store my books, papers, and reference files in =~/Librarian=
  
