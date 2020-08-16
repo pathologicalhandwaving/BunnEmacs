@@ -1,9 +1,10 @@
 # -*- mode: snippet -*-
-# name: page
-# key: <page
+# name: note
+# key: <note
 # --
 #+TITLE: $1
-#+CATEGORY: $2
+#+CATEGORY: Notes
+#+URL: $2
 #+TAGS: $3 $4
 
 
