@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: article
+# key: <article
+# --
+#+TITLE: ${1:title}
+#+AUTHOR: $2
+#+URL: [[${3:link}][${5:description}]]
+#+DATE_PUBLISHED: [$6]
+#+DATE_ACCESSED: [$7]
+#+TAGS: $8 $9
+
+
+* $1
+
+$0
