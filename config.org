@@ -323,6 +323,10 @@ Package dependencies providing modern APIs for working with lisp structures
 #+end_src
 
 #+begin_src emacs-lisp
+(use-package treemacs-all-the-icons)
+#+end_src
+
+#+begin_src emacs-lisp
 (use-package treemacs-icons-dired
   :after treemacs dired
   :ensure t
