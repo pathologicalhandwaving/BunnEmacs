@@ -1290,8 +1290,14 @@ HTML mode is defined in =sgml-mode.el=
 (setq org-startup-folded t)
 #+end_src
 
-*** Bullets
-
+*** Calendar
+#+begin_src emacs-lisp
+(require 'org-gcal)
+(setq org-gcal-client-id "665892281799-neavl78mkd8v47ng50dpdanii7j42rkv.apps.googleusercontent.com"
+      org-gcal-client-secret "G3-17CMyU-2x3oCDP-I40ZTO"
+      org-gcal-fetch-file-alist '(("kms.orgsync@gmail.com" ~/OrgDB/Inbox/agenda.org")
+                                  ("kms.orgsync@gmail.com" ~/OrgDB/Inbox/todos.org")))
+#+end_src
 *** Archives
 Archives are stored in =~/OrgDB/Archive=
 #+begin_src emacs-lisp
