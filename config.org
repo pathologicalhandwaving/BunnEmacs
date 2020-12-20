@@ -701,12 +701,7 @@ For example: \"<e\" -> (\"e\" . t)"
 
 * QS Tools
 
-** ActivityWatch
-#+begin_src emacs-lisp
-(require 'activity-watch-mode)
-(global-activity-watch-mode)
-(setq activity-watch-project-name-default "project-category-date")
-#+end_src
+
 
 * Utilities
 ** cheatsheet
